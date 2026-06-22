@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agencia de Bicicletas El Unicornio Azúl</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+
+<body> 
+    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+    
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="login.html">Inicio de Sesión</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h2>¡Tu bicicleta como nueva!</h2>
+        <p>En El Unicornio Azúl, ofrecemos servicios de reparación y mantenimiento
+             para que tu bicicleta esté siempre en óptimas condiciones.
+        </p>
+
+        <a href="catalogo.html" class="boton">
+            Ver Catálogo
+        </a>
+
+    </section>
+</body>
+</html>
+
