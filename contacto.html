@@ -9,10 +9,10 @@
 
 <header>
 
-    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1> <!-- Nombre de la empresa -->
 
-    <nav>
-        <ul>
+    <nav> 
+       <ul>
             <li><a href="index.html">Inicio</a></li>
             <li><a href="nosotros.html">Nosotros</a></li>
             <li><a href="contacto.html">Contacto</a></li>
@@ -22,15 +22,82 @@
 
 </header>
 
-<section>
+<section class="contacto">
+    
+    <div class="formulario-contacto">
 
-    <h2>Contáctanos</h2>
+        <h2>Contáctanos</h2>
 
-    <p>
-        Llámanos y agenda tu cita.
-    </p>
+        <p>
+            Tienes alguna duda sobre nuestros servicios de venta,
+            reparación o reconstrucción de bicicletas?
+            Envíanos un mensaje y te responderemos lo antes posible.
 
-    <h3>📞 44922517777</h3>
+            Todo trabajo se garantiza y se realiza con las mejores calidades posibles, para que tu bicicleta quede como nueva.
+        </p>
+
+        
+        <form id="formContacto">
+
+                <label>Nombre</label>
+            <input type="text" id="nombre" required>
+
+            <label>Correo Electrónico</label>
+            <input type="email" id="correo" required>
+
+            <label>Teléfono</label>
+            <input type="text" id="telefono">
+
+            <label>Mensaje</label>
+            <textarea id="mensaje" rows="5" required></textarea>
+
+            <button type="submit">
+                Enviar Mensaje
+            </button>
+
+        </form>
+
+        <div id="mensajeExito"></div>
+    </div>
+
+    <script>
+
+
+        //sino ha llenado los campos requeridos, no se enviará el formulario, enviar mensaje de error, 
+        // si se llenaron los campos requeridos, enviar mensaje de éxito
+
+        document
+        .getElementById("formContacto") 
+
+        //una vez obtenido la información de los campos, envía mensaje de éxito y limpia los campos del formulario
+        .addEventListener("submit", function(event) {
+            
+            event.preventDefault(); // Evita que el formulario se envíe automáticamente
+
+            // Obtener los valores de los campos del formulario
+            var nombre = document.getElementById("nombre").value;
+            var correo = document.getElementById("correo").value;
+            var telefono = document.getElementById("telefono").value;
+            var mensaje = document.getElementById("mensaje").value;
+
+            // Validar que los campos requeridos estén llenos. y una vez mandando mensaje de exito, se elimina el mensaje de exito y se limpia el formulario
+            if (nombre && correo && mensaje) {
+                document.getElementById("mensajeExito").innerHTML = "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.";
+                document.getElementById("formContacto").reset(); // Limpiar los campos del formulario
+                //limpiar el mensaje de éxito después de 5 segundos
+                setTimeout(function() {
+                    document.getElementById("mensajeExito").innerHTML = "";
+                }, 5000);
+
+            } else {
+                document.getElementById("mensajeExito").innerHTML = "Por favor, completa todos los campos requeridos.";
+                document.getElementById("mensajeExito").style.color = "red"; 
+            }
+        });
+
+    
+    </script>
+
 
 </section>
 

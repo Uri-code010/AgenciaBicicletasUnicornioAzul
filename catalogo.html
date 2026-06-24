@@ -3,37 +3,79 @@
 <head>
     <meta charset="UTF-8">
     <title>Catálogo</title>
+
     <link rel="stylesheet" href="css/estilos.css">
+
+    <script src="js/carrito.js"></script>
 </head>
 <body>
 
 <header>
 
-    <h1>Catálogo de Productos</h1>
+    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+
+    <nav>
+        <ul>
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Productos</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+        </ul>
+    </nav>
 
 </header>
 
 <section class="catalogo">
 
     <div class="producto">
+
+        <img src="img/mtb.jpg" alt="MTB">
+
         <h3>Bicicleta de Montaña</h3>
-        <p>$...</p>
-        <button>Agregar al carrito</button>
+
+        <p>Ideal para todo tipo de terreno.</p>
+
+        <h4>$4500</h4>
+
+        <button onclick="agregarCarrito('Bicicleta de Montaña',4500)">
+            Agregar al carrito
+        </button>
+
     </div>
 
     <div class="producto">
-        <h3>Bicicleta Urbana</h3>
-        <p>$...</p>
-        <button>Agregar al carrito</button>
+
+        <img src="img/lechera.jpg" alt="Lechera">
+
+        <h3>Lechera</h3>
+
+        <p>Ideal para almacenar leche y otros productos lácteos.</p>
+
+        <h4>$3000</h4>
+
+        <button onclick="agregarCarrito('Lechera',3000)">
+            Agregar al carrito
+        </button>
+
     </div>
 
     <div class="producto">
+
+        <img src="img/bici16.jpg" alt="Bicicleta Infantil">
+
         <h3>Bicicleta Infantil</h3>
-        <p>$...</p>
-        <button>Agregar al carrito</button>
-    </div>
+
+        <p>Perfecta para niños y niñas que empiezan a andar en bicicleta.</p>
+
+        <h4>$1500</h4>
+
+        <button onclick="agregarCarrito('Bicicleta Infantil',1500)">
+            Agregar al carrito
+        </button>
+    </div>    
 
 </section>
+
+<div id="mensajeCarrito"></div>
 
 </body>
 </html>

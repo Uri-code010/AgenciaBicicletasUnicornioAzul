@@ -1,0 +1,300 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background: #0077cc;
+    color: white; 
+    padding: 15px;
+    
+}
+
+nav ul {
+    display:flex;
+    list-style:none;
+    gap:20px;
+    padding:0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.hero {
+    text-align: center;
+    margin: 100px;
+}
+
+.boton{
+    background:#0077cc;
+    color:white;
+    padding:15px 25px;
+    text-decoration:none;
+    border-radius:10px;
+}
+
+.catalogo{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:50px;
+}
+
+.producto{
+    border:1px solid #ccc;
+    padding:20px;
+    text-align:center;
+    width:200px;
+}
+
+.login{
+    width:300px;
+    margin:auto;
+    margin-top:100px;
+}
+
+.login input{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.login button{
+    width:100%;
+    padding:10px;
+    
+}
+
+.nosotros{
+    text-align:center;
+    margin:100px;
+}
+
+.logo-contenedor {
+    display:flex;
+    align-items:center;
+    gap:15px;
+}
+
+.logo {
+    width:80px;
+    height:auto;
+}
+
+.btn-regresar {
+    background-color:#0077cc;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    margin: 20px;
+}
+
+.btn-regresar:hover {
+    background-color:#005fa3;
+}
+
+.btn-regresar-login {
+    background-color:#0077cc;
+    color:white;
+    padding:10px 20px;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+    margin-top: 10px;
+}
+
+.btn-regresar-login:hover {
+    background-color:#005fa3;
+}
+
+.contenedor-contacto{
+    display:flex;
+    justify-content:center;
+    margin-top:40px;
+}
+
+.formulario-contacto{
+    width:500px;
+    background:white;
+    padding:30px;
+    border-radius:15px;
+    box-shadow:0px 0px 15px rgba(0,0,0,0.2);
+}
+
+.formulario-contacto h2{
+    text-align:center;
+}
+
+.formulario-contacto label{
+    display:block;
+    margin-top:15px;
+    font-weight:bold;
+}
+
+.formulario-contacto input,
+.formulario-contacto textarea{
+    width:100%;
+    padding:10px;
+    margin-top:5px;
+    border:1px solid #ccc;
+    border-radius:8px;
+}
+
+.formulario-contacto button{
+    width:100%;
+    margin-top:20px;
+    padding:12px;
+    background:#0077cc;
+    color:white;
+    border:none;
+    border-radius:8px;
+    cursor:pointer;
+    font-size:16px;
+}
+
+.formulario-contacto button:hover{
+    background:#005fa3;
+}
+
+#mensajeExito{
+    color:green;
+    font-weight:bold;
+    margin-top:15px;
+    text-align:center;
+    font-size:18px;
+}
+
+.nosotros-conteiner {
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    margin-top:50px;
+}
+
+.card-nosotros{
+    background:white;
+    padding:25px;
+    margin-bottom:25px;
+    border-radius:15px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+    transition:0.3s;
+}
+
+.card-nosotros:hover{
+    transform:translateY(-5px);
+}
+
+.card-nosotros h2{
+    color:#0077cc;
+    margin-bottom:15px;
+}
+
+.mision-vision{
+    display:flex;
+    gap:20px;
+}
+
+.mision-vision .card-nosotros{
+    flex:1;
+}
+
+.card-nosotros ul{
+    padding-left:20px;
+}
+
+.card-nosotros li{
+    margin-bottom:10px;
+}
+
+.frase{
+    text-align:center;
+    background:#0077cc;
+    color:white;
+    padding:25px;
+    border-radius:15px;
+    font-style:italic;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
+}
+
+.galeria-antes-despues{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.foto-comparacion{
+    text-align:center;
+}
+
+.foto-comparacion img{
+    width:250px;
+    height:250px;
+    object-fit:cover;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+}
+
+.flecha{
+    font-size:40px;
+    color:#0077cc;
+    font-weight:bold;
+}
+
+.catalogo{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:50px;
+}
+
+.producto{
+    border:1px solid #ccc;
+    padding:20px;
+    text-align:center;
+    width:200px;
+    border-radius:12px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.1);
+    transition:0.3s;
+}
+
+.producto img{
+    width:100%;
+    height:200px;
+    object-fit:cover;
+    border-radius:10px;
+}
+
+.producto button{
+    background:#0077cc;
+    color:white;
+    border:none;
+    padding:10px 20px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+#mensajeCarrito{
+    position:fixed;
+    top:20px;
+    right:20px;
+    background:#28a745;
+    color:white;
+    padding:15px 25px;
+    border-radius:10px;
+    box-shadow:0 4px 12px rgba(0,0,0,0.2);
+    font-weight:bold;
+    opacity:0;
+    transition:0.5s;
+    z-index:1000;
+}

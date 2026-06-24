@@ -7,23 +7,129 @@
     <link rel="stylesheet" href="css/estilos.css">
 </head>
 <body> 
-   <header>
-        <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
-        <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="login.html">Inicio de Sesión</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-            </ul>
-        </nav>
-   </header>
-   <section class="nosotros">
-        <h2>Sobre Nosotros</h2>
-        <p>En El Unicornio Azúl, somos apacionados para la reparaciíon y venta de bicicletas, y nos dedicamos a ofrecer servicios de reparación y mantenimiento de alta calidad. Nuestro equipo de expertos está comprometido en brindar un servicio excepcional para que tu bicicleta esté siempre en óptimas condiciones.</p>
-        <p>Con años de experiencia en la industria, hemos construido una reputación sólida por nuestra atención al detalle y nuestro compromiso con la satisfacción del cliente. Ya sea que necesites una reparación rápida o un mantenimiento completo, estamos aquí para ayudarte.</p>
-        <p>¡Confía en nosotros para cuidar de tu bicicleta como si fuera nuestra!</p>
-    </section>
+    <header>
+            <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Inicio</a></li>
+                    <li><a href="nosotros.html">Nosotros</a></li>
+                    <li><a href="login.html">Inicio de Sesión</a></li>
+                    <li><a href="contacto.html">Contacto</a></li>
+                </ul>
+            </nav>
+    </header>
 
-</body>
+        <section class="nosotros-container">
+
+            <div class="card-nosotros">
+                <h2>Sobre Nosotros</h2>
+
+                <p>
+                    En El Unicornio Azul, somos apasionados por la reparación y venta
+                    de bicicletas, y nos dedicamos a ofrecer servicios de reparación
+                    y mantenimiento de alta calidad.
+                </p>
+
+                <p>
+                    Nuestro equipo de expertos está comprometido en brindar un servicio
+                    excepcional para que tu bicicleta esté siempre en óptimas condiciones.
+                </p>
+
+                <p>
+                    Con años de experiencia en la industria, hemos construido una
+                    reputación sólida por nuestra atención al detalle y nuestro
+                    compromiso con la satisfacción del cliente.
+                </p>
+
+                <p>
+                    ¡Confía en nosotros para cuidar de tu bicicleta como si fuera nuestra!
+                </p>
+            </div>
+
+            <div class="mision-vision">
+
+                <div class="card-nosotros">
+                    <h2>🎯 Misión</h2>
+
+                    <p>
+                        Brindar a nuestros clientes bicicletas, refacciones y servicios
+                        de reparación de buena calidad, ofreciendo soluciones accesibles
+                        y confiables que permitan prolongar la vida útil de cada bicicleta.
+                    </p>
+                </div>
+
+                <div class="card-nosotros">
+                    <h2>🚀 Visión</h2>
+
+                    <p>
+                        Ser la agencia de bicicletas líder en la región, reconocida por
+                        la excelencia en la reconstrucción y mantenimiento de bicicletas,
+                        innovando continuamente para ofrecer experiencias únicas.
+                    </p>
+                </div>
+
+            </div>
+
+            <div class="card-nosotros">
+
+                <h2>⭐ ¿Por Qué Elegirnos?</h2>
+
+                <ul>
+                    <li>🚲 Especialistas en reconstrucción completa de bicicletas.</li>
+                    <li>🔧 Servicio de reparación profesional y personalizado.</li>
+                    <li>♻️ Damos una segunda vida a bicicletas que otros consideran perdidas.</li>
+                    <li>⭐ Atención cercana y enfocada en las necesidades del cliente.</li>
+                    <li>💰 Opciones accesibles para todos los presupuestos.</li>
+                    <li>🛡️ Compromiso con la calidad y la seguridad.</li>
+                </ul>
+
+            </div>
+
+            <div class="comparador-container">
+
+                    <div class="galeria-antes-despues">
+
+                    <div class="foto-comparacion">
+                        <h3>Antes</h3>
+                        <img src="img/antes.jpg" alt="Bicicleta antes">
+                    </div>
+
+                    <div class="flecha">
+                        ➜
+                    </div>
+
+                    <div class="foto-comparacion">
+                        <h3>Después</h3>
+                        <img src="img/despues.jpg" alt="Bicicleta después">
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="frase">
+                <h3>
+                    "Donde otras bicicletas terminan su camino,
+                    nosotros les damos un nuevo comienzo."
+                </h3>
+            </div>
+
+        </section>
+
+        <script>
+
+            const slider = document.getElementById("slider");
+            const antesContainer = document.getElementById("antesContainer");
+
+            slider.addEventListener("input", function(){
+                antesContainer.style.width = this.value + "%";
+            });
+
+        </script>
+
+        <button class="btn-regresar" onclick="history.back()">
+            ⬅ Regresar
+        </button>
+
+    </body>
 </html>
