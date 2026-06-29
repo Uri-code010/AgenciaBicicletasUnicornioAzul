@@ -1,0 +1,111 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Mi Perfil</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+
+    <nav>
+
+        <ul>
+
+            <li><a href="index.html">Inicio</a></li>
+
+            <li><a href="catalogo.html">Productos</a></li>
+
+            <li><a href="carrito.html">Carrito</a></li>
+
+            <li><a href="perfil.html">Mi Perfil</a></li>
+
+            <li><a href="contacto.html">Contacto</a></li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<section class="perfil-container">
+
+<div class="perfil-card">
+
+<div class="avatar" id="avatarUsuario">
+</div>
+
+<h2 id="saludoUsuario">
+Bienvenido
+</h2>
+
+
+<div class="perfil-estadisticas">
+
+<div class="estadistica">
+
+<h3 id="productosCarrito">0</h3>
+
+<p>Productos en el carrito</p>
+
+</div>
+
+<div class="estadistica">
+
+<h3 id="comprasRealizadas">0</h3>
+
+<p>Compras realizadas</p>
+
+<p id="ultimoAcceso"></p>
+</div>
+
+</div>
+
+<div class="nivel-cliente">
+
+    ⭐ Cliente Preferente
+
+    <p>
+        Gracias por confiar en nosotros.
+    </p>
+
+</div>
+
+<a class="btn-historial" href="historial.html">
+
+📦 Ver Historial
+
+</a>
+
+<a class="btn-carrito" href="carrito.html">
+
+🛒 Ir al Carrito
+
+</a>
+
+<button class="btn-salir" onclick="cerrarSesion()">
+
+🚪 Cerrar Sesión
+
+</button>
+
+</div>
+
+</section>
+
+<script src="js/usuarios.js"></script>
+
+</body>
+
+</html>

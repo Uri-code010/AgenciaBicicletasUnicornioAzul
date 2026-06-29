@@ -11,32 +11,53 @@
 
     <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
 
+    <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="nosotros.html">Nosotros</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+                <li><a href="registro.html">Registro</a></li>
+            </ul>
+        </nav>
+
 </header>
 
 <section class="login">
 
     <h2>Iniciar Sesión</h2>
 
-    <form>
+    <form id="formLogin">
 
         <input type="email"
-               placeholder="Correo electrónico">
+            id="correoLogin"
+               placeholder="Correo electrónico"
+               required>
 
         <input type="password"
-               placeholder="Contraseña">
+            id="passwordLogin"
+               placeholder="Contraseña"
+               required>
 
-        <button type="button">
+        <button type="submit">
             Ingresar
         </button>
 
-        <a button class="btn-regresar-login" onclick="history.back()">
-            Regresar
-        </a>
+        <p style="text-align:center; margin-top:15px;">
+            <a href="recuperar.html">
+                ¿Olvidaste tu contraseña?
+            </a>
+        </p>
 
     </form>
+      
+    <div id="mensajeLogin"></div>
+
+    <script src="js/usuarios.js"></script>
 
 
 </section>
+
+
 
 </body>
 </html>

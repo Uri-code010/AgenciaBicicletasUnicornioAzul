@@ -8,10 +8,10 @@ function agregarCarrito(nombre, precio) {
     let carrito =
         JSON.parse(localStorage.getItem("carrito")) || [];
 
-    // Agregar producto
-    carrito.push({
-        nombre: nombre,
-        precio: precio
+        // Agregar producto
+        carrito.push({
+            nombre: nombre,
+            precio: precio
     });
 
     // Guardar nuevamente en localStorage
@@ -24,16 +24,40 @@ function agregarCarrito(nombre, precio) {
     const mensaje =
         document.getElementById("mensajeCarrito");
 
-    if (mensaje) {
+        if (mensaje) {
 
-        mensaje.innerHTML =
-            `🛒 ${nombre} agregado al carrito`;
+            mensaje.innerHTML =
+                `🛒 ${nombre} agregado al carrito`;
 
-        mensaje.style.opacity = "1";
+            mensaje.style.opacity = "1";
 
-        setTimeout(() => {
-            mensaje.style.opacity = "0";
+            setTimeout(() => {
+                mensaje.style.opacity = "0";
         }, 3000);
     }
 
+        //validar inicio de sesión 
+
+        let sesionActiva =
+            localStorage.getItem("sesionActiva");
+
+            if(sesionActiva !== "true"){
+
+                alert(
+                    "Debe iniciar sesión para realizar compras."
+                );
+
+            window.location.href = "login.html";
+
+            return;
+        }
+    
+}
+
+
+function vaciarCarrito(){
+
+    localStorage.removeItem("carrito");
+
+    location.reload();
 }

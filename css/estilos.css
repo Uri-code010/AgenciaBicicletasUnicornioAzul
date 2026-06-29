@@ -298,3 +298,772 @@ nav a {
     transition:0.5s;
     z-index:1000;
 }
+
+.registro{
+    width:300px;
+    margin:auto;
+    margin-top:100px;
+}
+
+.registro input{
+    width:100%;
+    padding:10px;
+    margin-bottom:10px;
+}
+
+.registro button{
+    width:100%;
+    padding:10px;
+    
+}
+
+/* <!-- vista perfil usuario --> */
+.perfil-card{
+    width:350px;
+    background:white;
+    padding:30px;
+    border-radius:20px;
+    box-shadow:0 10px 25px rgba(0,0,0,0.15);
+    text-align:center;
+    transition:0.3s;
+}
+
+.perfil-card:hover{
+    transform:translateY(-5px);
+}
+
+.perfil-container{
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    min-height:80vh;
+    background:linear-gradient(135deg,#eaf4ff,#f7fbff);
+
+}
+
+.perfil-card h2{
+    color:#0077cc;
+    margin-bottom:20px;
+}
+
+/* Información del usuario */
+#datosPerfil p{
+    font-size:16px;
+    margin:10px 0;
+    padding:8px;
+    background:#f3f8ff;
+    border-radius:10px;
+}
+
+/* Botón historial */
+.btn-historial{
+    display:block;
+    margin-top:20px;
+    padding:12px;
+    background:#0077cc;
+    color:white;
+    text-decoration:none;
+    border-radius:10px;
+    transition:0.3s;
+}
+
+.btn-historial:hover{
+    background:#005fa3;
+}
+
+/* Botón salir */
+.btn-salir{
+    margin-top:15px;
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#ff4d4d;
+    color:white;
+    font-size:15px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.btn-salir:hover{
+    background:#d93636;
+}
+
+/* ===========================
+        PERFIL
+=========================== */
+
+.perfil-container{
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:50px;
+
+background:#f3f8ff;
+
+min-height:80vh;
+
+}
+
+.perfil-card{
+
+width:500px;
+
+background:white;
+
+border-radius:20px;
+
+padding:35px;
+
+box-shadow:0 10px 30px rgba(0,0,0,.15);
+
+text-align:center;
+
+}
+
+.avatar{
+
+    width:120px;
+    height:120px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    background:linear-gradient(135deg,#0077cc,#00aaff);
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:55px;
+
+    font-weight:bold;
+
+    box-shadow:0 8px 20px rgba(0,0,0,.25);
+
+    margin-bottom:20px;
+
+    transition:.3s;
+
+
+}
+
+.avatar:hover{
+
+    transform:scale(1.08) rotate(5deg);
+
+}
+
+#datosPerfil{
+
+margin:20px 0;
+
+}
+
+#datosPerfil p{
+
+background:#f5f8fc;
+
+padding:12px;
+
+border-radius:10px;
+
+margin-bottom:12px;
+
+font-size:17px;
+
+}
+
+.perfil-estadisticas{
+
+display:flex;
+
+justify-content:space-around;
+
+margin:30px 0;
+
+gap:15px;
+
+}
+
+.estadistica{
+
+flex:1;
+
+background:#0077cc;
+
+color:white;
+
+padding:20px;
+
+border-radius:15px;
+
+}
+
+.estadistica h3{
+
+font-size:34px;
+
+margin:0;
+
+}
+
+.estadistica p{
+
+margin-top:10px;
+
+font-size:15px;
+
+}
+
+.btn-historial,
+
+.btn-carrito{
+
+display:block;
+
+padding:14px;
+
+margin-top:15px;
+
+background:#0077cc;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:12px;
+
+font-weight:bold;
+
+transition:.3s;
+
+}
+
+.btn-historial:hover,
+
+.btn-carrito:hover{
+
+background:#005fa3;
+
+}
+
+.btn-salir{
+
+margin-top:20px;
+
+width:100%;
+
+padding:15px;
+
+background:#d9534f;
+
+color:white;
+
+border:none;
+
+border-radius:12px;
+
+font-size:16px;
+
+cursor:pointer;
+
+transition:.3s;
+
+}
+
+.btn-salir:hover{
+
+background:#b52b27;
+
+}
+
+.nivel-cliente{
+
+    margin-top:25px;
+
+    padding:20px;
+
+    background:#fff6d5;
+
+    border-left:6px solid #f4c542;
+
+    border-radius:12px;
+
+}
+
+.nivel-cliente p{
+
+    margin-top:10px;
+
+    color:#666;
+
+}
+
+/*=========================
+        CARRITO
+=========================*/
+
+.carrito-container{
+
+display:flex;
+
+justify-content:center;
+
+padding:40px;
+
+}
+
+.carrito-card{
+
+width:600px;
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.carrito-card h2{
+
+text-align:center;
+
+color:#0077cc;
+
+margin-bottom:25px;
+
+}
+
+#listaCarrito p{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:12px;
+
+background:#f5f8fc;
+
+border-radius:10px;
+
+margin-bottom:10px;
+
+}
+
+#total{
+
+margin-top:25px;
+
+text-align:right;
+
+font-size:24px;
+
+color:#0077cc;
+
+}
+
+.btn-vaciar{
+
+width:100%;
+
+padding:14px;
+
+margin-top:20px;
+
+background:#d9534f;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:16px;
+
+}
+
+.btn-vaciar:hover{
+
+background:#b52b27;
+
+}
+
+/*=========================
+        CHECKOUT
+=========================*/
+
+.checkout-container{
+
+display:flex;
+
+justify-content:center;
+
+padding:40px;
+
+}
+
+.checkout-card{
+
+width:650px;
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.checkout-card h2{
+
+text-align:center;
+
+color:#0077cc;
+
+margin-bottom:25px;
+
+}
+
+.checkout-card label{
+
+display:block;
+
+margin-top:15px;
+
+font-weight:bold;
+
+}
+
+.checkout-card input,
+.checkout-card select{
+
+width:100%;
+
+padding:12px;
+
+margin-top:5px;
+
+border-radius:10px;
+
+border:1px solid #ccc;
+
+}
+
+.checkout-card button{
+
+margin-top:25px;
+
+width:100%;
+
+padding:14px;
+
+background:#0077cc;
+
+color:white;
+
+border:none;
+
+border-radius:10px;
+
+cursor:pointer;
+
+font-size:17px;
+
+}
+
+.checkout-card button:hover{
+
+background:#005fa3;
+
+}
+
+#resumenCompra{
+
+margin-top:20px;
+
+background:#f5f8fc;
+
+padding:20px;
+
+border-radius:15px;
+
+}
+
+#resumenCompra p{
+
+display:flex;
+
+justify-content:space-between;
+
+margin:8px 0;
+
+}
+
+#totalCompra{
+
+text-align:right;
+
+color:#0077cc;
+
+margin-top:15px;
+
+font-size:24px;
+
+}
+
+#mensajeCompra{
+
+margin-top:20px;
+
+text-align:center;
+
+font-weight:bold;
+
+color:green;
+
+font-size:18px;
+
+}
+/*=============================
+    CONFIRMACIÓN DE COMPRA
+=============================*/
+
+.confirmacion-container{
+
+display:flex;
+
+justify-content:center;
+
+padding:50px;
+
+}
+
+.confirmacion-card{
+
+width:700px;
+
+background:white;
+
+padding:40px;
+
+border-radius:20px;
+
+text-align:center;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.icono-check{
+
+font-size:70px;
+
+margin-bottom:20px;
+
+}
+
+.confirmacion-card h2{
+
+color:#28a745;
+
+margin-bottom:15px;
+
+}
+
+.confirmacion-card hr{
+
+margin:30px 0;
+
+}
+
+#detallePedido{
+
+text-align:left;
+
+background:#f4f8fc;
+
+padding:20px;
+
+border-radius:15px;
+
+line-height:2;
+
+}
+
+.botones-confirmacion{
+
+margin-top:35px;
+
+display:flex;
+
+justify-content:center;
+
+gap:20px;
+
+}
+
+/*=========================
+      HISTORIAL
+=========================*/
+
+.historial-container,
+.detalle-container{
+
+display:flex;
+
+justify-content:center;
+
+padding:40px;
+
+}
+
+.historial-card,
+.detalle-card{
+
+width:750px;
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.pedido{
+
+background:#f5f8fc;
+
+padding:20px;
+
+margin-bottom:20px;
+
+border-radius:15px;
+
+}
+
+.pedido button{
+
+margin-top:10px;
+
+background:#0077cc;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+.pedido button:hover{
+
+background:#005fa3;
+
+}
+
+.detalle-card ul{
+
+padding-left:25px;
+
+line-height:2;
+
+}
+
+/*=========================
+      HISTORIAL
+=========================*/
+
+.historial-container,
+.detalle-container{
+
+display:flex;
+
+justify-content:center;
+
+padding:40px;
+
+}
+
+.historial-card,
+.detalle-card{
+
+width:750px;
+
+background:white;
+
+padding:30px;
+
+border-radius:20px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.15);
+
+}
+
+.pedido{
+
+background:#f5f8fc;
+
+padding:20px;
+
+margin-bottom:20px;
+
+border-radius:15px;
+
+}
+
+.pedido button{
+
+margin-top:10px;
+
+background:#0077cc;
+
+color:white;
+
+border:none;
+
+padding:10px 20px;
+
+border-radius:10px;
+
+cursor:pointer;
+
+}
+
+.pedido button:hover{
+
+background:#005fa3;
+
+}
+
+.detalle-card ul{
+
+padding-left:25px;
+
+line-height:2;
+
+}

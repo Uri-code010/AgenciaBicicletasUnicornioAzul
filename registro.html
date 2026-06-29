@@ -1,0 +1,58 @@
+<!DOCTYPE html> 
+<html>
+ <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Registro - Agencia de Bicicletas El Unicornio Azúl</title>
+        <link rel="stylesheet" href="css/estilos.css">
+    </head>
+
+    <body>
+       
+
+        <header>
+
+            <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+
+            <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="login.html">Inicio de Sesión</a></li>
+                    </ul>
+                </nav>
+
+        </header>
+
+        <section class="registro">
+
+            <form id="formRegistro">
+
+                <h2>Registro de Usuario</h2>
+
+                <label>Nombre</label>
+                <input type="text" id="nombre" required>
+
+                <label>Correo</label>
+                <input type="email" id="correo" required>
+
+                <label>Contraseña</label>
+                <input type="password" id="password" required>
+
+                <button type="submit">
+                    Registrarse
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <div id="mensajeRegistro"></div>
+
+        <script src="js/usuarios.js"></script>
+
+    </body>
+
+</html>

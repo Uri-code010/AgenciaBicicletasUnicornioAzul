@@ -1,22 +1,68 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
+
     <meta charset="UTF-8">
+
     <title>Carrito</title>
 
     <link rel="stylesheet" href="css/estilos.css">
+
 </head>
+
 <body>
 
-<h2>Mi Carrito</h2>
+<header>
 
-<div id="listaCarrito"></div>
+    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
 
-<h3 id="total"></h3>
+    <nav>
 
-<a href="checkout.html" class="boton">
-    Proceder al Pago
-</a>
+        <ul>
+
+            <li><a href="index.html">Inicio</a></li>
+
+            <li><a href="catalogo.html">Productos</a></li>
+
+            <li>
+                <a href="carrito.html">
+                    🛒 Carrito
+                    <span id="contadorCarrito">(0)</span>
+                </a>
+            </li>
+
+            <li><a href="perfil.html">Mi Perfil</a></li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<section class="carrito-container">
+
+    <div class="carrito-card">
+
+        <h2>🛒 Mi Carrito</h2>
+
+        <div id="listaCarrito"></div>
+
+        <h3 id="total"></h3>
+
+        <button onclick="vaciarCarrito()" class="btn-vaciar">
+            🗑 Vaciar Carrito
+        </button>
+
+        <br><br>
+
+        <a href="checkout.html" class="boton">
+            Proceder al Pago
+        </a>
+
+    </div>
+
+</section>
 
 <script>
 
@@ -28,20 +74,26 @@ document.getElementById("listaCarrito");
 
 let total = 0;
 
-carrito.forEach(producto => {
+carrito.forEach(producto =>{
 
     lista.innerHTML += `
-        <p>${producto.nombre} - $${producto.precio}</p>
+        <p>
+            🚲 ${producto.nombre}
+            <strong>$${producto.precio}</strong>
+        </p>
     `;
 
     total += producto.precio;
 
 });
 
-document.getElementById("total")
-.innerHTML = "Total: $" + total;
+document.getElementById("total").innerHTML =
+"Total: $" + total;
 
 </script>
 
+<script src="js/carrito.js"></script>
+
 </body>
+
 </html>
