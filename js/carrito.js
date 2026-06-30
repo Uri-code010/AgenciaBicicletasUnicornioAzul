@@ -1,63 +1,105 @@
-//creación de carrito (ver carrito.html) al dar click en el botón "Agregar al carrito" de cada producto
- 
-// Función para agregar productos al carrito
+// =========================================
+// CARRITO DE COMPRAS
+// Agencia de Bicicletas El Unicornio Azul
+// =========================================
 
-function agregarCarrito(nombre, precio) {
+// Obtiene la llave del carrito del usuario actual
+function obtenerLlaveCarrito() {
 
-    // Obtener carrito actual o crear uno vacío
-    let carrito =
-        JSON.parse(localStorage.getItem("carrito")) || [];
+    const usuario =
+        JSON.parse(localStorage.getItem("usuarioActual"));
 
-        // Agregar producto
-        carrito.push({
-            nombre: nombre,
-            precio: precio
-    });
-
-    // Guardar nuevamente en localStorage
-    localStorage.setItem(
-        "carrito",
-        JSON.stringify(carrito)
-    );
-
-    // Mostrar mensaje visual
-    const mensaje =
-        document.getElementById("mensajeCarrito");
-
-        if (mensaje) {
-
-            mensaje.innerHTML =
-                `🛒 ${nombre} agregado al carrito`;
-
-            mensaje.style.opacity = "1";
-
-            setTimeout(() => {
-                mensaje.style.opacity = "0";
-        }, 3000);
+    if (!usuario) {
+        return null;
     }
 
-        //validar inicio de sesión 
-
-        let sesionActiva =
-            localStorage.getItem("sesionActiva");
-
-            if(sesionActiva !== "true"){
-
-                alert(
-                    "Debe iniciar sesión para realizar compras."
-                );
-
-            window.location.href = "login.html";
-
-            return;
-        }
-    
+    return "carrito_" + usuario.correo.toLowerCase();
 }
 
 
-function vaciarCarrito(){
+// Agregar producto al carrito
+function agregarCarrito(nombre, precio) {
 
-    localStorage.removeItem("carrito");
+    // Verificar sesión
+    const sesionActiva =
+        localStorage.getItem("sesionActiva");
+
+    if (sesionActiva !== "true") {
+
+        alert("Debes iniciar sesión para realizar compras.");
+
+        window.location.href = "login.html";
+
+        return;
+    }
+
+    const llaveCarrito = obtenerLlaveCarrito();
+
+    let carrito =
+        JSON.parse(localStorage.getItem(llaveCarrito)) || [];
+
+    carrito.push({
+
+        nombre: nombre,
+        precio: precio
+
+    });
+
+    localStorage.setItem(
+        llaveCarrito,
+        JSON.stringify(carrito)
+    );
+
+    const mensaje =
+        document.getElementById("mensajeCarrito");
+
+    if (mensaje) {
+
+        mensaje.innerHTML =
+            `🛒 ${nombre} agregado al carrito`;
+
+        mensaje.style.opacity = "1";
+
+        setTimeout(() => {
+
+            mensaje.style.opacity = "0";
+
+        }, 3000);
+
+    }
+
+}
+
+
+// Obtener carrito del usuario
+function obtenerCarrito() {
+
+    const llaveCarrito = obtenerLlaveCarrito();
+
+    if (!llaveCarrito) {
+
+        return [];
+
+    }
+
+    return JSON.parse(
+        localStorage.getItem(llaveCarrito)
+    ) || [];
+
+}
+
+
+// Vaciar carrito
+function vaciarCarrito() {
+
+    const llaveCarrito = obtenerLlaveCarrito();
+
+    if (llaveCarrito) {
+
+        localStorage.removeItem(llaveCarrito);
+
+    }
 
     location.reload();
+
 }

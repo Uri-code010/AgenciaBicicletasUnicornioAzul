@@ -5,59 +5,86 @@
     <title>Inicio de Sesión</title>
     <link rel="stylesheet" href="css/estilos.css">
 </head>
-<body>
+    <body>
 
-<header>
+        <header>
 
-    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+            <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
 
-    <nav>
-            <ul>
-                <li><a href="index.html">Inicio</a></li>
-                <li><a href="nosotros.html">Nosotros</a></li>
-                <li><a href="contacto.html">Contacto</a></li>
-                <li><a href="registro.html">Registro</a></li>
-            </ul>
-        </nav>
+            <nav>
+                    <ul>
+                        <li><a href="index.html">Inicio</a></li>
+                        <li><a href="nosotros.html">Nosotros</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                        <li><a href="registro.html">Registro</a></li>
+                    </ul>
+                </nav>
 
-</header>
+        </header>
 
-<section class="login">
+        <section class="login">
 
-    <h2>Iniciar Sesión</h2>
+            <h2>Iniciar Sesión</h2>
 
-    <form id="formLogin">
+            <form id="formLogin">
 
-        <input type="email"
-            id="correoLogin"
-               placeholder="Correo electrónico"
-               required>
+                <input type="email"
+                    id="correoLogin"
+                    placeholder="Correo electrónico"
+                    required>
 
-        <input type="password"
-            id="passwordLogin"
-               placeholder="Contraseña"
-               required>
+                <input type="password"
+                    id="passwordLogin"
+                    placeholder="Contraseña"
+                    required>
+                
+                <div class="recordar">
 
-        <button type="submit">
-            Ingresar
-        </button>
+                    <input
+                        type="checkbox"
+                        id="recordar">
 
-        <p style="text-align:center; margin-top:15px;">
-            <a href="recuperar.html">
-                ¿Olvidaste tu contraseña?
-            </a>
-        </p>
+                    <label for="recordar">
+                        Recordar mi contraseña
+                    </label>
 
-    </form>
-      
-    <div id="mensajeLogin"></div>
+                </div>
+                <button type="submit">
+                    Ingresar
+                </button>
 
-    <script src="js/usuarios.js"></script>
+                <p class="login-link">
+
+                    ¿Olvidaste tu contraseña?
+
+                    <a href="recuperar.html">
+
+                        Recuperarla
+
+                    </a>
+
+                </p>
+
+                <p class="login-link">
+
+                    ¿No tienes cuenta?
+
+                    <a href="registro.html">
+
+                        Regístrate
+
+                    </a>
+
+                </p>
+
+            </form>
+            
+            <div id="mensajeLogin"></div>
+
+            <script src="js/usuarios.js"></script>
 
 
-</section>
+        </section>
 
-
-
-</body>
+    </body>
 </html>

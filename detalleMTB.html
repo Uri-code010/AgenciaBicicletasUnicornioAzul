@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Bicicleta de Montaña</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script src="js/carrito.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+
+    <nav>
+
+        <ul>
+
+            <li><a href="index.html">Inicio</a></li>
+
+            <li><a href="catalogo.html">Catálogo</a></li>
+
+            <li><a href="carrito.html">Carrito</a></li>
+
+            <li><a href="contacto.html">Contacto</a></li>
+
+            <li><a href="login.html">Iniciar Sesión</a></li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+
+<section class="detalleProducto">
+
+    <div class="imagenDetalle">
+
+         <img
+        id="imagenPrincipal"
+        src="img/mtb.jpeg"
+        alt="Bicicleta">
+
+    <div class="miniaturas">
+
+        <img
+            src="img/mtb.jpeg"
+            onclick="cambiarImagen(this.src)">
+
+        <img
+            src="img/mtb2.jpeg"
+            onclick="cambiarImagen(this.src)">
+
+        <img
+            src="img/mtb3.jpeg"
+            onclick="cambiarImagen(this.src)">
+
+    </div>
+
+
+    <div class="infoDetalle">
+
+        <h2>Bicicleta de Montaña</h2>
+
+        <div class="estrellas">
+
+            ⭐⭐⭐⭐⭐
+            <span>(4.9)</span>
+
+        </div>
+
+        <h1 class="precio">
+
+            $4,500
+
+        </h1>
+
+        <p class="stock">
+
+            ✔ Disponible
+
+        </p>
+
+        <p>
+
+            Bicicleta diseñada para recorridos extremos y senderos de montaña.
+
+            Fabricada con materiales resistentes, suspensión delantera y frenos
+            de disco para ofrecer mayor seguridad y comodidad.
+
+        </p>
+
+        <div class="especificaciones">
+
+            <h3>Características</h3>
+
+            <ul>
+
+                <li>🚲 Rodada 29</li>
+
+                <li>⚙️ 21 velocidades</li>
+
+                <li>🛞 Frenos de disco</li>
+
+                <li>🛡 Garantía de 1 año</li>
+
+                <li>🚚 Envío gratuito</li>
+
+                <li>🎨 Color negro con blanco</li>
+
+            </ul>
+
+        </div>
+
+        <button
+        onclick="agregarCarrito('Bicicleta de Montaña',4500)">
+
+            🛒 Agregar al carrito
+
+        </button>
+
+        <br><br>
+
+        <a href="catalogo.html" class="botonVolver">
+
+            ← Regresar al catálogo
+
+        </a>
+
+    </div>
+
+</section>
+
+<div id="mensajeCarrito"></div>
+
+<script>
+
+function cambiarImagen(ruta){
+
+    document
+    .getElementById("imagenPrincipal")
+    .src = ruta;
+
+}
+
+</script>
+
+</body>
+
+</html>

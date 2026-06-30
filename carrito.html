@@ -66,8 +66,7 @@
 
 <script>
 
-let carrito =
-JSON.parse(localStorage.getItem("carrito")) || [];
+let carrito = obtenerCarrito();
 
 let lista =
 document.getElementById("listaCarrito");

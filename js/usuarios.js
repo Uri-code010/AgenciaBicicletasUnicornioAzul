@@ -112,6 +112,21 @@ function iniciarSesion(usuario) {
     guardarUsuariosRegistrados(usuarios);
     localStorage.setItem(STORAGE_KEYS.usuarioActual, JSON.stringify(usuarioFinal));
     localStorage.setItem(STORAGE_KEYS.sesionActiva, "true");
+
+    const recordar = document.getElementById("recordar");
+
+    
+    if (recordar?.checked) {
+
+        localStorage.setItem("correoRecordado", usuario.correo);
+        localStorage.setItem("passwordRecordada", usuario.password);
+
+    } else {
+
+        localStorage.removeItem("correoRecordado");
+        localStorage.removeItem("passwordRecordada");
+
+    }
 }
 
 function cerrarSesion() {
@@ -122,16 +137,43 @@ function cerrarSesion() {
 }
 
 function estaAutenticado() {
-    return localStorage.getItem(STORAGE_KEYS.sesionActiva) === "true";
-}
+        return localStorage.getItem(STORAGE_KEYS.sesionActiva) === "true";
+    }
+    //creación de usuarios
+    document.addEventListener("DOMContentLoaded", () => {
+    
+        const formulario = document.getElementById("formRegistro");
 
-//creación de usuarios
-document.addEventListener("DOMContentLoaded", () => {
+        // ============================
+        // Recordar contraseña
+        // ============================
+        
+    
+        const correoGuardado = localStorage.getItem("correoRecordado");
 
-    const formulario = document.getElementById("formRegistro");
+        const passwordGuardada = localStorage.getItem("passwordRecordada");
+        const correoLogin = document.getElementById("correoLogin");
+        const passwordLogin = document.getElementById("passwordLogin");
+        const recordar = document.getElementById("recordar");
 
-    if (formulario) {
-        formulario.addEventListener("submit", function (e) {
+        if (correoLogin && passwordLogin && recordar && correoGuardado) {
+
+            correoLogin.value = correoGuardado;
+            passwordLogin.value = passwordGuardada;
+            recordar.checked = true;
+
+        }
+    
+
+        // ============================
+        // Registro
+        // ============================
+
+
+
+        if (formulario) {
+
+            formulario.addEventListener("submit", function (e) {
             e.preventDefault();
 
             const usuario = {
@@ -140,8 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 password: document.getElementById("password").value
             };
 
-            iniciarSesion(usuario);
-
+            
             iniciarSesion(usuario);
 
             const mensajeRegistro = document.getElementById("mensajeRegistro");
@@ -157,6 +198,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }, 1000);
         });
+        
     }
 
     const login = document.getElementById("formLogin");
@@ -233,72 +275,118 @@ document.addEventListener("DOMContentLoaded", () => {
         const carrito =
         JSON.parse(localStorage.getItem("carrito")) || [];
 
-        document.getElementById("productosCarrito").textContent =
-        carrito.length;
+        const productos =
+        document.getElementById("productosCarrito");
+
+        if(productos){
+
+            productos.textContent = carrito.length;
+
+        }
 
         const historial =
         JSON.parse(localStorage.getItem("historial")) || [];
 
-        document.getElementById("comprasRealizadas").textContent =
-        historial.length;
+        const comprasRealizadas =
+        document.getElementById("comprasRealizadas");
 
+        if(comprasRealizadas){
+
+            comprasRealizadas.textContent = historial.length;
+
+        }
         const fecha = new Date();
 
-        document.getElementById("ultimoAcceso").innerHTML =
-        "Último acceso: " + fecha.toLocaleDateString();
+        const ultimoAcceso =
+        document.getElementById("ultimoAcceso");
+
+        if(ultimoAcceso){
+
+            ultimoAcceso.innerHTML =
+            "Último acceso: " +
+            fecha.toLocaleDateString();
+        }
     }
-});
+    });
 
-//recuperación de contraseseña
-const recuperar =
-document.getElementById("formRecuperar");
+    // ==========================
+    // RECUPERAR CONTRASEÑA
+    // ==========================
 
-    if(recuperar){
+const formRecuperar = document.getElementById("formRecuperar");
 
-        recuperar.addEventListener("submit",function(e){
+if (formRecuperar) {
+
+    formRecuperar.addEventListener("submit", function (e) {
 
         e.preventDefault();
 
-        const correo =
-        document.getElementById("correoRecuperar").value
-        .toLowerCase();
+        const correo = document
+            .getElementById("correoRecuperar")
+            .value
+            .trim()
+            .toLowerCase();
 
-        const nuevaPassword =
-        document.getElementById("nuevaPassword").value;
+        const nuevaPassword = document
+            .getElementById("nuevaPassword")
+            .value
+            .trim();
 
-        let usuarios =
-        obtenerUsuariosRegistrados();
+        const mensaje = document.getElementById("mensajeRecuperar");
 
-        const indice =
-        usuarios.findIndex(
-         u => u.correo.toLowerCase()==correo
+        // Validar que escriba contraseña
+        if (nuevaPassword.length < 4) {
+
+            mensaje.innerHTML =
+                "❌ La contraseña debe tener al menos 4 caracteres.";
+
+            return;
+        }
+
+        let usuarios = obtenerUsuariosRegistrados();
+
+        const indice = usuarios.findIndex(
+            usuario => usuario.correo.toLowerCase() === correo
         );
 
-    if(indice==-1){
+        if (indice === -1) {
 
-        document.getElementById("mensajeRecuperar").innerHTML=
+            mensaje.innerHTML =
+                "❌ No existe un usuario con ese correo.";
 
-        "❌ No existe un usuario con ese correo.";
+            return;
+        }
 
-        return;
+        // Actualizar contraseña
+        usuarios[indice].password = nuevaPassword;
 
-    }
-    
+        guardarUsuariosRegistrados(usuarios);
 
-    usuarios[indice].password=
-    nuevaPassword; 
+        // Si ese usuario tenía marcada la opción Recordarme,
+        // también actualizamos la contraseña recordada.
+        const correoRecordado =
+            localStorage.getItem("correoRecordado");
 
-    guardarUsuariosRegistrados(usuarios);
+        if (
+            correoRecordado &&
+            correoRecordado.toLowerCase() === correo
+        ) {
 
-    document.getElementById("mensajeRecuperar").innerHTML=
+            localStorage.setItem(
+                "passwordRecordada",
+                nuevaPassword
+            );
 
-    "✅ Contraseña actualizada correctamente.";
+        }
 
-    setTimeout(()=>{
+        mensaje.innerHTML =
+            "✅ Contraseña actualizada correctamente.";
 
-    window.location.href="login.html";
+        setTimeout(function () {
 
-    },1500);
+            window.location.href = "login.html";
+
+        }, 1500);
 
     });
 

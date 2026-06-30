@@ -53,10 +53,14 @@ function aparecerContenido(){
 
 }
 
-document
-.getElementById("entrar")
-.addEventListener("click",()=>{
-
-    window.location.href="index.html";
-
-});
+console.log("publicidad.js cargado");
+const botonEntrar = document.getElementById("entrar");
+console.log("botonEntrar:", botonEntrar);
+if (botonEntrar) {
+    botonEntrar.addEventListener("click", () => {
+        console.log("clic en entrar");
+        window.location.href = "index.html";
+    });
+} else {
+    console.log("No se encontró el botón #entrar en esta página.");
+}

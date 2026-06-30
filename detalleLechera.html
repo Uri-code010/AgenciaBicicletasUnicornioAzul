@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Lechera</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <script src="js/carrito.js"></script>
+
+</head>
+
+<body>
+
+<header>
+
+    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+
+    <nav>
+
+        <ul>
+
+            <li><a href="index.html">Inicio</a></li>
+            <li><a href="catalogo.html">Catálogo</a></li>
+            <li><a href="carrito.html">Carrito</a></li>
+            <li><a href="contacto.html">Contacto</a></li>
+            <li><a href="login.html">Iniciar Sesión</a></li>
+
+        </ul>
+
+    </nav>
+
+</header>
+
+<section class="detalleProducto">
+
+    <div class="imagenDetalle">
+
+        <img
+            id="imagenPrincipal"
+            src="img/lechera.jpg"
+            alt="Lechera">
+
+        <div class="miniaturas">
+
+            <img src="img/lechera.jpg"
+                 onclick="cambiarImagen(this.src)">
+
+            <img src="img/lechera2.jpg"
+                 onclick="cambiarImagen(this.src)">
+
+            <img src="img/lechera3.jpg"
+                 onclick="cambiarImagen(this.src)">
+
+        </div>
+
+    </div>
+
+    <div class="infoDetalle">
+
+        <h2>Lechera</h2>
+
+        <div class="estrellas">
+
+            ⭐⭐⭐⭐☆ <span>(4.6)</span>
+
+        </div>
+
+        <h1 class="precio">
+
+            $3,000
+
+        </h1>
+
+        <p class="stock">
+
+            ✔ Disponible
+
+        </p>
+
+        <p>
+
+            Bicicleta clásica tipo lechera, ideal para carga ligera,
+            paseos urbanos y uso diario.
+
+        </p>
+
+        <div class="especificaciones">
+
+            <h3>Características</h3>
+
+            <ul>
+
+                <li>🚲 Rodada 26</li>
+
+                <li>🧺 Parrilla reforzada</li>
+
+                <li>⚙️ 7 velocidades</li>
+
+                <li>🛞 Frenos V-Brake</li>
+
+                <li>🛡 Garantía de 1 año</li>
+
+                <li>🚚 Envío gratis</li>
+
+            </ul>
+
+        </div>
+
+        <button onclick="agregarCarrito('Lechera',3000)">
+
+            🛒 Agregar al carrito
+
+        </button>
+
+        <br><br>
+
+        <a href="catalogo.html" class="botonVolver">
+
+            ← Regresar al catálogo
+
+        </a>
+
+    </div>
+
+</section>
+
+<div id="mensajeCarrito"></div>
+
+<script>
+
+function cambiarImagen(ruta){
+
+    document.getElementById("imagenPrincipal").src = ruta;
+
+}
+
+</script>
+
+</body>
+
+</html>
