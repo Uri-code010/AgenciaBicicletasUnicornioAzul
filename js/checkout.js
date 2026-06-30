@@ -1,4 +1,5 @@
-let carrito =
+//deja que carrito 
+let carrito = 
 JSON.parse(localStorage.getItem("carrito")) || [];
 
 let resumen =
@@ -32,29 +33,33 @@ document.getElementById("formCheckout")
 
 e.preventDefault();
 
-let compra={
+let numeroPedido = "UA-" + Date.now();
 
-cliente:
+let compra = {
 
-document.getElementById("nombre").value,
+    id: numeroPedido,
 
-direccion:
+    cliente:
+        document.getElementById("nombre").value,
 
-document.getElementById("direccion").value,
+    direccion:
+        document.getElementById("direccion").value,
 
-telefono:
+    telefono:
+        document.getElementById("telefono").value,
 
-document.getElementById("telefono").value,
+    metodo:
+        document.getElementById("metodoPago").value,
 
-metodo:
+    productos: carrito,
 
-document.getElementById("metodoPago").value,
+    total: total,
 
-productos:carrito,
+    fecha: new Date().toLocaleString(),
 
-total:total,
+    estado: "Pedido recibido"
 
-fecha:new Date().toLocaleString()
+
 
 };
 
