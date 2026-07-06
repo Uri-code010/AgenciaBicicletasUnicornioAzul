@@ -10,23 +10,69 @@
 </head>
 <body>
 
-<header>
+    <header>
 
-    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+        <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
 
-    <nav>
-        <ul>
-            <li><a href="index.html">Inicio</a></li>
-            <li><a href="catalogo.html">Productos</a></li>
-            <li><a href="carrito.html">Carrito</a></li>
-        </ul>
-    </nav>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Productos</a></li>
+                <li><a href="carrito.html">Carrito</a></li>
+            </ul>
+        </nav>
 
-</header>
+    </header>
+    <section class="busqueda">
+
+        <input
+            type="text"
+            id="buscar"
+            placeholder="🔍 Buscar bicicleta...">
+
+    </section>
+    <section class="filtros">
+
+    <button onclick="filtrar('todos')">
+
+        Todos
+
+    </button>
+
+    <button onclick="filtrar('nuevo')">
+
+        Nuevo
+
+    </button>
+
+    <button onclick="filtrar('promo')">
+
+        Promo
+
+    </button>
+
+    <button onclick="filtrar('oferta')">
+
+        Oferta
+
+    </button>
+
+</section>
+<div id="contadorProductos">
+
+    Se encontraron 8 productos
+
+</div>
 
 <section class="catalogo">
 
-    <div class="producto">
+    <div class="producto"
+        data-categoria="nuevo"
+        data-nombre="montaña mtb bicicleta">
+        
+        <span class="etiqueta nuevo">
+            NUEVO
+        </span>
 
         <img src="img/mtb.jpg" alt="MTB">
 
@@ -41,7 +87,7 @@
         </button>
 
         <a
-            href="detalleMTB.html"
+            href="detalleMTB.html" 
             class="detalle">
 
             Ver detalle
@@ -49,9 +95,17 @@
 
     </div>
 
-    <div class="producto">
+    <div class="producto"  
+        data-categoria="oferta"
+        data-nombre="lechera bicicleta">
 
-        <img src="img/lechera.jpg" alt="Lechera">
+        
+        <span class="etiqueta oferta">
+            OFERTA
+        </span>
+
+
+        <img src="img/lechera.webp" alt="Lechera">
 
         <h3>Lechera</h3>
 
@@ -70,9 +124,14 @@
         </a>
     </div>
 
-    <div class="producto">
-
-        <img src="img/bici16.jpg" alt="Bicicleta Infantil">
+    <div class="producto" 
+        data-categoria="promo"
+        data-nombre="infantil bicicleta niño">
+        
+        <span class="etiqueta promo">
+            PROMO
+        </span>
+        <img src="img/bici16.avif" alt="Bicicleta Infantil">
 
         <h3>Bicicleta Infantil</h3>
 
@@ -91,9 +150,130 @@
         </a>
     </div>    
 
+    <div class="producto"  
+        data-categoria="nuevo"
+        data-nombre="bmx">
+        <span class="etiqueta nuevo">
+            NUEVO
+        </span>
+        <img src="img/bmx.webp" alt="BMX">
+
+        <h3>Bicicleta BMX</h3>
+
+        <p>Perfecta para acrobacias y uso urbano.</p>
+
+        <h4>$3,800</h4>
+
+        <button onclick="agregarCarrito('Bicicleta BMX',3800)">
+            Agregar al carrito
+        </button>
+
+        <a href="detalleBMX.html" class="detalle">
+            Ver detalle
+        </a>
+
+    </div>
+    <div class="producto" 
+        data-categoria="oferta"
+        data-nombre="ruta carretera">
+
+        <span class="etiqueta oferta">
+            OFERTA
+        </span>
+
+        <img src="img/ruta.webp" alt="Ruta">
+
+        <h3>Bicicleta de Ruta</h3>
+
+        <p>Ligera y rápida para recorridos largos.</p>
+
+        <h4>$6,800</h4>
+
+        <button onclick="agregarCarrito('Bicicleta de Ruta',6800)">
+            Agregar al carrito
+        </button>
+
+        <a href="detalleRuta.html" class="detalle">
+            Ver detalle
+        </a>
+
+    </div>
+    <div class="producto"  
+        data-categoria="nuevo"
+        data-nombre="eléctrica electrica">
+
+        <span class="etiqueta nuevo">
+            NUEVO
+        </span>
+        <img src="img/electrica.webp" alt="Eléctrica">
+
+        <h3>Bicicleta Eléctrica</h3>
+
+        <p>Mayor autonomía y comodidad para la ciudad.</p>
+
+        <h4>$12,500</h4>
+
+        <button onclick="agregarCarrito('Bicicleta Eléctrica',12500)">
+            Agregar al carrito
+        </button>
+
+        <a href="detalleElectrica.html" class="detalle">
+            Ver detalle
+        </a>
+
+    </div>
+    <div class="producto"  
+        data-categoria="promo"
+        data-nombre="plegable portátil">
+        <span class="etiqueta promo">
+            PROMO
+        </span>
+        <img src="img/plegable.png" alt="Plegable">
+
+        <h3>Bicicleta Plegable</h3>
+
+        <p>Ideal para transportar y guardar fácilmente.</p>
+
+        <h4>$5,200</h4>
+
+        <button onclick="agregarCarrito('Bicicleta Plegable',5200)">
+            Agregar al carrito
+        </button>
+
+        <a href="detallePlegable.html" class="detalle">
+            Ver detalle
+        </a>
+
+    </div>
+    <div class="producto" 
+        data-categoria="oferta"
+        data-nombre="urbana ciudad bicicleta">
+        
+        <span class="etiqueta oferta">
+            OFERTA
+        </span>
+
+        <img src="img/urbana.webp" alt="Urbana">
+
+        <h3>Bicicleta Urbana</h3>
+
+        <p>Perfecta para el transporte diario.</p>
+
+        <h4>$4,200</h4>
+
+        <button onclick="agregarCarrito('Bicicleta Urbana',4200)">
+            Agregar al carrito
+        </button>
+
+        <a href="detalleUrbana.html" class="detalle">
+            Ver detalle
+        </a>
+
+    </div>
 </section>
 
 <div id="mensajeCarrito"></div>
+<script src="js/catalogo.js"></script>
 
 </body>
 </html>
