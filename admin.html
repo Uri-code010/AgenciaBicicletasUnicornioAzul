@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Panel de Administrador</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+
+<header class="adminHeader">
+
+    <h1>⚙ Panel de Administración</h1>
+
+    <p>Agencia de Bicicletas El Unicornio Azul</p>
+
+</header>
+
+<div class="adminPanel">
+
+    <!-- MENÚ LATERAL -->
+
+    <aside class="menuAdmin">
+
+        <h2>Administrador</h2>
+
+        <ul>
+
+           <li>
+                <a href="admin.html">
+                    🏠 Dashboard
+                </a>
+            </li>
+
+            <li><a href="productosAdmin.html">🚲 Productos</a></li>
+
+            <li><a href="pedidosAdmin.html">📦 Pedidos</a></li>
+
+            <li><a href="clientesAdmin.html">👥 Clientes</a></li>
+
+            <li><a href="promocionesAdmin.html">🏷 Promociones</a></li>
+
+            <li><a href="reportesAdmin.html">📊 Reportes</a></li>
+            
+        </ul>
+
+    </aside>
+
+
+    <!-- CONTENIDO -->
+
+    <main class="contenidoAdmin">
+
+        <header class="headerAdmin">
+
+            <div>
+
+                <h1>Panel de Administración</h1>
+
+                <p>
+
+                    Agencia de Bicicletas El Unicornio Azul
+
+                </p>
+
+            </div>
+
+            <div class="usuarioAdmin">
+
+                <span class="notificacion">
+
+                    🔔
+
+                </span>
+
+                <span
+                    class="fechaAdmin"
+                    id="fechaActual">
+
+                </span>
+
+                <div class="perfilAdmin">
+
+                    👤 Administrador
+
+                </div>
+
+            </div>
+
+        </header>
+
+        <h2>Dashboard</h2>
+
+
+        <div class="tarjetas">
+
+            <div class="tarjeta">
+
+                <h3>🚲 Productos</h3>
+
+                <h1>12</h1>
+
+                <p>Publicados</p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>📦 Pedidos</h3>
+
+                <h1>5</h1>
+
+                <p>Hoy</p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>💰 Ventas</h3>
+
+                <h1>$12,500</h1>
+
+                <p>Este mes</p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>👤 Clientes</h3>
+
+                <h1>38</h1>
+
+                <p>Registrados</p>
+
+            </div>
+
+            <div class="tarjeta">
+
+                <h3>⚠ Agotados</h3>
+
+                <h1>2</h1>
+
+                <p>Productos</p>
+
+            </div>
+
+        </div>
+
+
+        <section class="accionesRapidas">
+
+            <h2>Acciones rápidas</h2>
+
+            <button>
+
+                ➕ Agregar Producto
+
+            </button>
+
+            <button>
+
+                📦 Ver Pedidos
+
+            </button>
+
+            <button>
+
+                🏷 Crear Promoción
+
+            </button>
+
+        </section>
+
+
+        <section class="actividad">
+
+            <h2>Actividad reciente</h2>
+
+            <ul>
+
+                <li>
+
+                    📦 Pedido #125 recibido
+
+                </li>
+
+                <li>
+
+                    👤 Nuevo cliente registrado
+
+                </li>
+
+                <li>
+
+                    🚲 Producto actualizado
+
+                </li>
+
+            </ul>
+
+        </section>
+
+    </main>
+
+</div>
+    <script>
+
+        const hoy = new Date();
+
+        document.getElementById("fechaActual").innerHTML =
+        hoy.toLocaleDateString(
+
+            "es-MX",
+
+            {
+
+                weekday:"long",
+
+                day:"numeric",
+
+                month:"long"
+
+            }
+
+        );
+
+    </script>
+</body>
+
+</html>

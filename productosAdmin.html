@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>Administrar Productos</title>
+
+        <link rel="stylesheet" href="css/estilos.css">
+
+    </head>
+
+    <body>
+
+        <header class="adminHeader">
+
+            <h1>
+
+                ⚙ Administración de Productos
+
+            </h1>
+
+            <p>
+
+                Agencia de Bicicletas El Unicornio Azul
+
+            </p>
+
+        </header>
+
+
+            <div class="adminPanel">
+
+            <aside class="menuAdmin">
+
+            <h2>Administrador</h2>
+
+            <a href="admin.html">
+
+                🏠 Dashboard
+
+            </a>
+
+            <a href="productosAdmin.html" class="activo">
+
+                🚲 Productos
+
+            </a>
+
+            <a href="pedidosAdmin.html">
+
+                📦 Pedidos
+
+            </a>
+
+            <a href="#">
+
+                🏷 Promociones
+
+            </a>
+
+            <a href="#">
+
+                👤 Clientes
+
+            </a>
+
+            <a href="#">
+
+                📊 Reportes
+
+            </a>
+
+        </aside>
+
+
+        <main class="contenidoAdmin">
+
+            <header class="headerAdmin">
+                
+                <div>
+
+                    <h1>Gestión de Productos</h1>
+
+                    <p>
+
+                        Administra el catálogo de bicicletas y accesorios.
+
+                    </p>
+
+                </div>
+
+                <div class="usuarioAdmin">
+
+                    <span class="notificacion">
+
+                        🔔
+
+                    </span>
+
+                    <span
+                        class="fechaAdmin"
+                        id="fechaActual">
+
+                    </span>
+
+                    <div class="perfilAdmin">
+
+                        👤 Administrador
+
+                    </div>
+
+                </div>
+
+            </header>
+            <div class="barraAcciones">
+
+                    <input
+                        type="text"
+                        placeholder="🔍 Buscar producto..."
+                        id="buscarProducto">
+
+                    <button>
+
+                        ➕ Nuevo Producto
+
+                    </button>
+
+                </div> 
+            <h2>
+
+                Agregar Producto
+
+            </h2>
+
+
+            <form id="formProducto">
+
+                <label>
+
+                    Nombre
+
+                </label>
+
+                <input
+                type="text"
+                id="nombreProducto"
+                required>
+
+
+                <label>
+
+                    Precio
+
+                </label>
+
+                <input
+                type="number"
+                id="precioProducto"
+                required>
+
+
+                <label>
+
+                    Imagen
+
+                </label>
+
+                <input
+                type="text"
+                id="imagenProducto"
+                placeholder="img/mtb.jpeg"
+                required>
+
+
+                <label>
+
+                    Categoría
+
+                </label>
+
+                <select id="categoriaProducto">
+
+                    <option>Nuevo</option>
+
+                    <option>Oferta</option>
+
+                    <option>Promo</option>
+
+                </select>
+
+
+                <label>
+
+                    Descripción
+
+                </label>
+
+                <textarea
+                    id="descripcionProducto">
+                </textarea>
+
+                <br><br>
+
+                <button type="submit">
+
+                    ➕ Agregar Producto
+
+                </button>
+
+            </form>
+
+
+            <hr><br>
+
+            <h2>
+
+                Productos Registrados
+
+            </h2>
+
+            <table class="tablaProductos">
+
+            <thead>
+
+                <tr>
+
+                    <th>ID</th>
+
+                    <th>Nombre</th>
+
+                    <th>Precio</th>
+
+                    <th>Categoría</th>
+
+                    <th>Acciones</th>
+
+                </tr>
+
+            </thead>
+
+            <tbody id="tablaProductos">
+
+            </tbody>
+
+            </table>
+
+        </main>
+
+        </div>
+
+        <script src="js/productosAdmin.js"></script>
+        <script>
+
+            const hoy = new Date();
+
+            document.getElementById("fechaActual").innerHTML =
+            hoy.toLocaleDateString(
+            "es-MX",
+            {
+                weekday:"long",
+                day:"numeric",
+                month:"long"
+            });
+
+        </script>
+
+    </body>
+
+</html>

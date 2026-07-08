@@ -12,54 +12,54 @@ document.getElementById("detallePedido");
 
 if(compra){
 
-let productos="";
+    let productos="";
 
-compra.productos.forEach(p=>{
+    compra.productos.forEach(p=>{
 
-productos +=
+        productos +=
 
-`
-<li>
+         `
+            <li>
 
-${p.nombre}
+            ${p.nombre}
 
-............
+         ............
 
-$${p.precio}
+        $${p.precio}
 
-</li>
-`;
+             </li>
+        `;
 
-});
+    });
 
-detalle.innerHTML=
+    detalle.innerHTML=
 
-`
+        `
 
-<h2>${compra.id}</h2>
+            <h2>${compra.id}</h2>
 
-<p><strong>Cliente:</strong> ${compra.cliente}</p>
+            <p><strong>Cliente:</strong> ${compra.cliente}</p>
 
-<p><strong>Dirección:</strong> ${compra.direccion}</p>
+            <p><strong>Dirección:</strong> ${compra.direccion}</p>
 
-<p><strong>Teléfono:</strong> ${compra.telefono}</p>
+            <p><strong>Teléfono:</strong> ${compra.telefono}</p>
 
-<p><strong>Fecha:</strong> ${compra.fecha}</p>
+            <p><strong>Fecha:</strong> ${compra.fecha}</p>
 
-<p><strong>Método:</strong> ${compra.metodo}</p>
+            <p><strong>Método:</strong> ${compra.metodo}</p>
 
-<p><strong>Estado:</strong> ${compra.estado}</p>
+            <p><strong>Estado:</strong> ${compra.estado}</p>
 
-<h3>Productos</h3>
+            <h3>Productos</h3>
 
-<ul>
+            <ul>
 
-${productos}
+                ${productos}
 
-</ul>
+            </ul>
 
-<h2>Total: $${compra.total}</h2>
+            <h2>Total: $${compra.total}</h2>
 
-`;
+    `;
 
 }

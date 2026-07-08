@@ -1,94 +1,288 @@
-//deja que carrito 
-let carrito = 
-JSON.parse(localStorage.getItem("carrito")) || [];
+// ========================================
+// CHECKOUT
+// Agencia de Bicicletas El Unicornio Azul
+// ========================================
 
-let resumen =
-document.getElementById("resumenCompra");
+// Obtener carrito del usuario
+const carrito = obtenerCarrito();
 
-let total = 0;
+const resumen = document.getElementById("resumenCompra");
 
-carrito.forEach(producto=>{
+let subtotal = 0;
+let descuento = 0;
+let totalFinal = 0;
+
+// ========================================
+// MOSTRAR PRODUCTOS DEL CARRITO
+// ========================================
+
+carrito.forEach(producto => {
+
+    const cantidad = producto.cantidad || 1;
+
+    const subtotalProducto =
+        producto.precio * cantidad;
 
     resumen.innerHTML += `
+
         <p>
 
-        ${producto.nombre}
+            🚲 ${producto.nombre}
 
-        <strong>$${producto.precio}</strong>
+            x${cantidad}
+
+            <strong>$${subtotalProducto}</strong>
 
         </p>
+
     `;
 
-    total += producto.precio;
+    subtotal += subtotalProducto;
 
 });
 
+document.getElementById("subtotalCompra").innerHTML =
+    "Subtotal: $" + subtotal.toFixed(2);
+
+document.getElementById("descuentoCompra").innerHTML =
+    "Descuento: $0.00";
+
+document.getElementById("envioCompra").innerHTML =
+    "Envío: Gratis";
+
 document.getElementById("totalCompra").innerHTML =
-"Total: $" + total;
+    "Total: $" + subtotal.toFixed(2);
+
+totalFinal = subtotal;
 
 
+// ========================================
+// CUPÓN
+// ========================================
 
-document.getElementById("formCheckout")
-.addEventListener("submit",function(e){
+function aplicarCupon() {
 
-e.preventDefault();
+    const cupon =
+        document.getElementById("cupon")
+        .value
+        .trim()
+        .toUpperCase();
 
-let numeroPedido = "UA-" + Date.now();
+    if (cupon === "UNICORNIO10") {
 
-let compra = {
+        descuento = subtotal * 0.10;
 
-    id: numeroPedido,
+        alert("✅ Cupón aplicado correctamente.");
 
-    cliente:
-        document.getElementById("nombre").value,
+    }
+    else {
 
-    direccion:
-        document.getElementById("direccion").value,
+        descuento = 0;
 
-    telefono:
-        document.getElementById("telefono").value,
+        alert("❌ Cupón inválido.");
 
-    metodo:
-        document.getElementById("metodoPago").value,
+    }
 
-    productos: carrito,
+    actualizarTotal();
 
-    total: total,
-
-    fecha: new Date().toLocaleString(),
-
-    estado: "Pedido recibido"
-
+}
 
 
-};
+// ========================================
+// ACTUALIZAR TOTAL
+// ========================================
+
+function actualizarTotal() {
+
+    const envio = Number(
+
+        document.querySelector(
+            'input[name="envio"]:checked'
+        ).value
+
+    );
+
+    totalFinal =
+        subtotal -
+        descuento +
+        envio;
+
+    document.getElementById("descuentoCompra").innerHTML =
+        "Descuento: $" + descuento.toFixed(2);
+
+    document.getElementById("envioCompra").innerHTML =
+
+        envio === 0
+
+            ? "Envío: Gratis"
+
+            : "Envío: $" + envio.toFixed(2);
+
+    document.getElementById("totalCompra").innerHTML =
+
+        "Total: $" + totalFinal.toFixed(2);
+
+}
 
 
+// ========================================
+// CAMBIO DE ENVÍO
+// ========================================
 
-let historial=
+document
+.querySelectorAll('input[name="envio"]')
+.forEach(opcion => {
 
-JSON.parse(localStorage.getItem("historial")) || [];
+    opcion.addEventListener(
 
-historial.push(compra);
+        "change",
 
-localStorage.setItem(
+        actualizarTotal
 
-"historial",
+    );
 
-JSON.stringify(historial)
+});
 
-);
 
-localStorage.removeItem("carrito");
+// ========================================
+// CONFIRMAR COMPRA
+// ========================================
 
-document.getElementById("mensajeCompra").innerHTML=
+document
+.getElementById("formCheckout")
+.addEventListener("submit", function (e) {
 
-"✅ Compra realizada correctamente.";
+    e.preventDefault();
 
-setTimeout(()=>{
+    if (carrito.length === 0) {
 
-window.location.href="confirmacion.html";
+        alert("El carrito está vacío.");
 
-},1200);
+        return;
+
+    }
+
+    if (!document.getElementById("politica").checked) {
+
+        alert("Debe aceptar la política de devoluciones.");
+
+        return;
+
+    }
+
+    if (!document.getElementById("terminos").checked) {
+
+        alert("Debe aceptar los términos y condiciones.");
+
+        return;
+
+    }
+
+    const numeroPedido =
+        "UA-" + Date.now();
+
+    const compra = {
+
+        id: numeroPedido,
+
+        cliente:
+            document.getElementById("nombre").value,
+
+        direccion:
+            document.getElementById("direccion").value,
+
+        ciudad:
+            document.getElementById("ciudad").value,
+
+        codigoPostal:
+            document.getElementById("cp").value,
+
+        telefono:
+            document.getElementById("telefono").value,
+
+        metodo:
+            document.getElementById("metodoPago").value,
+
+        productos: carrito,
+
+        subtotal: subtotal,
+
+        descuento: descuento,
+
+        envio: Number(
+
+            document.querySelector(
+                'input[name="envio"]:checked'
+            ).value
+
+        ),
+
+        total: totalFinal,
+
+        fecha:
+            new Date().toLocaleString(),
+
+        estado:
+            "Pedido recibido"
+
+    };
+
+    // ==========================
+    // Guardar historial
+    // ==========================
+
+    let historial =
+
+        JSON.parse(
+
+            localStorage.getItem("historial")
+
+        ) || [];
+
+    historial.push(compra);
+
+    localStorage.setItem(
+
+        "historial",
+
+        JSON.stringify(historial)
+
+    );
+
+    // ==========================
+    // Guardar último pedido
+    // ==========================
+
+    localStorage.setItem(
+
+        "ultimaCompra",
+
+        JSON.stringify(compra)
+
+    );
+
+    // ==========================
+    // Vaciar carrito del usuario
+    // ==========================
+
+    vaciarCarrito(false);
+
+    // ==========================
+    // Mensaje
+    // ==========================
+
+    document.getElementById("mensajeCompra").innerHTML =
+
+        "✅ Compra realizada correctamente.";
+
+    // ==========================
+    // Ir a confirmación
+    // ==========================
+
+    setTimeout(function () {
+
+        window.location.href = "confirmacion.html";
+
+    }, 1200);
 
 });

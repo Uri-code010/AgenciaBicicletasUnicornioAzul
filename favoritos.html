@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>Favoritos</title>
+
+        <link rel="stylesheet" href="css/estilos.css">
+
+    </head>
+
+    <body>
+
+        <header>
+
+            <h1>Mis Favoritos ❤️</h1>
+
+        </header>
+
+        <section class="carrito-container">
+
+            <div class="carrito-card">
+
+            <div id="listaFavoritos">
+
+            </div>
+
+            </div>
+
+        </section>
+
+        <script>
+
+            const usuario =
+            JSON.parse(localStorage.getItem("usuarioActual"));
+
+            if(usuario){
+
+            const llave =
+            "favoritos_"+usuario.correo.toLowerCase();
+
+            const favoritos =
+            JSON.parse(localStorage.getItem(llave)) || [];
+
+            const lista =
+            document.getElementById("listaFavoritos");
+
+            if(favoritos.length==0){
+
+                lista.innerHTML="<h2>No tienes favoritos.</h2>";
+
+            }
+
+            else{
+
+                favoritos.forEach(nombre=>{
+
+                lista.innerHTML+=`
+
+                <p>❤️ ${nombre}</p>
+
+                `;
+
+            });
+
+            }
+
+        }
+
+        </script>
+
+    </body>
+
+</html>

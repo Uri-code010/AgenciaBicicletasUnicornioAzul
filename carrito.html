@@ -13,86 +13,187 @@
 
 <body>
 
-<header>
+    <header>
 
-    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+        <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
 
-    <nav>
+        <nav>
 
-        <ul>
+            <ul>
 
-            <li><a href="index.html">Inicio</a></li>
+                <li><a href="index.html">Inicio</a></li>
 
-            <li><a href="catalogo.html">Productos</a></li>
+                <li><a href="catalogo.html">Productos</a></li>
 
-            <li>
-                <a href="carrito.html">
-                    🛒 Carrito
-                    <span id="contadorCarrito">(0)</span>
-                </a>
-            </li>
+                <li>
+                    <a href="carrito.html">
+                        🛒 Carrito
+                        <span id="contadorCarrito">(0)</span>
+                    </a>
+                </li>
 
-            <li><a href="perfil.html">Mi Perfil</a></li>
+                <li><a href="perfil.html">Mi Perfil</a></li>
 
-        </ul>
+            </ul>
 
-    </nav>
+        </nav>
 
-</header>
+    </header>
 
-<section class="carrito-container">
+    <section class="carrito-container">
 
-    <div class="carrito-card">
+        <div class="carrito-card">
 
-        <h2>🛒 Mi Carrito</h2>
+            <h2>🛒 Mi Carrito</h2>
 
-        <div id="listaCarrito"></div>
+            <div id="listaCarrito"></div>
 
-        <h3 id="total"></h3>
+            <hr>
 
-        <button onclick="vaciarCarrito()" class="btn-vaciar">
-            🗑 Vaciar Carrito
-        </button>
+            <div class="resumenPedido">
 
-        <br><br>
+                <h3>Resumen del Pedido</h3>
 
-        <a href="checkout.html" class="boton">
-            Proceder al Pago
-        </a>
+                <p>
+                    Subtotal:
+                    <span id="subtotal">$0</span>
+                </p>
 
-    </div>
+                <p>
+                    Envío:
+                    <span>Gratis</span>
+                </p>
 
-</section>
+                <p class="totalFinal">
+                    Total:
+                    <span id="total">$0</span>
+                </p>
 
-<script>
+            </div>
 
-let carrito = obtenerCarrito();
+            <button
+                class="btn-vaciar"
+                onclick="vaciarCarrito()">
 
-let lista =
-document.getElementById("listaCarrito");
+                🗑 Vaciar carrito
 
-let total = 0;
+            </button>
 
-carrito.forEach(producto =>{
+            <a
+                href="checkout.html"
+                class="boton">
 
-    lista.innerHTML += `
-        <p>
-            🚲 ${producto.nombre}
-            <strong>$${producto.precio}</strong>
-        </p>
-    `;
+                Proceder al Pago
 
-    total += producto.precio;
+            </a>
 
-});
+        </div>
 
-document.getElementById("total").innerHTML =
-"Total: $" + total;
 
-</script>
+    </section>
 
-<script src="js/carrito.js"></script>
+    <script>
 
-</body>
+        function mostrarCarrito(){
+
+            const carrito = obtenerCarrito();
+
+            const lista =
+            document.getElementById("listaCarrito");
+
+            lista.innerHTML = "";
+
+            let total = 0;
+
+            carrito.forEach((producto, indice)=>{
+
+                const subtotal =
+                producto.precio * producto.cantidad;
+
+                total += subtotal;
+
+                lista.innerHTML += `
+
+                <div class="itemCarrito">
+
+                    <img
+                        src="${producto.imagen}"
+                        class="imgCarrito">
+
+                    <div class="datosCarrito">
+
+                        <h3>${producto.nombre}</h3>
+
+                        <p>
+
+                            Precio:
+                            $${producto.precio}
+
+                        </p>
+
+                        <div class="cantidad">
+
+                            <button onclick="disminuir(${indice})">
+
+                                -
+
+                            </button>
+
+                            <span>
+
+                                ${producto.cantidad}
+
+                            </span>
+
+                            <button onclick="aumentar(${indice})">
+
+                                +
+
+                            </button>
+
+                        </div>
+
+                        <p>
+
+                            Subtotal:
+                            <strong>
+
+                                $${subtotal}
+
+                            </strong>
+
+                        </p>
+
+                        <button
+                            class="eliminar"
+                            onclick="eliminarProducto(${indice})">
+
+                            🗑 Eliminar
+
+                        </button>
+
+                    </div>
+
+                </div>
+
+                `;
+
+            });
+
+            document.getElementById("subtotal").innerHTML =
+            "$" + total;
+
+            document.getElementById("total").innerHTML =
+            "$" + total;
+
+        }
+
+        </script>
+
+        <script src="js/carrito.js"></script>
+            <script >
+            mostrarCarrito();
+            </script>
+    </body>
 
 </html>

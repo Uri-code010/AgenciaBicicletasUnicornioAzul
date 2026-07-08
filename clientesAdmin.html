@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="es">
+
+    <head>
+
+        <meta charset="UTF-8">
+
+        <title>Clientes</title>
+
+        <link rel="stylesheet"
+            href="css/estilos.css">
+
+    </head>
+
+    <body>
+
+    <div class="adminContainer">
+
+        <aside class="menuLateral">
+
+            <h2>Administrador</h2>
+
+            <ul>
+
+                <li><a href="admin.html">🏠 Dashboard</a></li>
+
+                <li><a href="productosAdmin.html">🚲 Productos</a></li>
+
+                <li><a href="pedidosAdmin.html">📦 Pedidos</a></li>
+
+                <li>
+                    <a href="clientesAdmin.html"
+                    class="activo">
+
+                        👥 Clientes
+
+                    </a>
+                </li>
+
+                <li><a href="promocionesAdmin.html">🏷 Promociones</a></li>
+
+                <li><a href="reportesAdmin.html">📊 Reportes</a></li>
+
+            </ul>
+
+        </aside>
+
+        <main class="contenidoAdmin">
+
+            <header class="headerAdmin">
+
+                <div>
+
+                    <h1>Clientes Registrados</h1>
+
+                    <p>
+
+                        Consulta todos los usuarios registrados.
+
+                    </p>
+
+                </div>
+
+                <div class="usuarioAdmin">
+
+                    <span class="notificacion">
+
+                        🔔
+
+                    </span>
+
+                    <span
+                        id="fechaActual"
+                        class="fechaAdmin">
+
+                    </span>
+
+                    <div class="perfilAdmin">
+
+                        👤 Administrador
+
+                    </div>
+
+                </div>
+
+            </header>
+
+            <div class="barraAcciones">
+
+                <input
+                    type="text"
+                    id="buscarCliente"
+                    placeholder="🔍 Buscar cliente...">
+
+            </div>
+
+            <table class="tablaAdmin">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Nombre</th>
+
+                        <th>Correo</th>
+
+                        <th>Teléfono</th>
+
+                        <th>Estado</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="tablaClientes">
+
+                </tbody>
+
+            </table>
+
+        </main>
+
+    </div>
+
+    <script src="js/usuarios.js"></script>
+
+    <script src="js/clientesAdmin.js"></script>
+
+    <script>
+
+    const hoy = new Date();
+
+    document.getElementById("fechaActual").innerHTML =
+    hoy.toLocaleDateString(
+    "es-MX",
+    {
+    weekday:"long",
+    day:"numeric",
+    month:"long"
+    });
+
+    </script>
+
+    </body>
+
+</html>

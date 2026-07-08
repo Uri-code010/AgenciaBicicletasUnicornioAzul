@@ -37,63 +37,166 @@
 
 <section class="checkout-container">
 
-<div class="checkout-card">
+    <div class="checkout-card">
 
-<h2>💳 Finalizar Compra</h2>
+        <h2>💳 Finalizar Compra</h2>
 
-<form id="formCheckout">
+        <form id="formCheckout">
 
-<label>Nombre Completo</label>
-<input
-type="text"
-id="nombre"
-required>
+            <h2>📦 Datos de Envío</h2>
 
-<label>Dirección</label>
-<input
-type="text"
-id="direccion"
-required>
+            <label>Nombre Completo</label>
 
-<label>Teléfono</label>
-<input
-type="tel"
-id="telefono"
-required>
+            <input
+                type="text"
+                id="nombre"
+                required>
 
-<label>Forma de Pago</label>
+            <label>Dirección</label>
 
-<select id="metodoPago">
+            <input
+                type="text"
+                id="direccion"
+                required>
 
-<option>Efectivo</option>
+            <label>Ciudad</label>
 
-<option>Tarjeta de Débito</option>
+            <input
+                type="text"
+                id="ciudad"
+                required>
 
-<option>Tarjeta de Crédito</option>
+            <label>Código Postal</label>
 
-<option>Transferencia Bancaria</option>
+            <input
+                type="text"
+                id="cp"
+                required>
 
-</select>
+            <label>Teléfono</label>
 
-<h3>🛒 Resumen del Pedido</h3>
+            <input
+                type="tel"
+                id="telefono"
+                required>
 
-<div id="resumenCompra"></div>
+            <hr>
 
-<h3 id="totalCompra"></h3>
+            <h2>🚚 Tipo de Envío</h2>
 
-<button type="submit">
+            <label>
 
-Confirmar Compra
+                <input
+                    type="radio"
+                    name="envio"
+                    value="0"
+                    checked>
 
-</button>
+                Envío Normal (Gratis)
 
-</form>
+            </label>
 
-<div id="mensajeCompra"></div>
+            <br><br>
 
-</div>
+            <label>
+
+                <input
+                    type="radio"
+                    name="envio"
+                    value="150">
+
+                Envío Express (+$150)
+
+            </label>
+
+            <hr>
+
+            <h2>💳 Forma de Pago</h2>
+
+            <select id="metodoPago">
+
+                <option>Efectivo</option>
+
+                <option>Tarjeta de Débito</option>
+
+                <option>Tarjeta de Crédito</option>
+
+                <option>Transferencia Bancaria</option>
+
+            </select>
+
+            <hr>
+
+            <h2>🎟 Cupón de Descuento</h2>
+
+            <input
+                type="text"
+                id="cupon"
+                placeholder="Ejemplo: UNICORNIO10">
+
+            <button
+                type="button"
+                onclick="aplicarCupon()">
+
+                Aplicar Cupón
+
+            </button>
+
+            <hr>
+
+            <h2>🛒 Resumen del Pedido</h2>
+
+            <div id="resumenCompra"></div>
+
+            <h3 id="subtotalCompra"></h3>
+
+            <h3 id="descuentoCompra"></h3>
+
+            <h3 id="envioCompra"></h3>
+
+            <h2 id="totalCompra"></h2>
+
+            <hr>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="politica">
+
+                Acepto la política de devoluciones.
+
+            </label>
+
+            <br><br>
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    id="terminos">
+
+                Acepto los términos y condiciones.
+
+            </label>
+
+            <br><br>
+
+            <button type="submit">
+
+                ✅ Confirmar Compra
+
+            </button>
+
+        </form>
+
+        <div id="mensajeCompra"></div>
+
+    </div>
 
 </section>
+
+<script src="js/carrito.js"></script>
 
 <script src="js/checkout.js"></script>
 

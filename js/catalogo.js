@@ -26,7 +26,8 @@ function buscarProductos() {
     const texto = buscador.value.toLowerCase();
 
     const productos = document.querySelectorAll(".producto");
-
+    //para cada prducto, 
+    // se obtiene el nombre del producto y se compara con el texto ingresado en el buscador. 
     productos.forEach(producto => {
 
         const nombre = (producto.dataset.nombre || "").toLowerCase();
