@@ -40,26 +40,129 @@ productos;
 
 const tabla =
 document.getElementById("tablaUltimosPedidos");
+const buscadorReporte = document.getElementById("buscarReporte");
+const pedidosPorPagina = 7;
+let paginaActual = 1;
+let pedidosFiltrados = [];
 
-historial
-.slice()
-.reverse()
-.forEach(pedido=>{
+function obtenerPedidosOrdenados(){
 
-    tabla.innerHTML += `
+    return historial.slice().reverse();
 
-    <tr>
+}
 
-        <td>${pedido.id}</td>
+function aplicarFiltro(){
 
-        <td>${pedido.cliente}</td>
+    const texto = (buscadorReporte.value || "").toLowerCase().trim();
 
-        <td>$${pedido.total}</td>
+    pedidosFiltrados = obtenerPedidosOrdenados().filter(pedido => {
 
-        <td>${pedido.fecha}</td>
+        const textoPedido = `${pedido.id} ${pedido.cliente} ${pedido.fecha}`.toLowerCase();
 
-    </tr>
+        return textoPedido.includes(texto);
 
-    `;
+    });
 
-});
+    paginaActual = 1;
+    renderizarTabla();
+
+}
+
+function renderizarTabla(){
+
+    tabla.innerHTML = "";
+
+    const inicio = (paginaActual - 1) * pedidosPorPagina;
+    const fin = inicio + pedidosPorPagina;
+    const pedidosPagina = pedidosFiltrados.slice(inicio, fin);
+
+    if(pedidosPagina.length === 0){
+
+        tabla.innerHTML = `
+
+        <tr>
+
+            <td colspan="4">No se encontraron pedidos.</td>
+
+        </tr>
+
+        `;
+
+        return;
+
+    }
+
+    pedidosPagina.forEach(pedido=>{
+
+        tabla.innerHTML += `
+
+        <tr>
+
+            <td>${pedido.id}</td>
+
+            <td>${pedido.cliente}</td>
+
+            <td>$${pedido.total}</td>
+
+            <td>${pedido.fecha}</td>
+
+        </tr>
+
+        `;
+
+    });
+
+    renderizarPaginacion();
+
+}
+
+function renderizarPaginacion(){
+
+    const totalPaginas = Math.ceil(pedidosFiltrados.length / pedidosPorPagina);
+
+    let paginacion = document.getElementById("paginacionReportes");
+
+    if(!paginacion){
+
+        paginacion = document.createElement("div");
+        paginacion.id = "paginacionReportes";
+        paginacion.className = "paginacionAdmin";
+        tabla.parentNode.appendChild(paginacion);
+
+    }
+
+    if(totalPaginas <= 1){
+
+        paginacion.innerHTML = "";
+        return;
+
+    }
+
+    paginacion.innerHTML = "";
+
+    for(let i = 1; i <= totalPaginas; i++){
+
+        const boton = document.createElement("button");
+        boton.innerText = i;
+        boton.className = paginaActual === i ? "activo" : "";
+        boton.addEventListener("click", ()=>{
+
+            paginaActual = i;
+            renderizarTabla();
+
+        });
+
+        paginacion.appendChild(boton);
+
+    }
+
+}
+
+if(buscadorReporte){
+
+    buscadorReporte.addEventListener("input", aplicarFiltro);
+
+}
+
+pedidosFiltrados = obtenerPedidosOrdenados();
+renderizarTabla();

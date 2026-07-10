@@ -5,8 +5,6 @@
     <title>Catálogo</title>
 
     <link rel="stylesheet" href="css/estilos.css">
-
-    <script src="js/carrito.js"></script>
 </head>
 <body>
 
@@ -18,7 +16,7 @@
             <ul>
                 <li><a href="index.html">Inicio</a></li>
                 <li><a href="catalogo.html">Productos</a></li>
-                <li><a href="carrito.html">Carrito</a></li>
+                <li><a href="carrito.html" id="menuCarrito"> 🛒 Carrito (0)</a></li>
                 <li><a href="perfil.html">Mi Perfil</a></li>
                 <li>
                     <a href="favoritos.html">
@@ -39,33 +37,31 @@
             placeholder="🔍 Buscar bicicleta...">
 
     </section>
-    <section class="filtros">
+    <section class="filtros-profesionales">
 
-    <button onclick="filtrar('todos')">
+        <div class="grupo-filtros">
+            <h3>Categoría</h3>
+            <div class="botones-filtros">
+                <button class="filtro-btn activo" data-grupo="categoria" data-filtro="todos" onclick="filtrarCategoria('todos')">Todas</button>
+                <button class="filtro-btn" data-grupo="categoria" data-filtro="montana" onclick="filtrarCategoria('Montaña')">Montaña</button>
+                <button class="filtro-btn" data-grupo="categoria" data-filtro="ruta" onclick="filtrarCategoria('Ruta')">Ruta</button>
+                <button class="filtro-btn" data-grupo="categoria" data-filtro="bmx" onclick="filtrarCategoria('BMX')">BMX</button>
+                <button class="filtro-btn" data-grupo="categoria" data-filtro="urbana" onclick="filtrarCategoria('Urbana')">Urbana</button>
+            </div>
+        </div>
 
-        Todos
+        <div class="grupo-filtros">
+            <h3>Etiqueta</h3>
+            <div class="botones-filtros">
+                <button class="filtro-btn activo" data-grupo="etiqueta" data-filtro="todas" onclick="filtrarEtiqueta('todas')">Todas</button>
+                <button class="filtro-btn" data-grupo="etiqueta" data-filtro="nuevo" onclick="filtrarEtiqueta('nuevo')">Nuevo</button>
+                <button class="filtro-btn" data-grupo="etiqueta" data-filtro="promo" onclick="filtrarEtiqueta('promo')">Promo</button>
+                <button class="filtro-btn" data-grupo="etiqueta" data-filtro="oferta" onclick="filtrarEtiqueta('oferta')">Oferta</button>
+            </div>
+        </div>
 
-    </button>
+    </section>
 
-    <button onclick="filtrar('nuevo')">
-
-        Nuevo
-
-    </button>
-
-    <button onclick="filtrar('promo')">
-
-        Promo
-
-    </button>
-
-    <button onclick="filtrar('oferta')">
-
-        Oferta
-
-    </button>
-
-</section>
 <div id="contadorProductos">
 
     Se encontraron 8 productos
@@ -78,8 +74,11 @@
 
 </section>
 
+<div id="mensajeSinResultados" style="display:none; padding: 20px; text-align:center; color:#7f1d1d; font-weight:bold;"></div>
+
 <div id="mensajeCarrito"></div>
 <script src="js/catalogo.js"></script>
+<script src="js/notificaciones.js"></script>
 <script src="js/carrito.js"></script>
 <script src="js/catalogoDinamico.js"></script>
 

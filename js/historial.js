@@ -1,16 +1,23 @@
 let historial =
 JSON.parse(localStorage.getItem("historial")) || [];
 
+const usuario =
+JSON.parse(localStorage.getItem("usuarioActual")) || {};
+
 let lista =
 document.getElementById("listaHistorial");
 
-if(historial.length==0){
+const comprasUsuario = historial.filter(compra =>
+    compra.correo === usuario.correo || compra.cliente === usuario.nombre
+);
 
-    lista.innerHTML="<p>No existen compras.</p>";
+if(comprasUsuario.length==0){
+
+    lista.innerHTML="<p>No existen compras para este usuario.</p>";
 
 }
 
-historial.forEach(compra=>{
+comprasUsuario.forEach(compra=>{
 
 lista.innerHTML +=
 

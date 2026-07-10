@@ -134,7 +134,7 @@ function cerrarSesion() {
     localStorage.removeItem(STORAGE_KEYS.sesionActiva);
     localStorage.removeItem(STORAGE_KEYS.usuarioLegacy);
     
-    alert("✅ Sesión cerrada correctamente.");
+    mostrarToast("✅ Sesión cerrada correctamente.", "exito");
 
     window.location.href = "login.html";
 }

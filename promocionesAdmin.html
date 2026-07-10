@@ -7,172 +7,122 @@
 
     <title>Promociones</title>
 
-    <link rel="stylesheet"
-          href="css/estilos.css">
+    <link rel="stylesheet" href="css/estilos.css">
 
 </head>
 
 <body>
 
-<div class="adminContainer">
+<div class="adminPanel">
 
-    <aside class="menuLateral">
+    <aside class="menuAdmin">
 
         <h2>Administrador</h2>
 
-        <ul>
+        <a href="admin.html">🏠 Dashboard</a>
 
-            <li><a href="admin.html">🏠 Dashboard</a></li>
+        <a href="productosAdmin.html">🚲 Productos</a>
 
-            <li><a href="productosAdmin.html">🚲 Productos</a></li>
+        <a href="pedidosAdmin.html">📦 Pedidos</a>
 
-            <li><a href="pedidosAdmin.html">📦 Pedidos</a></li>
+        <a href="promocionesAdmin.html" class="activo">
 
-            <li><a href="clientesAdmin.html">👥 Clientes</a></li>
+            🏷 Promociones
 
-            <li>
+        </a>
 
-                <a
-                class="activo"
-                href="promocionesAdmin.html">
+        <a href="clientesAdmin.html">👥 Clientes</a>
 
-                    🏷 Promociones
-
-                </a>
-
-            </li>
-
-            <li><a href="reportesAdmin.html">📊 Reportes</a></li>
-
-        </ul>
+        <a href="reportesAdmin.html">📊 Reportes</a>
 
     </aside>
 
     <main class="contenidoAdmin">
 
-        <header class="headerAdmin">
+        <h1>Promociones</h1>
 
-            <div>
+        <form id="formPromocion">
 
-                <h1>Promociones</h1>
+            <input type="hidden" id="indicePromoEditar" value="">
 
-                <p>
+            <label>Nombre</label>
 
-                    Administra descuentos y campañas.
+            <input
+                type="text"
+                id="nombrePromo"
+                required>
 
-                </p>
+            <label>Descuento (%)</label>
 
-            </div>
+            <input
+                type="number"
+                id="descuentoPromo"
+                min="1"
+                max="100"
+                required>
 
-            <div class="usuarioAdmin">
+            <label>Categoría</label>
 
-                🔔
+            <select id="categoriaPromo">
 
-                <span
-                id="fechaActual"></span>
+                <option>Nuevo</option>
 
-            </div>
+                <option>Oferta</option>
 
-        </header>
+                <option>Promo</option>
 
-        <div class="barraAcciones">
+            </select>
 
-            <button>
+            <br><br>
 
-                ➕ Nueva Promoción
+            <button type="submit">
+
+                💾 Guardar Promoción
 
             </button>
 
-        </div>
+            <button type="button" id="cancelarEdicionPromo" style="display:none; margin-left:10px;">
 
-        <div class="promocionesGrid">
+                ❌ Cancelar edición
 
-            <div class="promoCard">
+            </button>
 
-                <h3>
+        </form>
 
-                    UNICORNIO10
+        <hr>
 
-                </h3>
+        <h2>Promociones Registradas</h2>
 
-                <p>
+        <table class="tablaProductos">
 
-                    10% de descuento.
+            <thead>
 
-                </p>
+                <tr>
 
-                <span>
+                    <th>Nombre</th>
 
-                    Activa
+                    <th>Descuento</th>
 
-                </span>
+                    <th>Categoría</th>
 
-            </div>
+                    <th>Acción</th>
 
-            <div class="promoCard">
+                </tr>
 
-                <h3>
+            </thead>
 
-                    ENVIOGRATIS
+            <tbody id="tablaPromociones">
 
-                </h3>
+            </tbody>
 
-                <p>
-
-                    Envío gratuito.
-
-                </p>
-
-                <span>
-
-                    Activa
-
-                </span>
-
-            </div>
-
-            <div class="promoCard">
-
-                <h3>
-
-                    MTB20
-
-                </h3>
-
-                <p>
-
-                    20% Bicicletas MTB.
-
-                </p>
-
-                <span>
-
-                    Finalizada
-
-                </span>
-
-            </div>
-
-        </div>
+        </table>
 
     </main>
 
 </div>
 
-<script>
-
-const hoy = new Date();
-
-document.getElementById("fechaActual").innerHTML =
-hoy.toLocaleDateString(
-"es-MX",
-{
-weekday:"long",
-day:"numeric",
-month:"long"
-});
-
-</script>
+<script src="js/promocionesAdmin.js"></script>
+<script src="js/notificaciones.js"></script>
 
 </body>
 

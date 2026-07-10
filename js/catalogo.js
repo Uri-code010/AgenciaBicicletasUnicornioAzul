@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     if (buscador) {
 
-        buscador.addEventListener("keyup", buscarProductos);
+        buscador.addEventListener("input", buscarProductos);
 
     }
 
@@ -19,67 +19,35 @@ document.addEventListener("DOMContentLoaded", function () {
 
 });
 
-
 // Buscar productos
 function buscarProductos() {
 
-    const texto = buscador.value.toLowerCase();
+    const texto = (buscador?.value || "").trim().toLowerCase();
+
+    if (typeof aplicarFiltros === "function") {
+
+        if (typeof textoBusqueda !== "undefined") {
+            textoBusqueda = texto;
+        }
+
+        aplicarFiltros();
+        return;
+
+    }
 
     const productos = document.querySelectorAll(".producto");
-    //para cada prducto, 
-    // se obtiene el nombre del producto y se compara con el texto ingresado en el buscador. 
+
     productos.forEach(producto => {
 
         const nombre = (producto.dataset.nombre || "").toLowerCase();
 
-        if (nombre.includes(texto)) {
-
-            producto.style.display = "block";
-
-        } else {
-
-            producto.style.display = "none";
-
-        }
+        producto.style.display = nombre.includes(texto) ? "block" : "none";
 
     });
 
     actualizarContador();
 
 }
-
-
-// Filtrar productos
-function filtrar(categoria) {
-
-    const productos = document.querySelectorAll(".producto");
-
-    productos.forEach(producto => {
-
-        if (categoria == "todos") {
-
-            producto.style.display = "block";
-
-        }
-
-        else if (producto.dataset.categoria == categoria) {
-
-            producto.style.display = "block";
-
-        }
-
-        else {
-
-            producto.style.display = "none";
-
-        }
-
-    });
-
-    actualizarContador();
-
-}
-
 
 // Contador
 function actualizarContador() {

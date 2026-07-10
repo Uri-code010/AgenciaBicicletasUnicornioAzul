@@ -12,32 +12,73 @@ let subtotal = 0;
 let descuento = 0;
 let totalFinal = 0;
 
+//========================================
+// PROMOCIONES
+//========================================
+
+const promociones =
+
+JSON.parse(
+
+localStorage.getItem("promociones")
+
+) || [];
+
 // ========================================
 // MOSTRAR PRODUCTOS DEL CARRITO
 // ========================================
 
 carrito.forEach(producto => {
 
-    const cantidad = producto.cantidad || 1;
+    const cantidad =
+    producto.cantidad || 1;
 
-    const subtotalProducto =
-        producto.precio * cantidad;
+    let precio =
+    producto.precio;
+
+    const categoria =
+    producto.categoria || "";
+
+    const promo =
+
+    promociones.find(p=>
+
+        p.categoria == categoria
+
+    );
+
+    if(promo){
+
+        precio =
+
+        precio -
+
+        (precio * promo.descuento /100);
+
+    }
+
+    subtotal +=
+
+    precio * cantidad;
 
     resumen.innerHTML += `
 
-        <p>
+    <p>
 
-            🚲 ${producto.nombre}
+        🚲 ${producto.nombre}
 
-            x${cantidad}
+        x${cantidad}
 
-            <strong>$${subtotalProducto}</strong>
+        <strong>
 
-        </p>
+            $${(precio*cantidad).toFixed(2)}
+
+        </strong>
+
+    </p>
 
     `;
 
-    subtotal += subtotalProducto;
 
 });
 
@@ -72,14 +113,14 @@ function aplicarCupon() {
 
         descuento = subtotal * 0.10;
 
-        alert("✅ Cupón aplicado correctamente.");
+        mostrarToast("✅ Cupón aplicado correctamente.", "exito");
 
     }
     else {
 
         descuento = 0;
 
-        alert("❌ Cupón inválido.");
+        mostrarToast("❌ Cupón inválido.", "advertencia");
 
     }
 
@@ -156,7 +197,7 @@ document
 
     if (carrito.length === 0) {
 
-        alert("El carrito está vacío.");
+        mostrarToast("🛒 El carrito está vacío.", "info");
 
         return;
 
@@ -164,7 +205,7 @@ document
 
     if (!document.getElementById("politica").checked) {
 
-        alert("Debe aceptar la política de devoluciones.");
+        mostrarToast("⚠ Debe aceptar la política de devoluciones.", "advertencia");
 
         return;
 
@@ -172,18 +213,38 @@ document
 
     if (!document.getElementById("terminos").checked) {
 
-        alert("Debe aceptar los términos y condiciones.");
+        mostrarToast("⚠ Debe aceptar los términos y condiciones.", "advertencia");
 
         return;
 
     }
 
-    const numeroPedido =
-        "UA-" + Date.now();
+    const usuario =
+        JSON.parse(
+            localStorage.getItem("usuarioActual")
+        ) || {};
+
+    const pedido = {
+
+        id: Date.now(),
+
+        cliente: usuario.nombre || document.getElementById("nombre").value,
+
+        correo: usuario.correo || "",
+
+        fecha: new Date().toLocaleDateString(),
+
+        productos: carrito,
+
+        total: totalFinal,
+
+        estado: "Pedido recibido"
+
+    };
 
     const compra = {
 
-        id: numeroPedido,
+        id: pedido.id,
 
         cliente:
             document.getElementById("nombre").value,
@@ -250,6 +311,28 @@ document
     );
 
     // ==========================
+    // Guardar pedidos
+    // ==========================
+
+    let pedidos =
+
+        JSON.parse(
+
+            localStorage.getItem("pedidos")
+
+        ) || [];
+
+    pedidos.push(pedido);
+
+    localStorage.setItem(
+
+        "pedidos",
+
+        JSON.stringify(pedidos)
+
+    );
+
+    // ==========================
     // Guardar último pedido
     // ==========================
 
@@ -270,10 +353,18 @@ document
     // ==========================
     // Mensaje
     // ==========================
-
+    
     document.getElementById("mensajeCompra").innerHTML =
 
         "✅ Compra realizada correctamente.";
+
+    mostrarToast(
+
+        "🎉 Pedido realizado correctamente.",
+
+        "exito"
+
+    );
 
     // ==========================
     // Ir a confirmación

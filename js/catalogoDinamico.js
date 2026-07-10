@@ -3,38 +3,138 @@
 //====================================
 
 let productos =
+JSON.parse(
+    localStorage.getItem("productos")
+) || [];
+
+//===============================
+// PROMOCIONES
+//===============================
+
+let promociones =
 
 JSON.parse(
 
-localStorage.getItem("productos")
+localStorage.getItem("promociones")
 
 ) || [];
 
 const catalogo =
 document.getElementById("catalogo");
+let categoriaActual = "todos";
+
+let etiquetaActual = "todas";
+
+let textoBusqueda = "";
+//====================================
+// MOSTRAR CATÁLOGO
+//====================================
 
 function mostrarCatalogo(){
 
     catalogo.innerHTML = "";
 
-    productos.forEach(producto=>{
+    // Solo mostrar productos que NO estén inactivos
+    const productosVisibles =
+    productos.filter(producto =>
+
+        producto.estado !== "Inactivo"
+
+    );
+
+    productosVisibles.forEach(producto=>{
+        //buscar promocion para el producto
+        const promocion =
+
+        promociones.find(p=>
+
+        p.categoria == producto.categoria
+
+        );
+
+        let precioMostrar =
+        producto.precio;
+
+        let porcentaje = 0;
+
+        if(promocion){
+
+            porcentaje =
+            promocion.descuento;
+
+            precioMostrar =
+            producto.precio -
+
+            (producto.precio * porcentaje /100);
+
+        }
+        const etiquetaVisible =
+        typeof producto.etiqueta === "string"
+            ? producto.etiqueta.trim()
+            : "";
+
+        const etiquetaNormalizada =
+        etiquetaVisible && etiquetaVisible.toLowerCase() !== "ninguna"
+            ? etiquetaVisible.toLowerCase()
+            : "ninguna";
 
         catalogo.innerHTML += `
 
         <div
-        class="producto"
-        data-categoria="${producto.categoria.toLowerCase()}"
-        data-nombre="${producto.nombre.toLowerCase()}">
+            class="producto"
 
-            <span class="etiqueta ${producto.categoria.toLowerCase()}">
+            data-categoria="${producto.categoria.toLowerCase()}"
 
-                ${producto.categoria}
+            data-etiqueta="${etiquetaNormalizada}"
 
-            </span>
+            data-nombre="${producto.nombre.toLowerCase()}">
 
-            <img src="${producto.imagen}">
+            ${
 
-            <h3>${producto.nombre}</h3>
+                etiquetaVisible &&
+                etiquetaVisible.toLowerCase() !== "ninguna"
+
+                ?
+
+                `<span class="etiqueta ${etiquetaNormalizada}">
+
+                ${etiquetaVisible}
+
+                </span>`
+
+                :
+
+                ""
+
+            }
+
+           
+            ${
+                producto.estado == "Agotado"
+
+                ?
+
+                `<span class="etiquetaAgotado">
+
+                    AGOTADO
+
+                </span>`
+
+                :
+
+                ""
+
+            }
+
+            <img
+                src="${producto.imagen}"
+                alt="${producto.nombre}">
+
+            <h3>
+
+                ${producto.nombre}
+
+            </h3>
 
             <p>
 
@@ -44,29 +144,262 @@ function mostrarCatalogo(){
 
             <h4>
 
-                $${producto.precio}
+                ${
+                    promocion
+                    ?
+
+                    `
+
+                    <p class="precioAnterior">
+
+                    $${producto.precio}
+
+                    </p>
+
+                    <h4 class="precioOferta">
+
+                    $${precioMostrar.toFixed(2)}
+
+                    </h4>
+
+                    <p class="promoActiva">
+
+                    🔥 ${porcentaje}% OFF
+
+                    </p>
+
+                    `
+
+                    :
+
+                    `
+
+                    <h4>
+
+                    $${producto.precio}
+
+                    </h4>
+
+                    `
+
+                }
 
             </h4>
 
-            <button
+            <p>
 
-            onclick="agregarCarrito(
+                Existencia:
+                <strong>
 
-                '${producto.nombre}',
+                    ${producto.existencia}
 
-                ${producto.precio}
+                </strong>
 
-            )">
+            </p>
 
-            Agregar al carrito
+            ${
+                producto.estado == "Agotado"
 
-            </button>
+                ?
+
+                `
+
+                <button
+                    class="btnAgotado"
+                    disabled>
+
+                    Agotado
+
+                </button>
+
+                `
+
+                :
+
+                `
+
+                <button
+                    onclick="agregarCarrito('${producto.nombre}', ${precioMostrar}, '${producto.categoria}')">
+
+                    Agregar al carrito
+
+                </button>
+
+                `
+
+            }
 
         </div>
 
         `;
 
     });
+
+    actualizarContador();
+
+}
+//Filtrar categoria
+
+function filtrarCategoria(categoria){
+
+    categoriaActual = categoria;
+
+    aplicarFiltros();
+
+}
+
+
+//filtrar etiqueta
+function filtrarEtiqueta(etiqueta){
+
+    etiquetaActual = etiqueta.toLowerCase();
+
+    aplicarFiltros();
+
+}
+
+//aplicar filtros 
+function aplicarFiltros(){
+
+    const tarjetas =
+
+    document.querySelectorAll(".producto");
+
+    let encontrados = 0;
+
+    tarjetas.forEach(tarjeta=>{
+
+        const categoria =
+
+        tarjeta.dataset.categoria;
+
+        const etiqueta =
+
+        tarjeta.dataset.etiqueta;
+
+        const nombre =
+
+        tarjeta.dataset.nombre;
+
+        const coincideCategoria =
+
+        categoriaActual=="todos"
+
+        ||
+
+        categoria==categoriaActual;
+
+        const coincideEtiqueta =
+
+        etiquetaActual=="todas"
+
+        ||
+
+        etiqueta==etiquetaActual;
+
+        const coincideBusqueda =
+
+        nombre.includes(textoBusqueda);
+
+        const coincide =
+
+        coincideCategoria
+
+        &&
+
+        coincideEtiqueta
+
+        &&
+
+        coincideBusqueda;
+
+        tarjeta.style.display = coincide ? "block" : "none";
+
+        if(coincide){
+
+            encontrados++;
+
+        }
+
+    });
+
+    const mensajeSinResultados = document.getElementById("mensajeSinResultados");
+
+    if(encontrados===0){
+
+        const etiquetaTexto = etiquetaActual == "todas"
+            ? "todos los productos"
+            : etiquetaActual.charAt(0).toUpperCase() + etiquetaActual.slice(1);
+
+        mostrarToast(
+            `No se encontró por el momento la etiqueta "${etiquetaTexto}".`,
+            "info"
+        );
+
+        if(mensajeSinResultados){
+            mensajeSinResultados.style.display = "block";
+            mensajeSinResultados.innerHTML = `No se encontró por el momento la etiqueta "${etiquetaTexto}".`;
+        }
+
+        document.getElementById("contadorProductos").innerHTML =
+
+        `No se encontró por el momento la etiqueta "${etiquetaTexto}".`;
+
+    }
+
+    else{
+
+        if(mensajeSinResultados){
+            mensajeSinResultados.style.display = "none";
+            mensajeSinResultados.innerHTML = "";
+        }
+
+        document.getElementById(
+
+            "contadorProductos"
+
+        ).innerHTML =
+
+        "Se encontraron "
+
+        +
+
+        encontrados
+
+        +
+
+        " productos";
+
+    }
+
+}
+
+
+//====================================
+// CONTADOR DE PRODUCTOS
+//====================================
+
+function actualizarContador(mensaje = null){
+
+    const productos =
+    document.querySelectorAll(".producto");
+
+    const visibles =
+    Array.from(productos).filter(producto =>
+
+        producto.style.display !== "none"
+
+    ).length;
+
+    document.getElementById("contadorProductos").innerHTML =
+
+    mensaje ||
+
+    "Se encontraron " +
+
+    visibles +
+
+    " productos";
 
 }
 

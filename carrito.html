@@ -103,6 +103,36 @@
 
             lista.innerHTML = "";
 
+            lista.innerHTML = "";
+
+            if(carrito.length==0){
+
+                lista.innerHTML = `
+
+                    <div class="carritoVacio">
+
+                        <h2>🛒</h2>
+
+                        <p>
+
+                            Tu carrito está vacío.
+
+                        </p>
+
+                    </div>
+
+                `;
+
+                document.getElementById("subtotal").innerHTML="$0";
+
+                document.getElementById("total").innerHTML="$0";
+
+                actualizarContadorCarrito();
+
+                return;
+
+            }            
+
             let total = 0;
 
             carrito.forEach((producto, indice)=>{
@@ -193,7 +223,9 @@
         <script src="js/carrito.js"></script>
             <script >
             mostrarCarrito();
-            </script>
+        </script>
+        
+        <script src="js/notificaciones.js"></script>
     </body>
 
 </html>
