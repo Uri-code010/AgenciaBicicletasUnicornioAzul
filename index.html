@@ -14,29 +14,7 @@
     </div>
     <header>
         <nav>
-            <ul>
-                
-                <li><a href="index.html">🏠 Inicio</a></li>
-
-                <li><a href="nosotros.html">🚴 Nosotros</a></li>
-
-                <li><a href="catalogo.html" id="menuCarrito">🛒 Carrito (0)</a></li>
-
-                <li><a href="contacto.html">📞 Contacto</a></li>
-
-                <li><a href="login.html">👤 Iniciar Sesión</a></li>
-
-                <li><a href="carrito.html">🛒 Carrito</a></li>
-
-                <li>
-
-                    <a href="favoritos.html">
-
-                    ❤️ Favoritos
-
-                    </a>
-
-                </li>
+            <ul id="menuPrincipal">
             </ul>
         </nav>
     </header>
@@ -53,8 +31,67 @@
 
     </section>
 
-    <script src="js/notificacionesCliente.js"></script>
+    <button id="btnGestionarCookies" class="btn-gestionar-cookies">Gestionar preferencias</button>
+
+    <div id="cookieBanner" class="cookie-banner" style="display:none;">
+        <div class="cookie-contenido">
+
+            <p>
+
+                🍪 Utilizamos cookies para mejorar tu experiencia.
+
+            </p>
+
+            <div 
+                class="cookie-enlaces">
+
+                <a 
+                    id="verPoliticaCookies" 
+                    href="politica-cookies.html">
+
+                    📄 Política de Privacidad
+
+                </a>
+
+            </div>
+
+            <div class="cookie-acciones">
+
+                <button id="btnRechazarCookies">
+
+                    Rechazar
+
+                </button>
+
+                <button id="btnAceptarCookies">
+
+                    Aceptar
+
+                </button>
+
+            </div>
+
+        </div>
+    </div>
+
+    <div id="panelPreferenciasCookies" class="panel-preferencias-cookies" style="display:none;">
+        <div class="panel-preferencias-contenido">
+            <h3>Preferencias de cookies</h3>
+            <p>Elige cómo deseas que se usen las cookies en esta tienda.</p>
+            <div class="cookie-acciones">
+                <button id="btnRechazarCookiesPanel" class="boton-cookie boton-cookie-secundario">Rechazar</button>
+                <button id="btnAceptarCookiesPanel" class="boton-cookie">Aceptar</button>
+            </div>
+        </div>
+    </div>
+
+    <button onclick="reiniciarCookies()" class="btnResetCookies">
+        🔄 Reiniciar preferencias de cookies
+    </button>
     <script src="js/notificaciones.js"></script>
+    <script src="js/cookies.js"></script>
+    <script src="js/sesion.js"></script>
+    <script src="js/menu.js"></script>
 </body>
 </html>
 

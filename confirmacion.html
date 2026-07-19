@@ -1,86 +1,74 @@
 <!DOCTYPE html>
-<html lang="es">
+    <html lang="es">
 
-<head>
+    <head>
 
-    <meta charset="UTF-8">
+        <meta charset="UTF-8">
 
-    <title>Compra Exitosa</title>
+        <title>Compra realizada</title>
 
-    <link rel="stylesheet" href="css/estilos.css">
+        <link rel="stylesheet" href="css/estilos.css">
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-<header>
+        <header>
 
-    <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+            <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
 
-</header>
+        </header>
 
-<section class="confirmacion-container">
+        <section class="confirmacionCompra">
 
-    <div class="confirmacion-card">
+            <div class="cardConfirmacion">
 
-        <div class="icono-check">
+                <div class="iconoExito">
 
-            ✅
+                    ✅
 
-        </div>
+                </div>
 
-        <h2>
+                <h2>
 
-            ¡Compra realizada con éxito!
+                    ¡Gracias por tu compra!
 
-        </h2>
+                </h2>
 
-        <p>
+                <p>
 
-            Gracias por confiar en nosotros.
+                    Tu pedido fue registrado correctamente.
 
-        </p>
+                </p>
 
-        <hr>
+                <div id="infoPedido">
 
-        <div id="detallePedido"></div>
+                </div>
 
-        <hr>
+                <br>
 
-        <div class="estadoPedido">
+                <a
+                class="boton"
+                href="detallePedido.html">
 
-            <h3>Estado del Pedido</h3>
+                    Ver detalle del pedido
 
-            <p id="estadoPedido"></p>
+                </a>
 
-        </div>
+                <a
+                class="botonSecundario"
+                href="catalogo.html">
 
-        <div class="botones-confirmacion">
+                    Seguir comprando
 
-            <a
-                href="historial.html"
-                class="boton">
+                </a>
 
-                📦 Ver Historial
+            </div>
 
-            </a>
+        </section>
 
-            <a
-                href="catalogo.html"
-                class="boton">
+        <script src="js/confirmacion.js"></script>
 
-                🚲 Seguir Comprando
-
-            </a>
-
-        </div>
-
-    </div>
-
-</section>
-
-<script src="js/confirmacion.js"></script>
-
-</body>
+    </body>
 
 </html>

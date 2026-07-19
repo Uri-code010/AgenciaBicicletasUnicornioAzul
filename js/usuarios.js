@@ -111,6 +111,42 @@ function iniciarSesion(usuario) {
 
     guardarUsuariosRegistrados(usuarios);
     localStorage.setItem(STORAGE_KEYS.usuarioActual, JSON.stringify(usuarioFinal));
+
+    //===============================
+    // PREFERENCIAS DE PRIVACIDAD
+    //===============================
+
+    const preferencias =
+
+    JSON.parse(
+
+        localStorage.getItem("preferenciasCookies")
+
+    );
+
+    if(preferencias && preferencias.sesion){
+
+        localStorage.setItem(
+
+            STORAGE_KEYS.sesionActiva,
+
+            "true"
+
+        );
+
+    }
+
+    else{
+
+        sessionStorage.setItem(
+
+            STORAGE_KEYS.sesionActiva,
+
+            "true"
+
+        );
+
+    }
     localStorage.setItem(STORAGE_KEYS.sesionActiva, "true");
 
     const recordar = document.getElementById("recordar");
@@ -131,7 +167,7 @@ function iniciarSesion(usuario) {
 
 function cerrarSesion() {
     localStorage.removeItem(STORAGE_KEYS.usuarioActual);
-    localStorage.removeItem(STORAGE_KEYS.sesionActiva);
+    //localStorage.removeItem(STORAGE_KEYS.sesionActiva);
     localStorage.removeItem(STORAGE_KEYS.usuarioLegacy);
     
     mostrarToast("✅ Sesión cerrada correctamente.", "exito");
@@ -140,7 +176,15 @@ function cerrarSesion() {
 }
 
 function estaAutenticado() {
-        return localStorage.getItem(STORAGE_KEYS.sesionActiva) === "true";
+        return (
+
+        localStorage.getItem(STORAGE_KEYS.sesionActiva) === "true"
+
+        ||
+
+        sessionStorage.getItem(STORAGE_KEYS.sesionActiva) === "true"
+
+    );
     }
     //creación de usuarios
     document.addEventListener("DOMContentLoaded", () => {
@@ -264,6 +308,16 @@ function estaAutenticado() {
         }
 
         const nombre = (usuario.nombre || "").trim();
+        const correoPerfil =
+
+        document.getElementById("correoUsuario");
+
+        if(correoPerfil){
+
+            correoPerfil.innerHTML = usuario.correo;
+
+        }
+
         const letra = nombre ? nombre.charAt(0).toUpperCase() : "?";
 
         if (avatar) {
@@ -287,15 +341,76 @@ function estaAutenticado() {
 
         }
 
-        const historial =
-        JSON.parse(localStorage.getItem("historial")) || [];
+        const pedidos =
+        JSON.parse(localStorage.getItem("pedidos")) || [];
 
         const comprasRealizadas =
         document.getElementById("comprasRealizadas");
 
         if(comprasRealizadas){
 
-            comprasRealizadas.textContent = historial.length;
+            comprasRealizadas.textContent = pedidos.length;
+
+        }
+        //==============================
+        // FAVORITOS
+        //==============================
+
+        const favoritos =
+
+        JSON.parse(
+
+        localStorage.getItem(
+
+        "favoritos_" +
+
+        usuario.correo.toLowerCase()
+
+        )
+
+        ) || [];
+
+        const favoritosUsuario =
+
+        document.getElementById("favoritosUsuario");
+
+        if(favoritosUsuario){
+
+            favoritosUsuario.textContent =
+
+            favoritos.length;
+
+        }
+
+        //==============================
+        // RESEÑAS
+        //==============================
+
+        const resenas =
+
+        JSON.parse(
+
+        localStorage.getItem("resenas")
+
+        ) || [];
+
+        const totalResenas =
+
+        resenas.filter(r=>{
+
+            return r.usuario==usuario.nombre;
+
+        }).length;
+
+        const resenasUsuario =
+
+        document.getElementById("resenasUsuario");
+
+        if(resenasUsuario){
+
+            resenasUsuario.textContent =
+
+            totalResenas;
 
         }
         const fecha = new Date();

@@ -197,37 +197,48 @@ function mostrarCatalogo(){
 
             </p>
 
-            ${
-                producto.estado == "Agotado"
-
-                ?
-
-                `
+            <div class="accionesProducto">
 
                 <button
-                    class="btnAgotado"
-                    disabled>
+                    onclick="window.location.href='detalleProducto.html?nombre=${encodeURIComponent(producto.nombre)}'">
 
-                    Agotado
+                    Ver detalle
 
                 </button>
 
-                `
+                ${
+                    producto.estado == "Agotado"
 
-                :
+                    ?
 
-                `
+                    `
 
-                <button
-                    onclick="agregarCarrito('${producto.nombre}', ${precioMostrar}, '${producto.categoria}')">
+                    <button
+                        class="btnAgotado"
+                        disabled>
 
-                    Agregar al carrito
+                        Agotado
 
-                </button>
+                    </button>
 
-                `
+                    `
 
-            }
+                    :
+
+                    `
+
+                    <button
+                        onclick="agregarCarrito('${producto.nombre}', ${precioMostrar}, '${producto.categoria}')">
+
+                        Agregar al carrito
+
+                    </button>
+
+                    `
+
+                }
+
+            </div>
 
         </div>
 

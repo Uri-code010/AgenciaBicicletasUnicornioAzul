@@ -1,182 +1,55 @@
-//==========================================
-// CONFIRMACIÓN DE COMPRA
-//==========================================
+const pedido =
 
-const compra =
-JSON.parse(localStorage.getItem("ultimaCompra"));
+    JSON.parse(
 
-const detalle =
-document.getElementById("detallePedido");
+    localStorage.getItem("ultimaCompra")
 
-if(!compra){
+    );
 
-    detalle.innerHTML =
+    const contenedor =
 
-    "<h3>No existe ninguna compra registrada.</h3>";
+    document.getElementById("infoPedido");
 
-}
-else{
+    if(pedido){
 
-    let html = "";
+        contenedor.innerHTML=`
 
-    html += `
+            <p>
 
-        <h3>Pedido: ${compra.id}</h3>
+                <b>Pedido:</b>
 
-        <p>
+                #${pedido.id}
 
-            <strong>Cliente:</strong>
+            </p>
 
-            ${compra.cliente}
+            <p>
 
-        </p>
+                <b>Fecha:</b>
 
-        <p>
+                ${new Date(pedido.fecha).toLocaleString("es-MX")}
 
-            <strong>Dirección:</strong>
+            </p>
 
-            ${compra.direccion}
+            <p>
 
-        </p>
+            <b>Estado:</b>
 
-        <p>
+                🟡 Pedido recibido
 
-            <strong>Ciudad:</strong>
+            </p>
 
-            ${compra.ciudad}
+            <h2>
 
-        </p>
+                Total pagado
 
-        <p>
+            </h2>
 
-            <strong>Código Postal:</strong>
+            <h1>
 
-            ${compra.codigoPostal}
+                $${Number(pedido.total).toFixed(2)}
 
-        </p>
-
-        <p>
-
-            <strong>Teléfono:</strong>
-
-            ${compra.telefono}
-
-        </p>
-
-        <p>
-
-            <strong>Método de Pago:</strong>
-
-            ${compra.metodo}
-
-        </p>
-
-        <p>
-
-            <strong>Fecha:</strong>
-
-            ${compra.fecha}
-
-        </p>
-
-        <hr>
-
-        <h3>Productos Comprados</h3>
-
-    `;
-
-    compra.productos.forEach(producto=>{
-
-        html += `
-
-            <div class="productoConfirmacion">
-
-                <img
-                    src="${producto.imagen}"
-                    class="miniProducto">
-
-                <div>
-
-                    <strong>
-
-                        ${producto.nombre}
-
-                    </strong>
-
-                    <br>
-
-                    Cantidad:
-
-                    ${producto.cantidad}
-
-                    <br>
-
-                    Precio:
-
-                    $${producto.precio}
-
-                </div>
-
-            </div>
-
-            <hr>
+            </h1>
 
         `;
 
-    });
-
-    html += `
-
-        <p>
-
-            <strong>
-
-                Subtotal:
-
-            </strong>
-
-            $${compra.subtotal}
-
-        </p>
-
-        <p>
-
-            <strong>
-
-                Descuento:
-
-            </strong>
-
-            $${compra.descuento}
-
-        </p>
-
-        <p>
-
-            <strong>
-
-                Envío:
-
-            </strong>
-
-            $${compra.envio}
-
-        </p>
-
-        <h2>
-
-            Total Pagado:
-
-            $${compra.total}
-
-        </h2>
-
-    `;
-
-    detalle.innerHTML = html;
-
-    document.getElementById("estadoPedido").innerHTML =
-
-    "🟢 " + compra.estado;
-
-}
+    }

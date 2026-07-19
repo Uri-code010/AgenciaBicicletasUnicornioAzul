@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <title>Centro de Privacidad</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+    <link rel="stylesheet" href="css/preferenciasCookies.css">
+
+</head>
+
+<body>
+    <header>
+        <h1>Política de Privacidad</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="catalogo.html">Catálogo</a></li>
+                <li id="menuSesion"></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    <div class="privacidadContainer">
+
+        <div class="privacidadCard">
+
+            <h1>🔐 Centro de Privacidad</h1>
+
+            <p class="subtitulo">
+
+                Configura cómo deseas utilizar Agencia de Bicicletas El Unicornio Azul.
+
+            </p>
+
+            <div class="tarjetaInfo">
+
+                <h3>🔒 Tu privacidad</h3>
+
+                <p>
+
+                    Tus datos son tuyos.
+
+                    Puedes modificar estas preferencias cuando quieras.
+
+                </p>
+
+            </div>
+
+            <div class="opcionPrivacidad">
+
+                <div>
+
+                    <h3>Cookies necesarias</h3>
+
+                    <p>Siempre activas.</p>
+
+                </div>
+
+                <input
+                    type="checkbox"
+                    checked
+                    disabled>
+            </div>
+
+            <div class="opcionPrivacidad">
+
+                <div>
+
+                    <h3>💾 Recordar sesión</h3>
+
+                    <p>Mantener mi cuenta iniciada.</p>
+
+                </div>
+
+                <input
+                    type="checkbox"
+                    id="sesion">
+            </div>
+
+            <div class="opcionPrivacidad">
+
+                <div>
+
+                    <h3>📍 Localización</h3>
+
+                    <p>Mostrar sucursales cercanas.</p>
+
+                </div>
+
+                <input
+                    type="checkbox"
+                    id="localizacion">
+            </div>
+
+            <div class="opcionPrivacidad">
+
+                <div>
+
+                    <h3>📈 Estadísticas</h3>
+
+                    <p>Ayudar a mejorar el sitio.</p>
+
+                </div>
+
+                <input
+                    type="checkbox"
+                    id="estadisticas">
+            </div>
+
+            <div class="opcionPrivacidad">
+
+                <div>
+
+                    <h3>🏷 Marketing</h3>
+
+                    <p>Mostrar promociones personalizadas.</p>
+
+                </div>
+
+                <input
+                    type="checkbox"
+                    id="marketing">
+            </div>
+
+            <div class="opcionPrivacidad">
+
+                <div>
+
+                    <h3>🎨 Personalización</h3>
+
+                    <p>Guardar preferencias visuales.</p>
+
+                </div>
+
+                <input
+                    type="checkbox"
+                    id="personalizacion">
+            </div>
+
+            <div class="opcionPrivacidad">
+
+                <div>
+
+                    <h3>🌐 Idioma</h3>
+
+                    <p>Idioma preferido.</p>
+
+                </div>
+
+                <select id="idioma">
+
+                    <option value="es">
+
+                        Español
+
+                    </option>
+
+                    <option value="en">
+
+                        English
+
+                    </option>
+
+                </select>
+
+            </div>
+
+            <button
+                class="btnGuardarPrivacidad"
+                onclick="guardarPreferencias()">
+
+                💾 Guardar preferencias
+
+            </button>
+
+        </div>
+
+    </div>
+
+    <script src="js/notificaciones.js"></script>
+
+    <script src="js/preferenciasCookies.js"></script>
+
+</body>
+
+</html>

@@ -20,25 +20,9 @@
 
     <nav>
 
-        <ul>
+        <ul id="menuPrincipal">
 
-            <li><a href="index.html">Inicio</a></li>
-
-            <li><a href="catalogo.html">Productos</a></li>
-
-            <li><a href="carrito.html" id="menuCarrito">🛒 Carrito (0)</a></li>
-
-            <li><a href="perfil.html">Mi Perfil</a></li>
-
-            <li><a href="contacto.html">Contacto</a></li>
-            <li>
-                    <a href="favoritos.html">
-
-                    ❤️ Favoritos
-
-                    </a>
-                </li>
-            </ul>
+        
         </ul>
 
     </nav>
@@ -50,62 +34,95 @@
 
 <div class="perfil-card">
 
-<div class="avatar" id="avatarUsuario">
-</div>
+    <div class="avatar" id="avatarUsuario"></div>
 
-<h2 id="saludoUsuario">
-Bienvenido
-</h2>
+    <h2 id="saludoUsuario">
+        Bienvenido
+    </h2>
 
+    <p id="correoUsuario" class="correoPerfil"></p>
 
-<div class="perfil-estadisticas">
+    <div class="nivel-cliente">
 
-<div class="estadistica">
+        ⭐ Cliente Preferente
 
-<h3 id="productosCarrito">0</h3>
+        <p>
+            Gracias por confiar en nosotros.
+        </p>
 
-<p>Productos en el carrito</p>
+    </div>
 
-</div>
+    <div class="perfil-estadisticas">
 
-<div class="estadistica">
+        <div class="estadistica">
 
-<h3 id="comprasRealizadas">0</h3>
+            <h3 id="productosCarrito">0</h3>
 
-<p>Compras realizadas</p>
+            <p>Productos</p>
 
-<p id="ultimoAcceso"></p>
-</div>
+        </div>
 
-</div>
+        <div class="estadistica">
 
-<div class="nivel-cliente">
+            <h3 id="comprasRealizadas">0</h3>
 
-    ⭐ Cliente Preferente
+            <p>Pedidos</p>
 
-    <p>
-        Gracias por confiar en nosotros.
-    </p>
+        </div>
 
-</div>
+        <div class="estadistica">
 
-<a class="btn-historial" href="historial.html">
+            <h3 id="favoritosUsuario">0</h3>
 
-📦 Ver Historial
+            <p>Favoritos</p>
 
-</a>
+        </div>
 
-<a class="btn-carrito" href="carrito.html">
+        <div class="estadistica">
 
-🛒 Ir al Carrito
+            <h3 id="resenasUsuario">0</h3>
 
-</a>
+            <p>Reseñas</p>
 
-<button class="btn-salir" onclick="cerrarSesion()">
+        </div>
 
-🚪 Cerrar Sesión
+    </div>
 
-</button>
+    <p id="ultimoAcceso"></p>
+
+    <div class="accionesPerfil">
+
+        <a class="btn-perfil" href="historial.html">
+
+            📦 Mis pedidos
+
+        </a>
+
+        <a class="btn-perfil" href="favoritos.html">
+
+            ❤️ Favoritos
+
+        </a>
+
+        <a class="btn-perfil" href="comunidad.html">
+
+            🌎 Comunidad
+
+        </a>
+
+        <a class="btn-perfil" href="carrito.html">
+
+            🛒 Mi carrito
+
+        </a>
+
+    </div>
+
+    <button class="btn-salir" onclick="cerrarSesion()">
+
+        🚪 Cerrar sesión
+
+    </button>
 
 </div>
 
@@ -114,6 +131,9 @@ Bienvenido
 <script src="js/usuarios.js"></script>
 <script src="js/notificaciones.js"></script>
 <script src="js/notificacionesCliente.js"></script>
+<script src="js/sesion.js"></script>
+<script src="js/carrito.js"></script>
+<script src="js/menu.js"></script>
 
 </body>
 

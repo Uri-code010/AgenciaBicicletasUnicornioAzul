@@ -4,6 +4,126 @@ body {
     padding: 0;
 }
 
+.cookie-banner {
+    position: fixed;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: min(92%, 720px);
+    background: #0f172a;
+    color: white;
+    padding: 16px 20px;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.25);
+    z-index: 9999;
+}
+
+.cookie-contenido {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.cookie-contenido p {
+    margin: 0;
+    line-height: 1.5;
+}
+
+.cookie-contenido a {
+    color: #7dd3fc;
+    text-decoration: underline;
+}
+
+.boton-cookie {
+    background: #0077cc;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 10px 16px;
+    cursor: pointer;
+}
+
+.boton-cookie:hover {
+    background: #005fa3;
+}
+
+.boton-cookie-secundario {
+    background: #64748b;
+}
+
+.boton-cookie-secundario:hover {
+    background: #475569;
+}
+
+.btn-gestionar-cookies {
+    position: fixed;
+    right: 20px;
+    bottom: 90px;
+    z-index: 9998;
+    background: #0f766e;
+    color: white;
+    border: none;
+    border-radius: 999px;
+    padding: 10px 14px;
+    cursor: pointer;
+}
+
+.panel-preferencias-cookies {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.45);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+}
+
+.panel-preferencias-contenido {
+    background: white;
+    color: #111827;
+    border-radius: 16px;
+    padding: 24px;
+    width: min(92%, 480px);
+    box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+.panel-preferencias-contenido p {
+    line-height: 1.6;
+}
+
+.politica-container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 20px;
+}
+
+.politica-card {
+    background: white;
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.12);
+}
+
+.politica-card h2,
+.politica-card h3 {
+    color: #0077cc;
+}
+
+.politica-fecha {
+    color: #64748b;
+    font-size: 0.95rem;
+    margin-bottom: 10px;
+}
+
+.cookie-acciones {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 12px;
+}
+
 header {
     background: #0077cc;
     color: white; 
@@ -1019,6 +1139,149 @@ line-height:2;
 
 }
 
+.detalle-resumen{
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:18px;
+
+}
+
+.detalle-encabezado{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:12px;
+
+    flex-wrap:wrap;
+
+}
+
+.detalle-etiqueta{
+
+    margin:0;
+
+    font-size:13px;
+
+    text-transform:uppercase;
+
+    letter-spacing:1px;
+
+    color:#6b7280;
+
+}
+
+.detalle-estado{
+
+    background:#e8f5e9;
+
+    color:#2e7d32;
+
+    padding:8px 12px;
+
+    border-radius:999px;
+
+    font-weight:bold;
+
+    font-size:14px;
+
+}
+
+.detalle-grid{
+
+    display:grid;
+
+    grid-template-columns:repeat(2, minmax(0, 1fr));
+
+    gap:16px;
+
+}
+
+.detalle-meta{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:12px 14px;
+
+}
+
+.detalle-productos{
+
+    list-style:none;
+
+    padding:0;
+
+    margin:0;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:10px;
+
+}
+
+.pedido-item{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    gap:10px;
+
+    background:white;
+
+    padding:10px 12px;
+
+    border-radius:10px;
+
+}
+
+.detalle-total{
+
+    background:white;
+
+    border-radius:12px;
+
+    padding:14px;
+
+    display:flex;
+
+    flex-direction:column;
+
+    gap:6px;
+
+}
+
+.detalle-total p,
+.detalle-total h3{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    margin:0;
+
+}
+
+.detalle-vacio{
+
+    text-align:center;
+
+    padding:20px 10px;
+
+}
+
 .botones-confirmacion{
 
 margin-top:35px;
@@ -1419,6 +1682,16 @@ line-height:2;
     transform:scale(1.1);
 
     border-color:#0077cc;
+
+}
+
+.miniaturas img.miniaturaActiva{
+
+    border-color:#0077cc;
+
+    transform:scale(1.08);
+
+    box-shadow:0 0 0 3px rgba(0,119,204,.18);
 
 }
 /*=============================
@@ -3247,5 +3520,1074 @@ NOTIFICACIONES
 .toast.advertencia{
 
     background:#f39c12;
+
+}
+
+/*=========================
+ BOTÓN REINICIAR COOKIES
+=========================*/
+
+.btnResetCookies{
+
+    position: fixed;
+
+    right: 25px;
+
+    bottom: 25px;
+
+    background: linear-gradient(135deg,#ff9800,#ff6d00);
+
+    color: white;
+
+    border: none;
+
+    border-radius: 50px;
+
+    padding: 14px 22px;
+
+    font-size: 15px;
+
+    font-weight: bold;
+
+    cursor: pointer;
+
+    box-shadow: 0 8px 18px rgba(0,0,0,.25);
+
+    transition: .25s;
+
+    z-index: 9999;
+
+}
+
+.btnResetCookies:hover{
+
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(0,0,0,.35);
+
+}
+
+.btnResetCookies:active{
+
+    transform: scale(.96);
+
+}
+
+/*======================================
+            COMUNIDAD
+======================================*/
+
+.contenedorResenas{
+
+    max-width:1000px;
+
+    margin:40px auto;
+
+    padding:25px;
+
+}
+
+.resumenResenas{
+
+    text-align:center;
+
+    background:#fff;
+
+    border-radius:18px;
+
+    padding:30px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+    margin-bottom:35px;
+
+}
+
+.resumenResenas h2{
+
+    color:#0f766e;
+
+    margin-bottom:15px;
+
+}
+
+#promedioNumero{
+
+    font-size:55px;
+
+    color:#ff9800;
+
+    margin:10px 0;
+
+}
+
+#promedioEstrellas{
+
+    font-size:35px;
+
+    letter-spacing:4px;
+
+}
+
+#cantidadResenas{
+
+    color:#666;
+
+    font-size:15px;
+
+}
+
+textarea{
+
+    width:100%;
+
+    padding:15px;
+
+    border-radius:12px;
+
+    border:1px solid #ccc;
+
+    resize:none;
+
+    font-size:15px;
+
+    margin-top:10px;
+
+    transition:.25s;
+
+}
+
+textarea:focus{
+
+    outline:none;
+
+    border-color:#0f766e;
+
+    box-shadow:0 0 8px rgba(15,118,110,.25);
+
+}
+
+select{
+
+    padding:10px 15px;
+
+    border-radius:10px;
+
+    border:1px solid #ccc;
+
+    font-size:16px;
+
+    cursor:pointer;
+
+}
+
+.cardResena{
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:22px;
+
+    margin-top:20px;
+
+    box-shadow:0 5px 18px rgba(0,0,0,.12);
+
+    transition:.25s;
+
+}
+
+.cardResena:hover{
+
+    transform:translateY(-4px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.18);
+
+}
+
+.cardResena h3{
+
+    color:#0f766e;
+
+    margin-bottom:8px;
+
+}
+
+.cardResena small{
+
+    color:#777;
+
+}
+
+.cardResena p{
+
+    margin-top:10px;
+
+    line-height:1.6;
+
+}
+
+.cardResena button{
+
+    margin-top:15px;
+
+    background:#0f766e;
+
+    color:white;
+
+    border:none;
+
+    padding:10px 18px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.cardResena button:hover{
+
+    background:#128277;
+
+}
+
+.boton{
+
+    margin-top:15px;
+
+    padding:14px 28px;
+
+    border:none;
+
+    border-radius:12px;
+
+    background:#ff9800;
+
+    color:white;
+
+    font-size:16px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.25s;
+
+}
+
+.boton:hover{
+
+    background:#f57c00;
+
+    transform:scale(1.03);
+
+}
+
+.compraVerificada{
+
+    display:inline-block;
+
+    margin-top:8px;
+
+    margin-bottom:10px;
+
+    padding:6px 12px;
+
+    border-radius:25px;
+
+    background:#d1fae5;
+
+    color:#047857;
+
+    font-weight:bold;
+
+    font-size:13px;
+
+}
+
+/*======================================
+            COMUNIDAD
+======================================*/
+
+.comunidad{
+
+    margin-top:60px;
+
+}
+
+/* Centrar títulos y párrafos dentro de Comunidad (introducción y sección de comentarios) */
+.comunidad h2,
+.comunidad p {
+    text-align: center;
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Centrar contenido de Comunidad y evitar desbordes */
+.comunidad #formComentario,
+.comunidad #listaComentarios,
+.comunidad .nuevoComentario,
+.comunidad .publicaciones,
+.comunidad .formularioResena,
+.comunidad .resumenResenas {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.cardComentario{
+    width: 100%;
+    align-items: flex-start;
+}
+
+.contenidoComentario{
+    flex: 1;
+    min-width: 0; /* permite que el contenido se encoja y no desborde */
+}
+
+.contenidoComentario p,
+.contenidoComentario h3,
+.contenidoComentario small{
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+/* ========================
+   Estilos limpios para selects
+   y campos en la sección Comunidad
+   ======================== */
+
+.comunidad select,
+.formularioResena select,
+#calificacion {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: #ffffff url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='14' height='9' viewBox='0 0 24 24'><path fill='%230077cc' d='M7 10l5 5 5-5z'/></svg>") no-repeat right 12px center;
+    border: 1px solid #d1d5db;
+    padding: 10px 40px 10px 12px;
+    border-radius: 10px;
+    font-size: 16px;
+    color: #111827;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.05);
+    transition: box-shadow .18s, border-color .18s;
+    width: 100%;
+    max-width: 360px;
+}
+
+.comunidad select:focus,
+.formularioResena select:focus,
+#calificacion:focus {
+    outline: none;
+    border-color: #0f766e;
+    box-shadow: 0 8px 22px rgba(15,118,110,0.12);
+}
+
+.nuevoComentario textarea,
+.formularioResena textarea {
+    border: 1px solid #d1d5db;
+    padding: 12px;
+    border-radius: 12px;
+    box-shadow: 0 6px 18px rgba(0,0,0,0.04);
+    font-size: 15px;
+    width: 100%;
+    max-width: 800px;
+}
+
+.contenidoComentario button,
+.cardResena button,
+.boton {
+    transition: transform .14s ease, box-shadow .14s ease, background-color .14s ease;
+}
+
+.contenidoComentario button:hover,
+.cardResena button:hover,
+.boton:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.nuevoComentario{
+
+    background:white;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    box-shadow:0 8px 25px rgba(0,0,0,.12);
+
+    margin:30px 0;
+
+}
+
+.cardComentario{
+
+    display:flex;
+
+    gap:18px;
+
+    background:white;
+
+    border-radius:18px;
+
+    padding:20px;
+
+    margin-bottom:20px;
+
+    box-shadow:0 6px 18px rgba(0,0,0,.10);
+
+}
+
+.avatarComentario{
+
+    width:60px;
+
+    height:60px;
+
+    border-radius:50%;
+
+    background:#0f766e;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-size:25px;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+
+}
+
+.contenidoComentario{
+
+    flex:1;
+
+}
+
+.contenidoComentario h3{
+
+    margin:0;
+
+    color:#0f766e;
+
+}
+
+.contenidoComentario small{
+
+    color:#888;
+
+}
+
+.contenidoComentario p{
+
+    margin-top:12px;
+
+    line-height:1.6;
+
+}
+
+.contenidoComentario button{
+
+    margin-top:10px;
+
+    border:none;
+
+    background:#f1f5f9;
+
+    padding:8px 15px;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+}
+
+.contenidoComentario button:hover{
+
+    background:#dbeafe;
+
+}
+
+/* Estilos para formulario inline de respuestas */
+.formRespuesta{
+    margin-top:12px;
+}
+.formRespuesta .inputRespuesta{
+    width:100%;
+    padding:10px;
+    border-radius:10px;
+    border:1px solid #d1d5db;
+    resize:none;
+    font-size:14px;
+}
+.formRespuesta .botonPublicarRes{
+    background:#0f766e;
+    color:white;
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+.formRespuesta .botonPublicarRes:hover{
+    background:#0c5f55;
+}
+.formRespuesta .botonCancelarRes{
+    border:none;
+    padding:8px 12px;
+    border-radius:8px;
+    cursor:pointer;
+}
+
+/*======================================
+CONFIRMACIÓN
+======================================*/
+
+.confirmacionCompra{
+
+display:flex;
+
+justify-content:center;
+
+padding:60px;
+
+}
+
+.cardConfirmacion{
+
+width:700px;
+
+background:white;
+
+padding:40px;
+
+border-radius:18px;
+
+box-shadow:0 8px 30px rgba(0,0,0,.15);
+
+text-align:center;
+
+}
+
+.iconoExito{
+
+font-size:70px;
+
+margin-bottom:20px;
+
+}
+
+.cardConfirmacion h2{
+
+margin-bottom:15px;
+
+}
+
+.cardConfirmacion p{
+
+font-size:18px;
+
+}
+
+.botonSecundario{
+
+display:inline-block;
+
+margin-top:15px;
+
+margin-left:15px;
+
+padding:12px 25px;
+
+background:#555;
+
+color:white;
+
+text-decoration:none;
+
+border-radius:10px;
+
+transition:.3s;
+
+}
+
+.botonSecundario:hover{
+
+background:#333;
+
+}
+
+/*=========================================
+PERFIL
+=========================================*/
+
+.correoPerfil{
+
+color:#666;
+
+margin-top:-10px;
+
+margin-bottom:20px;
+
+font-size:15px;
+
+}
+
+.accionesPerfil{
+
+display:grid;
+
+grid-template-columns:repeat(2,1fr);
+
+gap:15px;
+
+margin-top:30px;
+
+margin-bottom:25px;
+
+}
+
+.btn-perfil{
+
+display:block;
+
+text-decoration:none;
+
+background:white;
+
+border:2px solid #0f766e;
+
+padding:18px;
+
+border-radius:14px;
+
+font-weight:bold;
+
+color:#0f766e;
+
+transition:.3s;
+
+text-align:center;
+
+}
+
+.btn-perfil:hover{
+
+background:#0f766e;
+
+color:white;
+
+transform:translateY(-4px);
+
+box-shadow:0 6px 20px rgba(0,0,0,.18);
+
+}
+
+/*=========================================
+MENU USUARIO
+=========================================*/
+
+.menuUsuario{
+
+position:relative;
+
+list-style:none;
+
+}
+
+.usuarioBoton{
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+font-size:16px;
+
+font-weight:bold;
+
+color:white;
+
+padding:12px;
+
+}
+
+.usuarioDropdown{
+
+display:none;
+
+position:absolute;
+
+top:45px;
+
+right:0;
+
+background:white;
+
+min-width:220px;
+
+border-radius:12px;
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+overflow:hidden;
+
+z-index:9999;
+
+}
+
+.usuarioDropdown a{
+
+display:block;
+
+padding:14px 18px;
+
+text-decoration:none;
+
+color:#333;
+
+transition:.25s;
+
+}
+
+.usuarioDropdown a:hover{
+
+background:#0f766e;
+
+color:white;
+
+}
+
+.usuarioDropdown hr{
+
+margin:0;
+
+border:none;
+
+border-top:1px solid #ddd;
+
+}
+
+.menuUsuario:hover .usuarioDropdown{
+
+display:block;
+
+animation:fadeMenu .25s;
+
+}
+
+@keyframes fadeMenu{
+
+from{
+
+opacity:0;
+
+transform:translateY(-10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/*==================================================
+MENU PREMIUM DEL USUARIO
+==================================================*/
+
+.usuarioMenu{
+
+position:relative;
+
+display:flex;
+
+align-items:center;
+
+}
+
+.usuarioBoton{
+
+display:flex;
+
+align-items:center;
+
+gap:10px;
+
+background:transparent;
+
+border:none;
+
+cursor:pointer;
+
+color:white;
+
+font-weight:bold;
+
+padding:8px;
+
+}
+
+.avatarMini{
+
+width:40px;
+
+height:40px;
+
+border-radius:50%;
+
+background:white;
+
+color:#0f766e;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:18px;
+
+font-weight:bold;
+
+}
+
+.usuarioInfo{
+
+display:flex;
+
+flex-direction:column;
+
+align-items:flex-start;
+
+}
+
+.usuarioInfo small{
+
+color:#ddd;
+
+font-size:12px;
+
+}
+
+.usuarioDropdown{
+
+display:none;
+
+position:absolute;
+
+top:60px;
+
+right:0;
+
+width:280px;
+
+background:white;
+
+border-radius:15px;
+
+box-shadow:0 15px 35px rgba(0,0,0,.25);
+
+overflow:hidden;
+
+z-index:99999;
+
+animation:aparecer .25s;
+
+}
+
+.usuarioMenu:hover .usuarioDropdown{
+
+display:block;
+
+}
+
+.usuarioHeader{
+
+display:flex;
+
+align-items:center;
+
+gap:15px;
+
+padding:18px;
+
+background:#0f766e;
+
+color:white;
+
+}
+
+.avatarGrande{
+
+width:55px;
+
+height:55px;
+
+border-radius:50%;
+
+background:white;
+
+color:#0f766e;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+font-size:24px;
+
+font-weight:bold;
+
+}
+
+.usuarioDropdown a{
+
+display:block;
+
+padding:15px 20px;
+
+text-decoration:none;
+
+color:#333;
+
+transition:.25s;
+
+font-size:15px;
+
+}
+
+.usuarioDropdown a:hover{
+
+background:#0f766e;
+
+color:white;
+
+padding-left:30px;
+
+}
+
+.usuarioDropdown hr{
+
+border:none;
+
+border-top:1px solid #ddd;
+
+margin:0;
+
+}
+
+@keyframes aparecer{
+
+from{
+
+opacity:0;
+
+transform:translateY(-10px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:translateY(0);
+
+}
+
+}
+
+/*comentarios*/
+/*==========================
+RESPUESTAS
+==========================*/
+
+.respuestaComentario{
+
+    display:flex;
+
+    gap:12px;
+
+    margin-top:15px;
+
+    margin-left:45px;
+
+    padding:15px;
+
+    background:#f8fafc;
+
+    border-left:4px solid #0f766e;
+
+    border-radius:12px;
+
+}
+
+.avatarRespuesta{
+
+    width:40px;
+
+    height:40px;
+
+    border-radius:50%;
+
+    background:#0f766e;
+
+    color:white;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    font-weight:bold;
+
+    flex-shrink:0;
+
+}
+
+.contenidoRespuesta{
+
+    flex:1;
+
+}
+
+.contenidoRespuesta strong{
+
+    color:#0f766e;
+
+}
+
+.contenidoRespuesta small{
+
+    display:block;
+
+    color:#888;
+
+    margin-top:2px;
+
+}
+
+.contenidoRespuesta p{
+
+    margin-top:8px;
+
+    line-height:1.5;
 
 }

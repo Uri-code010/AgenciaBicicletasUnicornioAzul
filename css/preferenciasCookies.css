@@ -1,0 +1,89 @@
+.privacidadContainer{
+
+    display:flex;
+
+    justify-content:center;
+
+    padding:40px;
+
+}
+
+.privacidadCard{
+
+    width:900px;
+
+    background:white;
+
+    border-radius:15px;
+
+    padding:30px;
+
+    box-shadow:0 4px 20px rgba(0,0,0,.15);
+
+}
+
+.subtitulo{
+
+    color:#666;
+
+    margin-bottom:20px;
+
+}
+
+.tarjetaInfo{
+
+    background:#f4f8ff;
+
+    border-left:5px solid #2b6cb0;
+
+    padding:15px;
+
+    margin-bottom:25px;
+
+}
+
+.opcionPrivacidad{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:15px 0;
+
+    border-bottom:1px solid #ddd;
+
+}
+
+.opcionPrivacidad h3{
+
+    margin:0;
+
+}
+
+.opcionPrivacidad p{
+
+    margin:4px 0;
+
+    color:#666;
+
+}
+
+.btnGuardarPrivacidad{
+
+    width:100%;
+
+    margin-top:25px;
+
+    padding:15px;
+
+    border:none;
+
+    border-radius:10px;
+
+    cursor:pointer;
+
+    font-size:16px;
+
+}

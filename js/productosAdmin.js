@@ -5,6 +5,33 @@
 let productos =
 JSON.parse(localStorage.getItem("productos")) || [];
 
+let indiceEditando = null;
+
+function actualizarModoFormulario() {
+    const botonSubmit = document.querySelector("#formProducto button[type='submit']");
+
+    if (botonSubmit) {
+        botonSubmit.textContent = indiceEditando === null
+            ? "➕ Agregar Producto"
+            : "✏️ Actualizar Producto";
+    }
+}
+
+if(productos.length === 0){
+    productos = [
+        {
+            nombre: "Bicicleta Infantil",
+            categoria: "Infantil",
+            etiqueta: "Nuevo",
+            precio: 1500,
+            descripcion: "Bicicleta ideal para niños y niñas que están aprendiendo a montar. Diseño seguro, ligero y resistente.",
+            imagen: "img/bici16.avif",
+            existencia: 10,
+            estado: "Disponible"
+        }
+    ];
+}
+
 //normalizar productos antiguos
 productos.forEach(producto => {
 
@@ -35,6 +62,7 @@ const tabla =
 document.getElementById("tablaProductos");
 
 mostrarProductos();
+actualizarModoFormulario();
 
 function mostrarProductos(){
 
@@ -134,6 +162,16 @@ document
 
 e.preventDefault();
 
+const imagenPrincipal =
+    document.getElementById("imagenProducto").value.trim();
+
+const imagenesAdicionales =
+    document.getElementById("imagenesProducto")
+        .value
+        .split(",")
+        .map((imagen) => imagen.trim())
+        .filter(Boolean);
+
 const nuevoProducto={
     nombre:
     document.getElementById("nombreProducto").value,
@@ -153,8 +191,11 @@ const nuevoProducto={
     descripcion:
     document.getElementById("descripcionProducto").value,
 
-    imagen:
-    document.getElementById("imagenProducto").value,
+    imagen: imagenPrincipal,
+
+    imagenes: imagenesAdicionales.length > 0
+        ? [imagenPrincipal, ...imagenesAdicionales].filter(Boolean)
+        : [imagenPrincipal],
 
     existencia:Number(
 
@@ -167,7 +208,14 @@ const nuevoProducto={
 
 };
 
-productos.push(nuevoProducto);
+if (indiceEditando !== null) {
+    productos[indiceEditando] = nuevoProducto;
+    mostrarToast("✅ Producto actualizado correctamente.", "exito");
+    indiceEditando = null;
+} else {
+    productos.push(nuevoProducto);
+    mostrarToast("✅ Producto agregado correctamente.", "exito");
+}
 
 localStorage.setItem(
 
@@ -178,10 +226,9 @@ JSON.stringify(productos)
 );
 
 mostrarProductos();
+actualizarModoFormulario();
 
 this.reset();
-
-mostrarToast("✅ Producto agregado correctamente.", "exito");
 
 });
 
@@ -225,6 +272,8 @@ function editarProducto(indice){
 
     const producto = productos[indice];
 
+    indiceEditando = indice;
+
     document.getElementById("nombreProducto").value =
     producto.nombre;
 
@@ -233,6 +282,11 @@ function editarProducto(indice){
 
     document.getElementById("imagenProducto").value =
     producto.imagen;
+
+    document.getElementById("imagenesProducto").value =
+    Array.isArray(producto.imagenes)
+        ? producto.imagenes.filter((imagen) => imagen !== producto.imagen).join(", ")
+        : "";
 
     document.getElementById("categoriaProducto").value =
     producto.categoria;
@@ -249,17 +303,9 @@ function editarProducto(indice){
     document.getElementById("estadoProducto").value =
     producto.estado;
 
-    productos.splice(indice,1);
+    actualizarModoFormulario();
 
-    localStorage.setItem(
-
-        "productos",
-
-        JSON.stringify(productos)
-
-    );
-
-    mostrarProductos();
+    document.getElementById("nombreProducto").focus();
 
 }
 

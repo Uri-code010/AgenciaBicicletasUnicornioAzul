@@ -11,6 +11,7 @@ const resumen = document.getElementById("resumenCompra");
 let subtotal = 0;
 let descuento = 0;
 let totalFinal = 0;
+let cuponAplicado = "";
 
 //========================================
 // PROMOCIONES
@@ -101,6 +102,17 @@ totalFinal = subtotal;
 // CUPÓN
 // ========================================
 
+function actualizarEstadoCupon() {
+    const estadoCupon = document.getElementById("estadoCupon");
+
+    if (estadoCupon) {
+        estadoCupon.textContent = cuponAplicado
+            ? `Cupón aplicado: ${cuponAplicado}`
+            : "Sin cupón aplicado";
+        estadoCupon.style.color = cuponAplicado ? "#2e7d32" : "#6b7280";
+    }
+}
+
 function aplicarCupon() {
 
     const cupon =
@@ -109,9 +121,21 @@ function aplicarCupon() {
         .trim()
         .toUpperCase();
 
-    if (cupon === "UNICORNIO10") {
+    if (!cupon) {
+        descuento = 0;
+        cuponAplicado = "";
+        mostrarToast("⚠ Ingresa un cupón para aplicar.", "advertencia");
+        actualizarTotal();
+        return;
+    }
 
-        descuento = subtotal * 0.10;
+    const cuponesValidos = ["UNICORNIO10", "UNICORNIO", "UNICORNIO15"];
+
+    if (cuponesValidos.includes(cupon)) {
+
+        const porcentaje = cupon === "UNICORNIO15" ? 0.15 : 0.10;
+        descuento = subtotal * porcentaje;
+        cuponAplicado = cupon;
 
         mostrarToast("✅ Cupón aplicado correctamente.", "exito");
 
@@ -119,8 +143,9 @@ function aplicarCupon() {
     else {
 
         descuento = 0;
+        cuponAplicado = "";
 
-        mostrarToast("❌ Cupón inválido.", "advertencia");
+        mostrarToast("❌ Cupón inválido. Prueba con UNICORNIO10, UNICORNIO o UNICORNIO15.", "advertencia");
 
     }
 
@@ -162,6 +187,8 @@ function actualizarTotal() {
     document.getElementById("totalCompra").innerHTML =
 
         "Total: $" + totalFinal.toFixed(2);
+
+    actualizarEstadoCupon();
 
 }
 
@@ -224,6 +251,8 @@ document
             localStorage.getItem("usuarioActual")
         ) || {};
 
+    const fechaISO = new Date().toISOString();
+
     const pedido = {
 
         id: Date.now(),
@@ -232,37 +261,15 @@ document
 
         correo: usuario.correo || "",
 
-        fecha: new Date().toLocaleDateString(),
+        direccion: document.getElementById("direccion").value,
 
-        productos: carrito,
+        ciudad: document.getElementById("ciudad").value,
 
-        total: totalFinal,
+        codigoPostal: document.getElementById("cp").value,
 
-        estado: "Pedido recibido"
+        telefono: document.getElementById("telefono").value,
 
-    };
-
-    const compra = {
-
-        id: pedido.id,
-
-        cliente:
-            document.getElementById("nombre").value,
-
-        direccion:
-            document.getElementById("direccion").value,
-
-        ciudad:
-            document.getElementById("ciudad").value,
-
-        codigoPostal:
-            document.getElementById("cp").value,
-
-        telefono:
-            document.getElementById("telefono").value,
-
-        metodo:
-            document.getElementById("metodoPago").value,
+        metodo: document.getElementById("metodoPago").value,
 
         productos: carrito,
 
@@ -280,58 +287,42 @@ document
 
         total: totalFinal,
 
-        fecha:
-            new Date().toLocaleString(),
+        fecha: fechaISO,
 
-        estado:
-            "Pedido recibido"
+        estado: "Pedido recibido"
 
     };
 
     // ==========================
-    // Guardar historial
+    // Guardar pedidos e historial unificados
     // ==========================
 
-    let historial =
-
-        JSON.parse(
-
-            localStorage.getItem("historial")
-
-        ) || [];
-
-    historial.push(compra);
-
-    localStorage.setItem(
-
-        "historial",
-
-        JSON.stringify(historial)
-
-    );
-
-    // ==========================
-    // Guardar pedidos
-    // ==========================
-
-    let pedidos =
-
-        JSON.parse(
-
-            localStorage.getItem("pedidos")
-
-        ) || [];
+    let pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
 
     pedidos.push(pedido);
 
     localStorage.setItem(
-
         "pedidos",
-
         JSON.stringify(pedidos)
-
     );
 
+    // Historial general
+    localStorage.setItem(
+        "historial",
+        JSON.stringify(pedidos)
+    );
+
+    // Historial exclusivo del usuario
+    if(usuario.correo){
+
+        localStorage.setItem(
+            "historial_" + usuario.correo.toLowerCase(),
+            JSON.stringify(
+                pedidos.filter(p=>p.correo===usuario.correo)
+            )
+        );
+
+    }
     // ==========================
     // Guardar último pedido
     // ==========================
@@ -340,7 +331,7 @@ document
 
         "ultimaCompra",
 
-        JSON.stringify(compra)
+        JSON.stringify(pedido)
 
     );
 
@@ -369,7 +360,20 @@ document
     // ==========================
     // Ir a confirmación
     // ==========================
+    // Guardar último pedido
+    localStorage.setItem(
+        "ultimaCompra",
+        JSON.stringify(pedido)
+    );
 
+    // Pedido seleccionado
+    localStorage.setItem(
+        "pedidoSeleccionado",
+        pedido.id
+    );
+
+    // Vaciar carrito
+    vaciarCarrito(false);
     setTimeout(function () {
 
         window.location.href = "confirmacion.html";

@@ -4,11 +4,21 @@
 
 const historial =
 JSON.parse(
-localStorage.getItem("historial")
+localStorage.getItem("pedidos")
 ) || [];
 
 const usuarios =
 obtenerUsuariosRegistrados();
+
+function formatearFecha(fecha){
+    if(!fecha){
+        return "No disponible";
+    }
+    const fechaObj = new Date(fecha);
+    return isNaN(fechaObj.getTime())
+        ? fecha
+        : fechaObj.toLocaleString("es-MX");
+}
 
 let ventas = 0;
 
@@ -104,7 +114,7 @@ function renderizarTabla(){
 
             <td>$${pedido.total}</td>
 
-            <td>${pedido.fecha}</td>
+            <td>${formatearFecha(pedido.fecha)}</td>
 
         </tr>
 

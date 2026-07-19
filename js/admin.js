@@ -2,44 +2,127 @@
 // PANEL ADMINISTRADOR
 //=====================================
 
-// Productos publicados
+function inicializarDashboard() {
+    const productos = JSON.parse(localStorage.getItem("productos")) || [];
+    const usuarios = JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
+    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+    const totalProductos = productos.length;
+    const totalClientes = usuarios.length;
+    const totalPedidos = pedidos.length;
 
-document.getElementById("totalProductos").innerHTML = 8;
+    const hoy = new Date();
+    const hoyTexto = hoy.toLocaleDateString("es-MX");
 
+    const pedidosHoy = pedidos.filter(pedido => {
+        try {
+            const fechaPedido = new Date(pedido.fecha);
+            return fechaPedido.toLocaleDateString("es-MX") === hoyTexto;
+        } catch (error) {
+            return false;
+        }
+    }).length;
 
-// Clientes registrados
+    const ventasMes = pedidos.reduce((total, pedido) => {
+        try {
+            const fechaPedido = new Date(pedido.fecha);
+            if (
+                fechaPedido.getMonth() === hoy.getMonth() &&
+                fechaPedido.getFullYear() === hoy.getFullYear()
+            ) {
+                return total + Number(pedido.total || 0);
+            }
+        } catch (error) {
+        }
+        return total;
+    }, 0);
 
-const usuarios =
-JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
+    const agotados = productos.filter(producto =>
+        producto.estado === "Agotado" || Number(producto.existencia) <= 0
+    ).length;
 
-document.getElementById("clientes").innerHTML =
-usuarios.length;
+    const actividad = [];
 
+    if (pedidos.length > 0) {
+        const pedidosRecientes = pedidos.slice(-3).reverse();
+        pedidosRecientes.forEach(pedido => {
+            actividad.push(`📦 Pedido #${pedido.id} - ${pedido.estado}`);
+        });
+    }
 
-// Pedidos
+    if (usuarios.length > 0) {
+        const ultimosUsuarios = usuarios.slice(-3).reverse();
+        ultimosUsuarios.forEach(usuario => {
+            actividad.push(`👤 Nuevo cliente: ${usuario.correo || usuario.nombre || "anónimo"}`);
+        });
+    }
 
-const historial =
-JSON.parse(localStorage.getItem("historial")) || [];
+    if (actividad.length === 0) {
+        actividad.push("No hay actividad reciente.");
+    }
 
-document.getElementById("pedidosHoy").innerHTML =
-historial.length;
+    const actividadContainer = document.getElementById("actividadReciente");
+    if (actividadContainer) {
+        actividadContainer.innerHTML = actividad
+            .slice(0, 5)
+            .map(item => `<li>${item}</li>`)
+            .join("");
+    }
 
+    const totalProductosEl = document.getElementById("totalProductos");
+    if (totalProductosEl) {
+        totalProductosEl.innerText = totalProductos;
+    }
 
-// Ventas
+    const clientesEl = document.getElementById("clientes");
+    if (clientesEl) {
+        clientesEl.innerText = totalClientes;
+    }
 
-let ventas = 0;
+    const pedidosHoyEl = document.getElementById("pedidosHoy");
+    if (pedidosHoyEl) {
+        pedidosHoyEl.innerText = pedidosHoy;
+    }
 
-historial.forEach(compra=>{
+    const ventasMesEl = document.getElementById("ventasMes");
+    if (ventasMesEl) {
+        ventasMesEl.innerText = "$" + ventasMes.toLocaleString();
+    }
 
-    ventas += Number(compra.total);
+    const agotadosEl = document.getElementById("agotados");
+    if (agotadosEl) {
+        agotadosEl.innerText = agotados;
+    }
 
-});
+    agregarEventosAcciones();
+}
 
-document.getElementById("ventasMes").innerHTML =
-"$" + ventas.toLocaleString();
+function agregarEventosAcciones() {
+    const btnAgregarProducto = document.getElementById("btnAgregarProducto");
+    const btnVerPedidos = document.getElementById("btnVerPedidos");
+    const btnCrearPromocion = document.getElementById("btnCrearPromocion");
 
+    if (btnAgregarProducto) {
+        btnAgregarProducto.addEventListener("click", () => {
+            window.location.href = "productosAdmin.html";
+        });
+    }
 
-// Agotados (simulado)
+    if (btnVerPedidos) {
+        btnVerPedidos.addEventListener("click", () => {
+            window.location.href = "pedidosAdmin.html";
+        });
+    }
 
-document.getElementById("agotados").innerHTML = 2;
+    if (btnCrearPromocion) {
+        btnCrearPromocion.addEventListener("click", () => {
+            window.location.href = "promocionesAdmin.html";
+        });
+    }
+}
+
+if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", inicializarDashboard);
+} else {
+    inicializarDashboard();
+}
 

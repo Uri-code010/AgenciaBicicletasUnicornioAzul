@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Comunidad | Agencia de Bicicletas El Unicornio Azul</title>
+
+    <link rel="stylesheet" href="css/estilos.css">
+
+</head>
+
+<body>
+
+    <!-- ===================================== -->
+    <!-- ENCABEZADO -->
+    <!-- ===================================== -->
+
+    <header>
+
+        <h1>🌎 Comunidad Unicornio Azul</h1>
+
+        <nav>
+
+            <ul id="menuPrincipal">
+
+            </ul>
+
+        </nav>
+
+    </header>
+
+
+    <!-- ===================================== -->
+    <!-- BIENVENIDA -->
+    <!-- ===================================== -->
+
+    <section class="bienvenidaComunidad">
+
+        <h2>
+
+            Bienvenido a nuestra comunidad
+
+        </h2>
+
+        <p>
+
+            Comparte experiencias, deja reseñas sobre nuestro servicio,
+            ayuda a otros ciclistas y conoce las opiniones de la comunidad.
+
+        </p>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- RESUMEN DE CALIFICACIÓN -->
+    <!-- ===================================== -->
+
+    <section class="contenedorResenas">
+
+        <div class="resumenResenas">
+
+            <h2>
+
+                ⭐ Calificación de la tienda
+
+            </h2>
+
+            <div id="promedioEstrellas">
+
+                ☆☆☆☆☆
+
+            </div>
+
+            <h1 id="promedioNumero">
+
+                0.0
+
+            </h1>
+
+            <p id="cantidadResenas">
+
+                Basado en 0 reseñas
+
+            </p>
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- FORMULARIO DE RESEÑA -->
+    <!-- ===================================== -->
+
+    <section class="formularioResena">
+
+        <h2>
+
+            ✍ Cuéntanos tu experiencia
+
+        </h2>
+
+        <p>
+
+            Tu opinión ayuda a otros clientes a tomar mejores decisiones.
+
+        </p>
+
+        <label>
+
+            Calificación
+
+        </label>
+
+        <select id="calificacion">
+
+            <option value="5">⭐⭐⭐⭐⭐ Excelente</option>
+
+            <option value="4">⭐⭐⭐⭐ Muy buena</option>
+
+            <option value="3">⭐⭐⭐ Buena</option>
+
+            <option value="2">⭐⭐ Regular</option>
+
+            <option value="1">⭐ Mala</option>
+
+        </select>
+
+        <textarea
+
+            id="comentario"
+
+            rows="5"
+
+            placeholder="¿Qué te pareció nuestro servicio?">
+
+        </textarea>
+
+        <button
+
+            class="boton"
+
+            onclick="publicarResena()">
+
+            ⭐ Publicar reseña
+
+        </button>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- LISTA DE RESEÑAS -->
+    <!-- ===================================== -->
+
+    <section class="listaResenas">
+
+        <h2>
+
+            📝 Reseñas de nuestros clientes
+
+        </h2>
+
+        <div id="listaResenas">
+
+        </div>
+
+    </section>
+
+
+    <hr class="separadorGrande">
+
+
+    <!-- ===================================== -->
+    <!-- COMUNIDAD -->
+    <!-- ===================================== -->
+
+    <section class="comunidad">
+
+        <h2>
+
+            💬 Comunidad Unicornio Azul
+
+        </h2>
+
+        <p>
+
+            Publica consejos, comparte rutas, recomienda accesorios
+            o resuelve dudas con otros ciclistas.
+
+        </p>
+
+        <!-- comunidad.js coloca aquí el formulario -->
+
+<!-- ===================================== -->
+<!-- PUBLICACIONES -->
+<!-- ===================================== -->
+
+<section class="publicaciones">
+
+    <h2>
+
+        🚴 Publicaciones de la comunidad
+
+    </h2>
+
+    <p>
+
+        Comparte ventas, consejos, rodadas y novedades.
+
+    </p>
+
+    <div id="nuevaPublicacion">
+
+    </div>
+
+    <br>
+
+    <div id="listaPublicaciones">
+
+    </div>
+
+</section>
+
+<hr class="separadorGrande">
+
+    <!-- ===================================== -->
+    <!-- COMENTARIOS -->
+    <!-- ===================================== -->
+
+    <section class="comunidad">
+
+        <h2>
+
+            💬 Comentarios de la comunidad
+
+        </h2>
+
+        <p>
+
+            
+            Conoce a otros ciclistas, publica ventas, crea subastas, comparte rutas,
+            intercambia consejos y deja reseñas sobre nuestros productos y servicios.
+
+
+        </p>
+
+        <div id="formComentario">
+
+        </div>
+
+        <br>
+
+        <div id="listaComentarios">
+
+        </div>
+
+    </section>
+
+
+    <!-- ===================================== -->
+    <!-- SCRIPTS -->
+    <!-- ===================================== -->
+
+    <script src="js/notificaciones.js"></script>
+
+    <script src="js/comunidad.js"></script>
+
+    <script src="js/sesion.js"></script>
+
+    <script src="js/carrito.js"></script>
+
+    <script src="js/menu.js"></script>
+
+    <script src="js/publicidad.js"></script>
+
+</body>
+
+</html>

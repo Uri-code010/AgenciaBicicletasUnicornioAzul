@@ -18,10 +18,7 @@ function iniciarPedidosAdmin(){
     }
 
     pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
-
-    historial = pedidos.length > 0
-        ? pedidos
-        : (JSON.parse(localStorage.getItem("historial")) || []);
+    historial = pedidos;
 
     mostrarPedidos();
 

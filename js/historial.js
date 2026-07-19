@@ -1,60 +1,119 @@
-let historial =
-JSON.parse(localStorage.getItem("historial")) || [];
+//======================================
+// HISTORIAL DE PEDIDOS
+//======================================
 
 const usuario =
-JSON.parse(localStorage.getItem("usuarioActual")) || {};
+JSON.parse(localStorage.getItem("usuarioActual"));
 
-let lista =
-document.getElementById("listaHistorial");
+if(!usuario){
 
-const comprasUsuario = historial.filter(compra =>
-    compra.correo === usuario.correo || compra.cliente === usuario.nombre
-);
+    mostrarToast(
+        "Debes iniciar sesión.",
+        "advertencia"
+    );
 
-if(comprasUsuario.length==0){
+    setTimeout(()=>{
 
-    lista.innerHTML="<p>No existen compras para este usuario.</p>";
+        location.href="login.html";
+
+    },1000);
 
 }
 
-comprasUsuario.forEach(compra=>{
+const historial =
 
-lista.innerHTML +=
+JSON.parse(
 
-`
+localStorage.getItem(
 
-<div class="pedido">
+"historial_"+usuario.correo.toLowerCase()
 
-<h3>${compra.id}</h3>
+)
 
-<p><strong>Fecha:</strong> ${compra.fecha}</p>
+) || [];
 
-<p><strong>Total:</strong> $${compra.total}</p>
+const contenedor =
 
-<p><strong>Estado:</strong> ${compra.estado}</p>
+document.getElementById("listaHistorial");
 
-<button onclick="verDetalle('${compra.id}')">
+if(historial.length==0){
 
-Ver Detalle
+    contenedor.innerHTML=`
 
-</button>
+    <div class="pedidoVacio">
 
-</div>
+        <h2>
 
-`;
+            No tienes compras todavía.
 
-});
+        </h2>
 
-function verDetalle(id){
+    </div>
 
-localStorage.setItem(
+    `;
 
-"pedidoSeleccionado",
+}
 
-id
+else{
 
-);
+    historial.reverse().forEach(pedido=>{
 
-window.location.href="detallePedido.html";
+        contenedor.innerHTML+=`
+
+        <div class="pedidoCard">
+
+            <h2>
+
+                Pedido #${pedido.id}
+
+            </h2>
+
+            <p>
+
+                📅 ${new Date(pedido.fecha).toLocaleDateString()}
+
+            </p>
+
+            <p>
+
+                💲 $${pedido.total.toFixed(2)}
+
+            </p>
+
+            <p>
+
+                🚚 ${pedido.estado}
+
+            </p>
+
+            <button
+
+            onclick="verPedido(${pedido.id})"
+
+            class="boton">
+
+                Ver detalle
+
+            </button>
+
+        </div>
+
+        `;
+
+    });
+
+}
+
+function verPedido(id){
+
+    localStorage.setItem(
+
+        "pedidoSeleccionado",
+
+        id
+
+    );
+
+    location.href="detallePedido.html";
 
 }

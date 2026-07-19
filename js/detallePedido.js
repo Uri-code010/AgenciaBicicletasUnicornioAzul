@@ -1,14 +1,33 @@
 let historial =
-JSON.parse(localStorage.getItem("historial")) || [];
+JSON.parse(localStorage.getItem("pedidos")) || [];
 
-let id =
-localStorage.getItem("pedidoSeleccionado");
+let id = localStorage.getItem("pedidoSeleccionado");
 
-let compra =
-historial.find(c=>c.id===id);
+let compra = historial.find(c => {
+    if (!c || !c.id) return false;
+    return String(c.id) === String(id);
+});
+
+if (!compra && id !== null) {
+    compra = historial.find(c => Number(c.id) === Number(id));
+}
 
 let detalle =
 document.getElementById("detallePedido");
+
+function formatearFecha(fecha){
+    if(!fecha){
+        return "No disponible";
+    }
+    const fechaObj = new Date(fecha);
+    return isNaN(fechaObj.getTime())
+        ? fecha
+        : fechaObj.toLocaleString("es-MX");
+}
+
+function formatearMoneda(valor){
+    return `$${Number(valor || 0).toFixed(2)}`;
+}
 
 if(compra){
 
@@ -16,18 +35,16 @@ if(compra){
 
     compra.productos.forEach(p=>{
 
+        const cantidad = p.cantidad || 1;
+        const subtotal = Number(p.precio || 0) * cantidad;
+
         productos +=
 
          `
-            <li>
-
-            ${p.nombre}
-
-         ............
-
-        $${p.precio}
-
-             </li>
+            <li class="pedido-item">
+                <span>${p.nombre} × ${cantidad}</span>
+                <strong>${formatearMoneda(subtotal)}</strong>
+            </li>
         `;
 
     });
@@ -35,31 +52,52 @@ if(compra){
     detalle.innerHTML=
 
         `
+            <div class="detalle-resumen">
+                <div class="detalle-encabezado">
+                    <div>
+                        <p class="detalle-etiqueta">Pedido</p>
+                        <h2>${compra.id}</h2>
+                    </div>
+                    <span class="detalle-estado">${compra.estado || "Procesando"}</span>
+                </div>
 
-            <h2>${compra.id}</h2>
+                <div class="detalle-grid">
+                    <div>
+                        <p><strong>Cliente:</strong> ${compra.cliente || "No registrado"}</p>
+                        <p><strong>Correo:</strong> ${compra.correo || "No registrado"}</p>
+                        <p><strong>Dirección:</strong> ${compra.direccion || "No disponible"}</p>
+                    </div>
+                    <div>
+                        <p><strong>Ciudad:</strong> ${compra.ciudad || "No disponible"}</p>
+                        <p><strong>C.P.:</strong> ${compra.codigoPostal || "No disponible"}</p>
+                        <p><strong>Teléfono:</strong> ${compra.telefono || "No disponible"}</p>
+                    </div>
+                </div>
 
-            <p><strong>Cliente:</strong> ${compra.cliente}</p>
+                <div class="detalle-meta">
+                    <p><strong>Fecha:</strong> ${formatearFecha(compra.fecha)}</p>
+                    <p><strong>Método de pago:</strong> ${compra.metodo || "No especificado"}</p>
+                </div>
 
-            <p><strong>Dirección:</strong> ${compra.direccion}</p>
+                <h3>Productos adquiridos</h3>
+                <ul class="detalle-productos">
+                    ${productos}
+                </ul>
 
-            <p><strong>Teléfono:</strong> ${compra.telefono}</p>
-
-            <p><strong>Fecha:</strong> ${compra.fecha}</p>
-
-            <p><strong>Método:</strong> ${compra.metodo}</p>
-
-            <p><strong>Estado:</strong> ${compra.estado}</p>
-
-            <h3>Productos</h3>
-
-            <ul>
-
-                ${productos}
-
-            </ul>
-
-            <h2>Total: $${compra.total}</h2>
-
+                <div class="detalle-total">
+                    <p><span>Subtotal:</span> <strong>${formatearMoneda(compra.subtotal || 0)}</strong></p>
+                    <p><span>Envío:</span> <strong>${formatearMoneda(compra.envio || 0)}</strong></p>
+                    <p><span>Descuento:</span> <strong>${formatearMoneda(compra.descuento || 0)}</strong></p>
+                    <h3><span>Total pagado:</span> <strong>${formatearMoneda(compra.total || 0)}</strong></h3>
+                </div>
+            </div>
     `;
 
+} else {
+    detalle.innerHTML = `
+        <div class="detalle-vacio">
+            <h2>No se encontró el pedido</h2>
+            <p>Regresa a tu historial para ver tus compras.</p>
+        </div>
+    `;
 }
