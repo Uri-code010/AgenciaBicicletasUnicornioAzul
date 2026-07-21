@@ -26,6 +26,47 @@ let categoriaActual = "todos";
 let etiquetaActual = "todas";
 
 let textoBusqueda = "";
+const UMBRAL_STOCK_BAJO = 3;
+
+function mostrarAlertaStockAdminCatalogo(){
+
+    const alerta = document.getElementById("alertaStockAdminCatalogo");
+
+    if(!alerta){
+        return;
+    }
+
+    let usuarioActual = null;
+
+    try{
+        usuarioActual = JSON.parse(localStorage.getItem("usuarioActual"));
+    }
+    catch(error){
+        usuarioActual = null;
+    }
+
+    if(!usuarioActual || usuarioActual.rol !== "admin"){
+        alerta.style.display = "none";
+        alerta.innerHTML = "";
+        return;
+    }
+
+    const stockBajo = productos.filter(producto => {
+        const existencia = Number(producto.existencia || 0);
+        return producto.estado !== "Inactivo" && existencia > 0 && existencia <= UMBRAL_STOCK_BAJO;
+    });
+
+    if(stockBajo.length === 0){
+        alerta.style.display = "none";
+        alerta.innerHTML = "";
+        return;
+    }
+
+    const nombres = stockBajo.map(p => p.nombre).join(", ");
+
+    alerta.style.display = "block";
+    alerta.innerHTML = `⚠ Stock bajo detectado (${stockBajo.length}): ${nombres}.`;
+}
 //====================================
 // MOSTRAR CATÁLOGO
 //====================================
@@ -247,6 +288,7 @@ function mostrarCatalogo(){
     });
 
     actualizarContador();
+    mostrarAlertaStockAdminCatalogo();
 
 }
 //Filtrar categoria

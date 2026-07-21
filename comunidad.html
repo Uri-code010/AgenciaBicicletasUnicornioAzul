@@ -38,7 +38,7 @@
     <!-- BIENVENIDA -->
     <!-- ===================================== -->
 
-    <section class="bienvenidaComunidad">
+    <section class="bienvenidaComunidad seccionComunidad" id="inicioComunidad">
 
         <h2>
 
@@ -55,12 +55,46 @@
 
     </section>
 
+    <section class="comunidadNavegacionRapida seccionComunidad">
+
+        <button class="botonNavSeccion" data-scroll-target="seccionPublicaciones">
+            🚴 Ir a publicaciones
+        </button>
+
+        <button class="botonNavSeccion" data-scroll-target="seccionComentarios">
+            💬 Ir a comentarios
+        </button>
+
+        <button class="botonNavSeccion" data-scroll-target="seccionMisSubastas">
+            📌 Ir a mis subastas
+        </button>
+
+    </section>
+
+    <section class="ecosistemaComercial seccionComunidad" id="seccionEcosistemaComercial">
+
+        <h2>🧩 Ecosistema Comercial Simulado</h2>
+
+        <p>
+            B2C (compras), C2C (publicaciones y subastas), promociones visuales y participación comunitaria en un solo espacio.
+        </p>
+
+        <div id="resumenEcosistemaComercial" class="gridEcosistema"></div>
+
+        <h3>🏷 Escaparate de promociones</h3>
+        <div id="escaparatePromocionesComunidad" class="escaparatePromocionesComunidad"></div>
+
+        <h3>🚲 Escaparate rápido de productos</h3>
+        <div id="escaparateProductosComunidad" class="escaparateProductosComunidad"></div>
+
+    </section>
+
 
     <!-- ===================================== -->
     <!-- RESUMEN DE CALIFICACIÓN -->
     <!-- ===================================== -->
 
-    <section class="contenedorResenas">
+    <section class="contenedorResenas seccionComunidad" id="seccionResenas">
 
         <div class="resumenResenas">
 
@@ -97,7 +131,7 @@
     <!-- FORMULARIO DE RESEÑA -->
     <!-- ===================================== -->
 
-    <section class="formularioResena">
+    <section class="formularioResena seccionComunidad">
 
         <h2>
 
@@ -158,7 +192,7 @@
     <!-- LISTA DE RESEÑAS -->
     <!-- ===================================== -->
 
-    <section class="listaResenas">
+    <section class="listaResenas seccionComunidad">
 
         <h2>
 
@@ -180,7 +214,7 @@
     <!-- COMUNIDAD -->
     <!-- ===================================== -->
 
-    <section class="comunidad">
+    <section class="comunidad seccionComunidad" id="seccionIntroComunidad">
 
         <h2>
 
@@ -194,14 +228,14 @@
             o resuelve dudas con otros ciclistas.
 
         </p>
+    </section>
+        
 
-        <!-- comunidad.js coloca aquí el formulario -->
+    <!-- ===================================== -->
+    <!-- PUBLICACIONES -->
+    <!-- ===================================== -->
 
-<!-- ===================================== -->
-<!-- PUBLICACIONES -->
-<!-- ===================================== -->
-
-<section class="publicaciones">
+    <section class="publicaciones seccionComunidad" id="seccionPublicaciones">
 
     <h2>
 
@@ -225,15 +259,41 @@
 
     </div>
 
-</section>
+    <div class="atajosSeccion">
+        <button class="botonNavSeccion" data-scroll-target="seccionComentarios">
+            ⬇ Ir a comentarios
+        </button>
+    </div>
 
-<hr class="separadorGrande">
+    </section>
+
+    <section class="misSubastasSeccion seccionComunidad" id="seccionMisSubastas">
+
+    <h2>
+
+        📌 Mis subastas
+
+    </h2>
+
+    <p>
+
+        Revisa las subastas que creaste o en las que ya ofertaste.
+
+    </p>
+
+    <div id="misSubastas">
+
+    </div>
+
+    </section>
+
+    <hr class="separadorGrande">
 
     <!-- ===================================== -->
     <!-- COMENTARIOS -->
     <!-- ===================================== -->
 
-    <section class="comunidad">
+    <section class="comunidad seccionComunidad" id="seccionComentarios">
 
         <h2>
 
@@ -260,7 +320,24 @@
 
         </div>
 
+        <div class="atajosSeccion">
+            <button class="botonNavSeccion" data-scroll-target="seccionPublicaciones">
+                ⬆ Volver a publicaciones
+            </button>
+        </div>
+
     </section>
+
+    <button id="btnNavegacionFlotante" class="btnNavegacionFlotante" type="button">
+        ↕ Navegar
+    </button>
+
+    <div id="menuNavegacionFlotante" class="menuNavegacionFlotante" aria-hidden="true">
+        <button class="botonNavSeccion" data-scroll-target="inicioComunidad">🏁 Inicio</button>
+        <button class="botonNavSeccion" data-scroll-target="seccionPublicaciones">🚴 Publicaciones</button>
+        <button class="botonNavSeccion" data-scroll-target="seccionMisSubastas">📌 Mis subastas</button>
+        <button class="botonNavSeccion" data-scroll-target="seccionComentarios">💬 Comentarios</button>
+    </div>
 
 
     <!-- ===================================== -->
@@ -277,7 +354,7 @@
 
     <script src="js/menu.js"></script>
 
-    <script src="js/publicidad.js"></script>
+    <script src="js/publicaciones.js"></script>
 
 </body>
 

@@ -39,15 +39,15 @@
             📦 Pedidos
         </a>
 
-        <a href="#">
+        <a href="promocionesAdmin.html">
             🏷 Promociones
         </a>
 
-        <a href="#">
+        <a href="clientesAdmin.html">
             👤 Clientes
         </a>
 
-        <a href="#">
+        <a href="reportesAdmin.html">
             📊 Reportes
         </a>
 
@@ -108,6 +108,8 @@
 
         </div>
 
+        <div id="alertaStockBajo" style="display:none; margin:12px 0; padding:12px; border-radius:8px; background:#fff7ed; color:#9a3412; font-weight:600;"></div>
+
         <h2>
 
             Agregar Producto
@@ -135,15 +137,29 @@
             <input
                 type="text"
                 id="imagenProducto"
-                placeholder="img/mtb.jpeg"
-                required>
+                placeholder="img/mtb.jpeg">
+
+            <label>Seleccionar imágenes desde archivos</label>
+
+            <input
+                type="file"
+                id="imagenesArchivosProducto"
+                accept="image/*"
+                multiple>
+
+            <small>
+                Puedes seleccionar varias imágenes; se agregarán a la galería del producto.
+            </small>
 
             <label>Más imágenes</label>
 
-            <input
-                type="text"
+            <textarea
                 id="imagenesProducto"
-                placeholder="img/mtb2.jpeg, img/mtb3.jpeg">
+                rows="3"
+                placeholder="Puedes pegar varias rutas separadas por coma, punto y coma o salto de línea.
+Ejemplo:
+img/mtb2.jpeg
+img/mtb3.jpeg"></textarea>
 
             <label>Categoría</label>
 

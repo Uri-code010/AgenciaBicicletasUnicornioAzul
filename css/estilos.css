@@ -3817,6 +3817,378 @@ select{
 
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
+.seccionComunidad{
+    max-width:1000px;
+    margin:26px auto;
+    padding:20px;
+    border-radius:18px;
+    background:linear-gradient(180deg,#ffffff,#f8fbff);
+    box-shadow:0 10px 24px rgba(15,23,42,.06);
+    border:1px solid #e6eef7;
+}
+
+.bienvenidaComunidad{
+    position:relative;
+    overflow:hidden;
+}
+
+.bienvenidaComunidad::before{
+    content:none;
+}
+
+.comunidadNavegacionRapida{
+    position:sticky;
+    top:8px;
+    z-index:120;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    justify-content:center;
+    background:#ffffffee;
+    backdrop-filter:blur(6px);
+}
+
+.botonNavSeccion{
+    border:none;
+    border-radius:999px;
+    padding:10px 16px;
+    font-weight:700;
+    cursor:pointer;
+    background:#0f766e;
+    color:#fff;
+    transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.botonNavSeccion:hover{
+    transform:translateY(-2px);
+    box-shadow:0 10px 20px rgba(15,118,110,.22);
+    background:#0b5f59;
+}
+
+.atajosSeccion{
+    display:flex;
+    justify-content:flex-end;
+    margin-top:14px;
+}
+
+.btnNavegacionFlotante{
+    position:fixed;
+    right:22px;
+    bottom:22px;
+    z-index:150;
+    border:none;
+    border-radius:999px;
+    padding:13px 16px;
+    font-weight:700;
+    background:#ff9800;
+    color:#fff;
+    box-shadow:0 10px 24px rgba(0,0,0,.25);
+    cursor:pointer;
+}
+
+.menuNavegacionFlotante{
+    position:fixed;
+    right:22px;
+    bottom:76px;
+    z-index:149;
+    width:min(280px,calc(100vw - 24px));
+    background:#fff;
+    border:1px solid #e2e8f0;
+    border-radius:16px;
+    padding:12px;
+    box-shadow:0 14px 30px rgba(15,23,42,.2);
+    display:none;
+    gap:8px;
+    flex-direction:column;
+}
+
+.menuNavegacionFlotante.abierto{
+    display:flex;
+    animation:deslizarArriba .22s ease;
+}
+
+.ecosistemaComercial h2,
+.ecosistemaComercial h3,
+.ecosistemaComercial p{
+    text-align:center;
+}
+
+.gridEcosistema{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(170px,1fr));
+    gap:12px;
+    margin-top:14px;
+}
+
+.cardEcosistema{
+    background:#fff;
+    border:1px solid #dbe5f1;
+    border-radius:14px;
+    padding:14px;
+    box-shadow:0 8px 18px rgba(15,23,42,.06);
+}
+
+.cardEcosistema h4{
+    margin:0 0 8px;
+    color:#0f766e;
+    font-size:15px;
+}
+
+.cardEcosistema .valorEcosistema{
+    font-size:28px;
+    font-weight:800;
+    color:#0f172a;
+}
+
+.cardEcosistema .detalleEcosistema{
+    margin-top:6px;
+    color:#475569;
+    font-size:13px;
+}
+
+.escaparatePromocionesComunidad{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    justify-content:center;
+    margin:10px 0 16px;
+}
+
+.chipPromocionComunidad{
+    background:#fff7ed;
+    color:#9a3412;
+    border:1px solid #fed7aa;
+    border-radius:999px;
+    padding:8px 12px;
+    font-weight:700;
+    font-size:13px;
+}
+
+.escaparateProductosComunidad{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+}
+
+.miniProductoComunidad{
+    background:#fff;
+    border:1px solid #dbe5f1;
+    border-radius:14px;
+    padding:10px;
+    box-shadow:0 8px 18px rgba(15,23,42,.05);
+    text-align:center;
+}
+
+.miniProductoComunidad img{
+    width:100%;
+    height:120px;
+    object-fit:cover;
+    border-radius:10px;
+    margin-bottom:8px;
+}
+
+.miniProductoComunidad h4{
+    margin:6px 0;
+    font-size:15px;
+}
+
+.miniProductoComunidad p{
+    margin:4px 0;
+    font-size:14px;
+}
+
+.miniProductoComunidad .precioPromo{
+    color:#0f766e;
+    font-weight:800;
+}
+
+.miniProductoComunidad .btnVerMasComunidad{
+    display:inline-block;
+    margin-top:8px;
+    text-decoration:none;
+    background:#0f766e;
+    color:#fff;
+    padding:8px 12px;
+    border-radius:10px;
+    font-weight:700;
+}
+
+.seccionComunidad.animarEntrada{
+    opacity:0;
+    transform:translateY(16px);
+}
+
+.seccionComunidad.visible{
+    opacity:1;
+    transform:translateY(0);
+    transition:opacity .45s ease, transform .45s ease;
+}
+
+@keyframes deslizarArriba{
+    from{
+        opacity:0;
+        transform:translateY(8px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+.publicaciones,
+.misSubastasSeccion {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 16px;
+    box-sizing: border-box;
+}
+
+.cardPublicacion{
+    background:white;
+    border-radius:18px;
+    padding:20px;
+    margin-bottom:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.cardSubasta{
+    border:1px solid #dbeafe;
+    background:linear-gradient(180deg,#ffffff,#f8fbff);
+}
+
+.subastaHeader{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:12px;
+}
+
+.subastaEstado{
+    padding:6px 12px;
+    border-radius:999px;
+    font-size:13px;
+    font-weight:bold;
+}
+
+.subastaActiva .subastaEstado{
+    background:#dcfce7;
+    color:#166534;
+}
+
+.subastaCerrada .subastaEstado{
+    background:#e5e7eb;
+    color:#374151;
+}
+
+.subastaDatos{
+    background:#f8fafc;
+    border-radius:12px;
+    padding:12px;
+    margin:14px 0;
+}
+
+.subastaDatos p{
+    margin:8px 0;
+}
+
+.subastaGanador{
+    margin:10px 0 14px;
+    padding:10px 12px;
+    border-radius:10px;
+    background:#fff7ed;
+    color:#9a3412;
+    font-weight:bold;
+}
+
+.subastaAcciones{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+    align-items:center;
+}
+
+.subastaAcciones input{
+    flex:1;
+    min-width:220px;
+    padding:12px;
+    border:1px solid #cbd5e1;
+    border-radius:10px;
+}
+
+.subastaHistorial{
+    margin-top:16px;
+    padding-top:12px;
+    border-top:1px dashed #cbd5e1;
+}
+
+.subastaHistorial h3{
+    margin:0 0 10px;
+    font-size:17px;
+}
+
+.subastaHistorial ul{
+    margin:0;
+    padding-left:18px;
+}
+
+.subastaHistorial li{
+    display:flex;
+    justify-content:space-between;
+    gap:8px;
+    margin-bottom:6px;
+}
+
+.misSubastasSeccion{
+    margin-top:26px;
+}
+
+#misSubastas{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:14px;
+}
+
+.cardMisSubastas{
+    background:white;
+    border:1px solid #e2e8f0;
+    border-radius:14px;
+    padding:16px;
+    box-shadow:0 6px 14px rgba(0,0,0,.06);
+}
+
+.cardMisSubastas h3{
+    margin-top:0;
+    color:#0f766e;
+}
+
+@media (max-width: 640px){
+    .seccionComunidad{
+        margin:16px 10px;
+        padding:16px;
+    }
+
+    .comunidadNavegacionRapida{
+        top:6px;
+    }
+
+    .atajosSeccion{
+        justify-content:center;
+    }
+
+    .subastaHistorial li{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .subastaAcciones input{
+        min-width:100%;
+    }
+}
+
 /* Centrar títulos y párrafos dentro de Comunidad (introducción y sección de comentarios) */
 .comunidad h2,
 .comunidad p {

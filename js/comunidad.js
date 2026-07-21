@@ -40,7 +40,93 @@ document.addEventListener("DOMContentLoaded",()=>{
 
     mostrarComentarios();
 
+    renderizarEcosistemaComercial();
+
+    inicializarNavegacionRapidaComunidad();
+
+    inicializarAnimacionesComunidad();
+
 });
+
+function renderizarEcosistemaComercial(){
+
+    const resumenEl = document.getElementById("resumenEcosistemaComercial");
+    const promocionesEl = document.getElementById("escaparatePromocionesComunidad");
+    const productosEl = document.getElementById("escaparateProductosComunidad");
+
+    if(!resumenEl || !promocionesEl || !productosEl){
+        return;
+    }
+
+    const pedidos = JSON.parse(localStorage.getItem("pedidos")) || [];
+    const publicaciones = JSON.parse(localStorage.getItem("publicaciones")) || [];
+    const promociones = JSON.parse(localStorage.getItem("promociones")) || [];
+    const productos = JSON.parse(localStorage.getItem("productos")) || [];
+
+    const subastas = publicaciones.filter((p)=>p.tipo === "subasta");
+    const subastasActivas = subastas.filter((s)=>!s.cerrada);
+    const comentariosTotales = comentarios.length;
+
+    resumenEl.innerHTML = `
+        <div class="cardEcosistema">
+            <h4>B2C · Compras</h4>
+            <div class="valorEcosistema">${pedidos.length}</div>
+            <div class="detalleEcosistema">Pedidos registrados</div>
+        </div>
+        <div class="cardEcosistema">
+            <h4>C2C · Publicaciones</h4>
+            <div class="valorEcosistema">${publicaciones.length}</div>
+            <div class="detalleEcosistema">Contenido de usuarios</div>
+        </div>
+        <div class="cardEcosistema">
+            <h4>Subastas simuladas</h4>
+            <div class="valorEcosistema">${subastasActivas.length}</div>
+            <div class="detalleEcosistema">Activas ahora</div>
+        </div>
+        <div class="cardEcosistema">
+            <h4>Comunidad · Comentarios</h4>
+            <div class="valorEcosistema">${comentariosTotales}</div>
+            <div class="detalleEcosistema">Interacciones visibles</div>
+        </div>
+    `;
+
+    if(promociones.length === 0){
+        promocionesEl.innerHTML = "<span class='chipPromocionComunidad'>Sin promociones activas por ahora</span>";
+    }
+    else{
+        promocionesEl.innerHTML = promociones.map((promo)=>{
+            return `<span class="chipPromocionComunidad">${promo.nombre} · ${promo.descuento}% en ${promo.categoria}</span>`;
+        }).join("");
+    }
+
+    const productosEscaparate = productos
+        .filter((p)=>p && p.estado !== "Inactivo")
+        .slice(0,4);
+
+    if(productosEscaparate.length === 0){
+        productosEl.innerHTML = "<div class='sinComentarios'>No hay productos para mostrar en el escaparate.</div>";
+        return;
+    }
+
+    productosEl.innerHTML = productosEscaparate.map((producto)=>{
+        const promoProducto = promociones.find((promo)=>promo.categoria == producto.categoria);
+        const precio = Number(producto.precio || 0);
+        const precioFinal = promoProducto
+            ? (precio - (precio * Number(promoProducto.descuento || 0) / 100)).toFixed(2)
+            : precio.toFixed(2);
+
+        return `
+            <div class="miniProductoComunidad">
+                <img src="${producto.imagen}" alt="${producto.nombre}">
+                <h4>${producto.nombre}</h4>
+                <p>${producto.categoria || "General"}</p>
+                <p class="precioPromo">$${precioFinal}</p>
+                <a class="btnVerMasComunidad" href="detalleProducto.html?nombre=${encodeURIComponent(producto.nombre)}">Ver detalle</a>
+            </div>
+        `;
+    }).join("");
+
+}
 
 
 //==========================================
@@ -913,6 +999,106 @@ function responderComentario(id){
         mostrarComentarios();
         mostrarToast('Respuesta publicada.', 'exito');
     });
+
+}
+
+//==========================================
+// NAVEGACION RAPIDA Y ANIMACIONES
+//==========================================
+
+function desplazarASeccion(idSeccion){
+
+    const objetivo = document.getElementById(idSeccion);
+
+    if(!objetivo){
+        return;
+    }
+
+    objetivo.scrollIntoView({
+        behavior:"smooth",
+        block:"start"
+    });
+
+}
+
+function inicializarNavegacionRapidaComunidad(){
+
+    document.querySelectorAll("[data-scroll-target]").forEach((boton)=>{
+
+        boton.addEventListener("click",()=>{
+
+            const idObjetivo = boton.getAttribute("data-scroll-target");
+
+            if(!idObjetivo){
+                return;
+            }
+
+            desplazarASeccion(idObjetivo);
+
+            const menuFlotante = document.getElementById("menuNavegacionFlotante");
+            if(menuFlotante){
+                menuFlotante.classList.remove("abierto");
+                menuFlotante.setAttribute("aria-hidden","true");
+            }
+
+        });
+
+    });
+
+    const botonFlotante = document.getElementById("btnNavegacionFlotante");
+    const menuFlotante = document.getElementById("menuNavegacionFlotante");
+
+    if(!botonFlotante || !menuFlotante){
+        return;
+    }
+
+    botonFlotante.addEventListener("click",()=>{
+
+        const abierto = menuFlotante.classList.toggle("abierto");
+        menuFlotante.setAttribute("aria-hidden", abierto ? "false" : "true");
+
+    });
+
+    document.addEventListener("click",(evento)=>{
+
+        const clickDentroMenu = menuFlotante.contains(evento.target);
+        const clickEnBoton = botonFlotante.contains(evento.target);
+
+        if(!clickDentroMenu && !clickEnBoton){
+            menuFlotante.classList.remove("abierto");
+            menuFlotante.setAttribute("aria-hidden","true");
+        }
+
+    });
+
+}
+
+function inicializarAnimacionesComunidad(){
+
+    const secciones = document.querySelectorAll(".seccionComunidad");
+
+    if(secciones.length===0){
+        return;
+    }
+
+    secciones.forEach((seccion)=>{
+        seccion.classList.add("animarEntrada");
+    });
+
+    const observer = new IntersectionObserver((entradas)=>{
+
+        entradas.forEach((entrada)=>{
+            if(entrada.isIntersecting){
+                entrada.target.classList.add("visible");
+                observer.unobserve(entrada.target);
+            }
+        });
+
+    },{
+        threshold:0.15
+    });
+
+    secciones.forEach((seccion)=>observer.observe(seccion));
 
 }
 

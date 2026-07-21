@@ -62,6 +62,10 @@ function guardarUsuariosRegistrados(usuarios) {
     localStorage.setItem(STORAGE_KEYS.usuarios, JSON.stringify(usuarios));
 }
 
+function esUsuarioAdmin(usuario) {
+    return Boolean(usuario && usuario.rol === "admin");
+}
+
 function obtenerUsuarioActual() {
     try {
         const usuarioGuardado = localStorage.getItem(STORAGE_KEYS.usuarioActual);
@@ -186,6 +190,7 @@ function estaAutenticado() {
 
     );
     }
+
     //creación de usuarios
     document.addEventListener("DOMContentLoaded", () => {
     
@@ -226,7 +231,8 @@ function estaAutenticado() {
             const usuario = {
                 nombre: document.getElementById("nombre").value.trim(),
                 correo: document.getElementById("correo").value.trim(),
-                password: document.getElementById("password").value
+                password: document.getElementById("password").value,
+                rol: "cliente"
             };
 
             
