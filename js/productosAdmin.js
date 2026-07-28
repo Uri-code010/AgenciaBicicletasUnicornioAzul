@@ -2,8 +2,102 @@
 // ADMINISTRADOR DE PRODUCTOS
 //===============================
 
-let productos =
-JSON.parse(localStorage.getItem("productos")) || [];
+const PRODUCTOS_INICIALES = [
+    {
+        nombre: "Bicicleta Urbana",
+        categoria: "Urbana",
+        etiqueta: "Popular",
+        precio: 1800,
+        descripcion: "Diseño cómodo y práctico para ciudad, desplazamientos diarios y paseo.",
+        imagen: "img/bici16.avif",
+        existencia: 8,
+        estado: "Disponible"
+    },
+    {
+        nombre: "Bicicleta Ruta",
+        categoria: "Ruta",
+        etiqueta: "Nuevo",
+        precio: 3200,
+        descripcion: "Ligera y veloz para rutas, entrenamientos y recorridos largos.",
+        imagen: "img/bici162.avif",
+        existencia: 5,
+        estado: "Disponible"
+    },
+    {
+        nombre: "Bicicleta MTB",
+        categoria: "MTB",
+        etiqueta: "Destacada",
+        precio: 3600,
+        descripcion: "Ideal para terrenos irregulares, montaña y aventuras fuera de la ciudad.",
+        imagen: "img/bici163.avif",
+        existencia: 6,
+        estado: "Disponible"
+    },
+    {
+        nombre: "Bicicleta Eléctrica",
+        categoria: "Eléctrica",
+        etiqueta: "Eco",
+        precio: 4800,
+        descripcion: "Potencia y confort para trayectos largos con menos esfuerzo.",
+        imagen: "img/bici16.avif",
+        existencia: 4,
+        estado: "Disponible"
+    },
+    {
+        nombre: "Bicicleta Infantil",
+        categoria: "Infantil",
+        etiqueta: "Nuevo",
+        precio: 1500,
+        descripcion: "Segura, ligera y perfecta para aprender a pedalear con confianza.",
+        imagen: "img/bici162.avif",
+        existencia: 10,
+        estado: "Disponible"
+    },
+    {
+        nombre: "Bicicleta Plegable",
+        categoria: "Plegable",
+        etiqueta: "Oferta",
+        precio: 2200,
+        descripcion: "Compacta y fácil de guardar, ideal para transporte y uso diario.",
+        imagen: "img/bici163.avif",
+        existencia: 7,
+        estado: "Disponible"
+    },
+    {
+        nombre: "Bicicleta BMX",
+        categoria: "BMX",
+        etiqueta: "Popular",
+        precio: 2100,
+        descripcion: "Diseñada para trucos, urbanismo y un estilo muy dinámico.",
+        imagen: "img/bici16.avif",
+        existencia: 5,
+        estado: "Disponible"
+    },
+    {
+        nombre: "Bicicleta Lechera",
+        categoria: "Lechera",
+        etiqueta: "Clásica",
+        precio: 1700,
+        descripcion: "Cómoda y resistente, perfecta para trayectos sencillos y paseo.",
+        imagen: "img/bici162.avif",
+        existencia: 9,
+        estado: "Disponible"
+    }
+];
+
+let productos = [];
+
+try {
+    const productosGuardados = JSON.parse(localStorage.getItem("productos"));
+
+    if (Array.isArray(productosGuardados) && productosGuardados.length > 0) {
+        productos = productosGuardados;
+    } else {
+        productos = PRODUCTOS_INICIALES;
+    }
+} catch (error) {
+    productos = PRODUCTOS_INICIALES;
+}
 
 let indiceEditando = null;
 const UMBRAL_STOCK_BAJO = 3;
@@ -19,18 +113,7 @@ function actualizarModoFormulario() {
 }
 
 if(productos.length === 0){
-    productos = [
-        {
-            nombre: "Bicicleta Infantil",
-            categoria: "Infantil",
-            etiqueta: "Nuevo",
-            precio: 1500,
-            descripcion: "Bicicleta ideal para niños y niñas que están aprendiendo a montar. Diseño seguro, ligero y resistente.",
-            imagen: "img/bici16.avif",
-            existencia: 10,
-            estado: "Disponible"
-        }
-    ];
+    productos = PRODUCTOS_INICIALES;
 }
 
 //normalizar productos antiguos
