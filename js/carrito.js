@@ -130,6 +130,37 @@ function agregarCarrito(nombre,precio,categoria=""){
 
 }
 
+function comprarAhora(nombre,precio,categoria=""){
+
+    const sesionActiva =
+    localStorage.getItem("sesionActiva");
+
+    if(sesionActiva!="true"){
+
+        mostrarToast(
+
+            "⚠ Debes iniciar sesión.",
+
+            "advertencia"
+
+        );
+
+        window.location.href="login.html";
+
+        return;
+
+    }
+
+    agregarCarrito(nombre,precio,categoria);
+
+    setTimeout(()=>{
+
+        window.location.href="checkout.html";
+
+    },250);
+
+}
+
 //==============================
 // VACIAR CARRITO
 //==============================

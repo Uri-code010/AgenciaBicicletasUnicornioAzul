@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Facturación</title>
+
+    <link rel="stylesheet" href="css/facturacion.css">
+
+</head>
+
+<body>
+
+    <div id="notificacionPagina" class="notificacion-pagina" style="display:none;"></div>
+
+    <header class="encabezado-facturacion">
+
+        <div>
+
+            <p class="etiqueta">Recibo digital</p>
+
+            <h1>Facturación de compra</h1>
+
+        </div>
+
+        <a class="enlace-volver" href="confirmacion.html">Volver</a>
+
+    </header>
+
+    <main class="facturacion-container">
+
+        <section class="hero-recibo">
+
+            <div>
+
+                <span class="badge-exito">Compra registrada</span>
+
+                <h2 id="tituloPedido">Pedido #---</h2>
+
+                <p id="textoFecha">Cargando información del recibo...</p>
+
+            </div>
+
+            <div class="total-destacado">
+
+                <span>Total pagado</span>
+
+                <strong id="totalPagado">$0.00</strong>
+
+            </div>
+
+        </section>
+
+        <section class="tarjetas-grid">
+
+            <article class="tarjeta-recibo">
+
+                <h3>Facturación</h3>
+
+                <dl id="datosFacturacion"></dl>
+
+            </article>
+
+            <article class="tarjeta-recibo">
+
+                <h3>Resumen</h3>
+
+                <div id="resumenPedido"></div>
+
+            </article>
+
+        </section>
+
+        <section class="tarjeta-recibo" id="bloqueFactura">
+
+            <div class="encabezado-factura">
+
+                <h3>Factura</h3>
+
+                <span class="estado-factura" id="estadoFactura">Sin generar</span>
+
+            </div>
+
+            <p class="subtexto-factura" id="mensajeFactura">
+                Si deseas factura, completa el formulario fiscal para este pedido.
+            </p>
+
+            <div class="factura-acciones" id="accionesFacturaVacia">
+
+                <button type="button" class="boton-primario" id="mostrarFormularioFacturaBtn">Solicitar factura</button>
+
+            </div>
+
+            <form id="formFactura" class="form-factura" style="display:none;">
+
+                <div class="form-grid">
+                    <div>
+                        <label for="razonSocial">Razón social</label>
+                        <input type="text" id="razonSocial" required>
+                    </div>
+                    <div>
+                        <label for="rfc">RFC</label>
+                        <input type="text" id="rfc" maxlength="13" placeholder="XAXX010101000" required>
+                    </div>
+                    <div>
+                        <label for="correoFiscal">Correo fiscal</label>
+                        <input type="email" id="correoFiscal" required>
+                    </div>
+                    <div>
+                        <label for="codigoPostalFiscal">Código postal fiscal</label>
+                        <input type="text" id="codigoPostalFiscal" maxlength="5" required>
+                    </div>
+                    <div>
+                        <label for="regimenFiscal">Régimen fiscal</label>
+                        <select id="regimenFiscal" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="601 - General de Ley Personas Morales">601 - General de Ley Personas Morales</option>
+                            <option value="612 - Personas Físicas con Actividades Empresariales y Profesionales">612 - Personas Físicas con Actividades Empresariales y Profesionales</option>
+                            <option value="626 - Régimen Simplificado de Confianza">626 - Régimen Simplificado de Confianza</option>
+                        </select>
+                    </div>
+                    <div>
+                        <label for="usoCfdi">Uso CFDI</label>
+                        <select id="usoCfdi" required>
+                            <option value="">Selecciona una opción</option>
+                            <option value="G03 - Gastos en general">G03 - Gastos en general</option>
+                            <option value="I01 - Construcciones">I01 - Construcciones</option>
+                            <option value="S01 - Sin efectos fiscales">S01 - Sin efectos fiscales</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-acciones">
+                    <button type="button" class="boton-secundario" id="llenarEjemploFacturaBtn">Llenar ejemplo</button>
+                    <button type="submit" class="boton-primario">Generar factura</button>
+                    <button type="button" class="boton-secundario" id="cancelarFacturaBtn">Cancelar</button>
+                </div>
+
+            </form>
+
+            <div id="resumenFactura" class="resumen-factura" style="display:none;"></div>
+
+        </section>
+
+        <section class="tarjeta-recibo">
+
+            <h3>Productos</h3>
+
+            <div id="listaProductos" class="lista-productos"></div>
+
+        </section>
+
+        <section class="acciones-recibo">
+
+            <button type="button" class="boton-primario" id="descargarReciboBtn">Descargar recibo</button>
+
+            <button type="button" class="boton-primario" id="descargarFacturaBtn" style="display:none;">Descargar factura</button>
+
+            <a class="boton-secundario" href="catalogo.html">Seguir comprando</a>
+
+        </section>
+
+        <p class="nota-estado" id="estadoPedido"></p>
+
+    </main>
+
+    <script src="js/facturacion.js"></script>
+
+</body>
+
+</html>

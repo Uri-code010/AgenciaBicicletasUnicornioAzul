@@ -275,6 +275,13 @@ function mostrarCatalogo(){
 
                     </button>
 
+                    <button
+                        onclick="comprarAhora('${producto.nombre}', ${precioMostrar}, '${producto.categoria}')">
+
+                        Comprar ahora
+
+                    </button>
+
                     `
 
                 }

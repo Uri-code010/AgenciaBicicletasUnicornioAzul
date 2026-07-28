@@ -29,6 +29,11 @@ function formatearMoneda(valor){
     return `$${Number(valor || 0).toFixed(2)}`;
 }
 
+function abrirFacturacion(idPedido){
+    localStorage.setItem("pedidoSeleccionado", idPedido);
+    location.href = "facturacion.html";
+}
+
 if(compra){
 
     let productos="";
@@ -89,6 +94,12 @@ if(compra){
                     <p><span>Envío:</span> <strong>${formatearMoneda(compra.envio || 0)}</strong></p>
                     <p><span>Descuento:</span> <strong>${formatearMoneda(compra.descuento || 0)}</strong></p>
                     <h3><span>Total pagado:</span> <strong>${formatearMoneda(compra.total || 0)}</strong></h3>
+                </div>
+
+                <div style="margin-top:14px;">
+                    <button class="boton" onclick="abrirFacturacion('${compra.id}')">
+                        ${compra.factura ? "Ver factura" : "Solicitar factura"}
+                    </button>
                 </div>
             </div>
     `;

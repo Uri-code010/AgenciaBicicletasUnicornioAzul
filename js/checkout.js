@@ -110,7 +110,8 @@ function obtenerNombreMetodoPago(valor){
         efectivo: "Efectivo",
         debito: "Tarjeta de Débito",
         credito: "Tarjeta de Crédito",
-        transferencia: "Transferencia Bancaria"
+        transferencia: "Transferencia Bancaria",
+        monedero: "Monedero Electrónico"
     };
 
     return etiquetas[valor] || "Método no definido";
@@ -173,6 +174,19 @@ function renderizarCamposPago(){
             <input type="text" id="clabeTransferencia" maxlength="18" placeholder="012345678901234567">
             <label>Referencia</label>
             <input type="text" id="referenciaTransferencia" placeholder="Ejemplo: PEDIDO-12345">
+        `;
+        return;
+    }
+
+    if(metodo === "monedero"){
+        datosPagoDinamicosEl.innerHTML = `
+            <h3 style="margin:8px 0;">Datos de monedero electrónico (simulado)</h3>
+            <label>Proveedor del monedero</label>
+            <input type="text" id="proveedorMonedero" placeholder="Ejemplo: Monedero Unicornio">
+            <label>Número de monedero</label>
+            <input type="text" id="numeroMonedero" maxlength="24" placeholder="Ejemplo: MON-1234567890">
+            <label>NIP de autorización (4 dígitos)</label>
+            <input type="password" id="nipMonedero" maxlength="4" placeholder="1234">
         `;
     }
 }
@@ -284,6 +298,35 @@ function validarYConstruirPago(){
                 banco:banco.trim(),
                 clabeEnmascarada:"**************" + clabe.slice(-4),
                 referencia:referencia.trim()
+            }
+        };
+    }
+
+    if(metodo === "monedero"){
+        const proveedor = (document.getElementById("proveedorMonedero") || {}).value || "";
+        const numero = (document.getElementById("numeroMonedero") || {}).value || "";
+        const nip = (document.getElementById("nipMonedero") || {}).value || "";
+
+        if(!proveedor.trim()){
+            return { ok:false, mensaje:"Ingresa el proveedor del monedero electrónico." };
+        }
+
+        if(numero.trim().length < 8){
+            return { ok:false, mensaje:"El número de monedero debe tener al menos 8 caracteres." };
+        }
+
+        if(!/^\d{4}$/.test(nip.trim())){
+            return { ok:false, mensaje:"El NIP del monedero debe tener 4 dígitos." };
+        }
+
+        return {
+            ok:true,
+            detalle:{
+                tipo:"monedero",
+                proveedor:proveedor.trim(),
+                numeroEnmascarado: numero.trim().length > 4
+                    ? "****" + numero.trim().slice(-4)
+                    : numero.trim()
             }
         };
     }

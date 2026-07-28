@@ -82,6 +82,11 @@ function mostrarProducto(producto) {
         <button ${producto.estado === "Agotado" ? "disabled class=\"btnAgotado\"" : "onclick=\"agregarCarrito('" + producto.nombre + "', " + producto.precio + ", '" + producto.categoria + "')\""}>
             ${producto.estado === "Agotado" ? "Agotado" : "🛒 Agregar al carrito"}
         </button>
+        ${
+            producto.estado === "Agotado"
+            ? ""
+            : `<button onclick="comprarAhora('${producto.nombre}', ${producto.precio}, '${producto.categoria}')">Comprar ahora</button>`
+        }
         <br><br>
         <a href="catalogo.html" class="botonVolver">← Regresar al catálogo</a>
     `;

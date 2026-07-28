@@ -96,6 +96,16 @@ else{
 
             </button>
 
+            <button
+
+            onclick="facturarPedido(${pedido.id})"
+
+            class="boton">
+
+                ${pedido.factura ? "Ver factura" : "Solicitar factura"}
+
+            </button>
+
         </div>
 
         `;
@@ -115,5 +125,19 @@ function verPedido(id){
     );
 
     location.href="detallePedido.html";
+
+}
+
+function facturarPedido(id){
+
+    localStorage.setItem(
+
+        "pedidoSeleccionado",
+
+        id
+
+    );
+
+    location.href="facturacion.html";
 
 }
