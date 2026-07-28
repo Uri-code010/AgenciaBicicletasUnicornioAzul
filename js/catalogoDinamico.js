@@ -122,6 +122,53 @@ let etiquetaActual = "todas";
 let textoBusqueda = "";
 const UMBRAL_STOCK_BAJO = 3;
 
+function normalizarTexto(valor) {
+    return String(valor || "")
+        .trim()
+        .toLowerCase()
+        .normalize("NFD")
+        .replace(/[\u0300-\u036f]/g, "")
+        .replace(/\s+/g, "");
+}
+
+function normalizarFiltroCategoria(valor) {
+    const normalizado = normalizarTexto(valor);
+
+    const alias = {
+        montana: "montana",
+        mtb: "montana",
+        ruta: "ruta",
+        bmx: "bmx",
+        urbana: "urbana",
+        infantil: "infantil",
+        electrica: "electrica",
+        electrico: "electrica",
+        plegable: "plegable",
+        lechera: "lechera",
+        todos: "todos"
+    };
+
+    return alias[normalizado] || normalizado;
+}
+
+function normalizarFiltroEtiqueta(valor) {
+    const normalizado = normalizarTexto(valor);
+
+    const alias = {
+        nuevo: "nuevo",
+        promo: "oferta",
+        promocion: "oferta",
+        oferta: "oferta",
+        destacada: "destacada",
+        popular: "popular",
+        eco: "eco",
+        clasica: "clasica",
+        ninguna: "ninguna"
+    };
+
+    return alias[normalizado] || normalizado;
+}
+
 function mostrarAlertaStockAdminCatalogo(){
 
     const alerta = document.getElementById("alertaStockAdminCatalogo");
@@ -210,7 +257,7 @@ function mostrarCatalogo(){
 
         const etiquetaNormalizada =
         etiquetaVisible && etiquetaVisible.toLowerCase() !== "ninguna"
-            ? etiquetaVisible.toLowerCase()
+            ? normalizarFiltroEtiqueta(etiquetaVisible)
             : "ninguna";
 
         catalogo.innerHTML += `
@@ -218,7 +265,7 @@ function mostrarCatalogo(){
         <div
             class="producto"
 
-            data-categoria="${producto.categoria.toLowerCase()}"
+            data-categoria="${normalizarFiltroCategoria(producto.categoria)}"
 
             data-etiqueta="${etiquetaNormalizada}"
 
@@ -390,15 +437,38 @@ function mostrarCatalogo(){
 
     actualizarContador();
     mostrarAlertaStockAdminCatalogo();
+    actualizarBotonesActivos();
 
 }
 //Filtrar categoria
 
+function actualizarBotonesActivos() {
+    document.querySelectorAll(".filtro-btn").forEach(boton => {
+        const grupo = boton.dataset.grupo;
+        const filtro = boton.dataset.filtro;
+
+        if (grupo === "categoria") {
+            const activo = categoriaActual === "todos"
+                ? filtro === "todos"
+                : normalizarFiltroCategoria(filtro) === categoriaActual;
+            boton.classList.toggle("activo", activo);
+        }
+
+        if (grupo === "etiqueta") {
+            const activo = etiquetaActual === "todas"
+                ? filtro === "todas"
+                : normalizarFiltroEtiqueta(filtro) === etiquetaActual;
+            boton.classList.toggle("activo", activo);
+        }
+    });
+}
+
 function filtrarCategoria(categoria){
 
-    categoriaActual = categoria;
+    categoriaActual = categoria === "todos" ? "todos" : normalizarFiltroCategoria(categoria);
 
     aplicarFiltros();
+    actualizarBotonesActivos();
 
 }
 
@@ -406,9 +476,10 @@ function filtrarCategoria(categoria){
 //filtrar etiqueta
 function filtrarEtiqueta(etiqueta){
 
-    etiquetaActual = etiqueta.toLowerCase();
+    etiquetaActual = etiqueta === "todas" ? "todas" : normalizarFiltroEtiqueta(etiqueta);
 
     aplicarFiltros();
+    actualizarBotonesActivos();
 
 }
 
@@ -453,7 +524,7 @@ function aplicarFiltros(){
 
         const coincideBusqueda =
 
-        nombre.includes(textoBusqueda);
+        nombre.includes(normalizarTexto(textoBusqueda));
 
         const coincide =
 
