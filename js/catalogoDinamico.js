@@ -156,8 +156,8 @@ function normalizarFiltroEtiqueta(valor) {
 
     const alias = {
         nuevo: "nuevo",
-        promo: "oferta",
-        promocion: "oferta",
+        promo: "promo",
+        promocion: "promo",
         oferta: "oferta",
         destacada: "destacada",
         popular: "popular",
@@ -269,7 +269,7 @@ function mostrarCatalogo(){
 
             data-etiqueta="${etiquetaNormalizada}"
 
-            data-nombre="${producto.nombre.toLowerCase()}">
+            data-nombre="${normalizarTexto(producto.nombre)}">
 
             ${
 
@@ -518,13 +518,15 @@ function aplicarFiltros(){
 
         etiquetaActual=="todas"
 
-        ||
+        ? etiqueta !== "ninguna"
 
-        etiqueta==etiquetaActual;
+        : etiqueta==etiquetaActual;
 
+        const textoBusquedaNormalizado = normalizarTexto(textoBusqueda);
+        const nombreNormalizado = normalizarTexto(nombre);
         const coincideBusqueda =
 
-        nombre.includes(normalizarTexto(textoBusqueda));
+        !textoBusquedaNormalizado || nombreNormalizado.includes(textoBusquedaNormalizado);
 
         const coincide =
 
