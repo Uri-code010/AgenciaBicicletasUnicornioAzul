@@ -47,12 +47,12 @@ function getPool() {
     if (!poolPromise) {
         poolPromise = sql.connect(dbConfig)
             .then((pool) => {
-                console.log("✅ Conectado a SQL Server:", process.env.DB_DATABASE);
+                console.log("Conectado a SQL Server:", process.env.DB_DATABASE);
                 return pool;
             })
             .catch((err) => {
                 poolPromise = null; // permite reintentar en el siguiente request
-                console.error("❌ Error al conectar a SQL Server:", err.message);
+                console.error("Error al conectar a SQL Server:", err.message);
                 throw err;
             });
     }

@@ -2,7 +2,7 @@ const path = require("path");
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 const express = require("express");
 const cors = require("cors");
-const { getPool, sql } = require("./config/db");
+const { getPool, sql } = require("./config/Db");
  
 const app = express();
  
@@ -19,9 +19,11 @@ app.get("/api/health", async (req, res) => {
         res.status(500).json({ status: "error", message: err.message });
     }
 });
+
+app.use("/api/clientes", require("./routes/clientes"));
  
 const PORT = process.env.PORT || 4000;
 app.listen(PORT, () => {
-    console.log(`🚀 API corriendo en http://localhost:${PORT}`);
+    console.log(`API corriendo en http://localhost:${PORT}`);
 });
  
