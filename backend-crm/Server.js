@@ -1,4 +1,5 @@
-const path = require("path");
+//server.js es para configurar y ejecutar el servidor, manjea rutas y middlewares, y conectar con la base de datos
+const path = require("path"); // cargar variables de entorno desde un archivo .env
 require("dotenv").config({ path: path.join(__dirname, ".env") });
 const express = require("express");
 const cors = require("cors");

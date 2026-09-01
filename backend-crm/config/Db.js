@@ -1,3 +1,4 @@
+// Db.js es para configurar la conexión a la base de datos y exportar un pool reuilizable de conexiones. 
 const driver = (process.env.DB_DRIVER || "mssql").toLowerCase();
 const sql = driver === "msnodesqlv8"
     ? require("mssql/msnodesqlv8")
