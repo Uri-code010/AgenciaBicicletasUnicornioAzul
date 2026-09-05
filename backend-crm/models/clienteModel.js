@@ -11,6 +11,14 @@ async function listar() {
     `);
     return result.recordset;
 }
+//obtener por id es para obtener un cliente por su id, si no existe devuelve null.
+async function obtenerPorId(id) {
+    const pool = await getPool();
+    const result = await pool.request()
+        .input("id", sql.Int, id)
+        .query("SELECT * FROM clientes WHERE id = @id");
+    return result.recordset[0] || null;
+}
 //esta instrucción sirve en pocas palabras, para crear un nuevo cliente en la base de datos, 
 // recibe un objeto con los datos del cliente y los inserta en la tabla clientes. Si el correo ya existe, lanza un error con código 409 (conflicto).
 async function crear({ nombre, correo, telefono, empresa, estado }) {
@@ -69,6 +77,20 @@ async function actualizar(id, { nombre, correo, telefono, empresa, estado }) {
         throw err;
     }
 }
+
+//esta instrucción async function eliminar() es para eliminar un cliente existente en la base de datos,
+async function eliminar(id){
+    const pool = await getPool();
+    const result = await pool.request()
+        .input("id", sql.Int, id)
+        .query(`
+            DELETE FROM clientes
+            OUTPUT DELETED.*
+            WHERE id = @id
+        `);
+        return result.recordset[0] || null;
+
+}
  
-module.exports = { listar, crear, actualizar };
+module.exports = { listar, obtenerPorId, crear, actualizar, eliminar };
  
