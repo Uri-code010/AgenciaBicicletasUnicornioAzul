@@ -50,6 +50,17 @@ async function actualizar(req, res, next) {
     }
 }
 
+async function actualizarEtapa(req, res, next) {
+    try {
+        const cliente = await clienteModel.actualizarEtapa(req.params.id, req.body.etapa_crm);
+        if (!cliente) {
+            return res.status(404).json({ status: "error", message: "Cliente no encontrado." });
+        }
+        res.json(cliente);
+    } catch (err) {
+        next(err);
+    }
+}
 async function eliminar(req, res, next){
     //maneja la solicitud de eliminar un cliente existente, llama al método eliminar del modelo con el id de cliente recibido
     try{
@@ -62,4 +73,4 @@ async function eliminar(req, res, next){
         next(err);
     }
 }
-module.exports = { listar, obtenerPorId, crear, actualizar, eliminar };
+module.exports = { listar, obtenerPorId, crear, actualizar, eliminar, actualizarEtapa };

@@ -77,7 +77,29 @@ async function actualizar(id, { nombre, correo, telefono, empresa, estado }) {
         throw err;
     }
 }
-
+ 
+async function actualizarEtapa(id, etapa_crm) {
+    const pool = await getPool();
+    const result = await pool.request()
+        .input("id", sql.Int, id)
+        .input("etapa_crm", sql.NVarChar(20), etapa_crm)
+        .query(`
+            UPDATE clientes
+            SET etapa_crm = @etapa_crm
+            OUTPUT INSERTED.*
+            WHERE id = @id
+        `);
+    return result.recordset[0] || null;
+}
+ 
+async function eliminar(id) {
+    const pool = await getPool();
+    const result = await pool.request()
+        .input("id", sql.Int, id)
+        .query("DELETE FROM clientes OUTPUT DELETED.id WHERE id = @id");
+    return result.recordset[0] || null;
+}
+ 
 //esta instrucción async function eliminar() es para eliminar un cliente existente en la base de datos,
 async function eliminar(id){
     const pool = await getPool();
@@ -92,5 +114,5 @@ async function eliminar(id){
 
 }
  
-module.exports = { listar, obtenerPorId, crear, actualizar, eliminar };
+module.exports = { listar, obtenerPorId, crear, actualizar, eliminar, actualizarEtapa };
  

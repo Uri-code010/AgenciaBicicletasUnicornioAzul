@@ -40,7 +40,7 @@ app.get("/api/health", async (req, res) => {
 app.use("/api/auth", require("./routes/auth"));
 app.use("/api/clientes", require("./routes/clientes"));
 app.use("/api/interacciones", require("./routes/interacciones"));
- 
+app.use("/api/metricas", require("./routes/metricas")); 
 // Manejador de errores centralizado: cualquier next(err) cae aquí
 app.use((err, req, res, next) => {
     console.error(err);
