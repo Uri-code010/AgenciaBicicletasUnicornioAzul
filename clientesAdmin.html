@@ -32,7 +32,7 @@
                     <a href="clientesAdmin.html"
                     class="activo">
 
-                        👥 Clientes
+                        👥 Clientes CRM
 
                     </a>
                 </li>
@@ -58,6 +58,8 @@
                         Consulta todos los usuarios registrados.
 
                     </p>
+
+                    <p id="infoUsuario"></p>
 
                 </div>
 
@@ -90,9 +92,26 @@
                 <input
                     type="text"
                     id="buscarCliente"
+                    
                     placeholder="🔍 Buscar cliente...">
+                <select id="filtroEtapa">
+                    <option value="todas">Todas las etapas</option>
+                    <option value="Prospecto">Prospecto</option>
+                    <option value="Activo">Activo</option>
+                    <option value="Frecuente">Frecuente</option>
+                    <option value="Inactivo">Inactivo</option>
+                </select>
+                <a href="miActividad.html">📝 Mi actividad</a>
+                <a href="dashboardMetricas.html">📊 Ver Dashboard</a>
 
             </div>
+
+            <div id="mensajeClientes" class="mensajeClientes" role="status" aria-live="polite"></div>
+
+            <section class="solicitudesAdmin" aria-labelledby="tituloSolicitudes">
+                <h2 id="tituloSolicitudes">Consultas de clientes</h2>
+                <div id="listaSolicitudesAdmin">Cargando consultas...</div>
+            </section>
 
             <table class="tablaAdmin">
 
@@ -106,7 +125,15 @@
 
                         <th>Teléfono</th>
 
+                        <th>Compras</th>
+
                         <th>Estado</th>
+
+                        <th>Etapa CRM</th>
+
+                        <th>Historial</th>
+
+                        <th>Eliminar</th>
 
                     </tr>
 
@@ -122,6 +149,7 @@
 
     </div>
 
+    <script src="js/adminAccess.js"></script>
     <script src="js/usuarios.js"></script>
 
     <script src="js/clientesAdmin.js"></script>

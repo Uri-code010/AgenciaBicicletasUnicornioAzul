@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Historial del Cliente - CRM</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body class="clienteDetalle-page">
+
+    <div class="adminContainer clienteDetalle-layout">
+        <aside class="menuLateral">
+            <h2>Administrador</h2>
+            <ul>
+                <li><a href="admin.html">🏠 Dashboard</a></li>
+                <li><a href="productosAdmin.html">🚲 Productos</a></li>
+                <li><a href="pedidosAdmin.html">📦 Pedidos</a></li>
+                <li><a href="clientesAdmin.html" class="activo">👥 Clientes</a></li>
+                <li><a href="miActividad.html">📝 Mi actividad</a></li>
+                <li><a href="promocionesAdmin.html">🏷 Promociones</a></li>
+                <li><a href="reportesAdmin.html">📊 Reportes</a></li>
+            </ul>
+        </aside>
+
+        <main class="contenidoAdmin clienteDetalle-contenido">
+            <header class="headerAdmin clienteDetalle-header">
+                <div>
+                    <span class="clienteDetalle-eyebrow">Gestión de clientes</span>
+                    <h1>Historial del cliente</h1>
+                    <p>Consulta los datos y registra el seguimiento de tus interacciones.</p>
+                </div>
+                <a class="clienteDetalle-volver" href="clientesAdmin.html">← Volver a clientes</a>
+            </header>
+
+            <section class="clienteDetalle-grid">
+                <section class="clienteDetalle-card clienteDetalle-datos" id="datosCliente">
+                    <p>Cargando datos del cliente...</p>
+                </section>
+
+                <section class="clienteDetalle-card clienteDetalle-formulario">
+                    <div class="clienteDetalle-seccionTitulo">
+                        <span class="clienteDetalle-icono">＋</span>
+                        <div>
+                            <span class="clienteDetalle-eyebrow">Seguimiento</span>
+                            <h2>Registrar interacción</h2>
+                        </div>
+                    </div>
+
+                    <form id="formInteraccion">
+                        <div class="clienteDetalle-campo">
+                            <label for="tipoInteraccion">Tipo de interacción</label>
+                            <select id="tipoInteraccion" required>
+                                <option value="">Selecciona...</option>
+                                <option value="llamada">Llamada</option>
+                                <option value="correo">Correo</option>
+                                <option value="reunión">Reunión</option>
+                            </select>
+                        </div>
+
+                        <div class="clienteDetalle-campo">
+                            <label for="descripcionInteraccion">Descripción</label>
+                            <textarea id="descripcionInteraccion" rows="4" placeholder="¿Qué se habló o qué preguntó el cliente?"></textarea>
+                        </div>
+
+                        <button class="clienteDetalle-boton" type="submit">Guardar interacción</button>
+                    </form>
+
+                    <div id="mensajeInteraccion" role="status"></div>
+                </section>
+            </section>
+
+            <section class="clienteDetalle-card clienteDetalle-historial">
+                <div class="clienteDetalle-seccionTitulo">
+                    <span class="clienteDetalle-icono">↗</span>
+                    <div>
+                        <span class="clienteDetalle-eyebrow">Actividad registrada</span>
+                        <h2>Línea de tiempo</h2>
+                    </div>
+                </div>
+                <ul id="lineaTiempo">
+                    <li>Cargando historial...</li>
+                </ul>
+            </section>
+        </main>
+    </div>
+
+    <script src="js/clienteDetalle.js"></script>
+
+</body>
+</html>

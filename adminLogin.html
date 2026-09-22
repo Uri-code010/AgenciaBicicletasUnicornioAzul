@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Acceso Administración - CRM</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <header>
+        <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+        <p>Panel de Administración</p>
+    </header>
+
+    <section class="login">
+
+        <h2>Iniciar sesión (Administración)</h2>
+
+        <form id="formAdminLogin">
+
+            <input type="email"
+                id="correoAdminLogin"
+                placeholder="Correo electrónico"
+                required>
+
+            <input type="password"
+                id="passwordAdminLogin"
+                placeholder="Contraseña"
+                required>
+
+            <button type="submit">
+                Ingresar
+            </button>
+
+        </form>
+
+        <div id="mensajeAdminLogin"></div>
+
+    </section>
+
+    <script src="js/adminLogin.js"></script>
+
+</body>
+</html>

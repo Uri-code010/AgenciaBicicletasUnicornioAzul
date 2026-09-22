@@ -41,7 +41,9 @@
 
             <li><a href="pedidosAdmin.html">📦 Pedidos</a></li>
 
-            <li><a href="clientesAdmin.html">👥 Clientes</a></li>
+            <li><a href="clientesAdmin.html">👥 Clientes CRM </a></li>
+
+            <li><a href="miActividad.html">📝 Mi actividad</a></li>
 
             <li><a href="promocionesAdmin.html">🏷 Promociones</a></li>
 
@@ -176,6 +178,47 @@
 
         </section>
 
+        <section id="gestionEmpleados" class="gestionEmpleados" hidden>
+            <h2>Registrar empleado</h2>
+            <form id="formEmpleado">
+                <input id="nombreEmpleado" type="text" placeholder="Nombre" required>
+                <input id="correoEmpleado" type="email" placeholder="Correo" required>
+                <input id="passwordEmpleado" type="password" placeholder="Contraseña temporal" required minlength="8">
+                <label for="rolEmpleado">Tipo de cuenta</label>
+                <select id="rolEmpleado">
+                    <option value="empleado">Empleado con permisos seleccionados</option>
+                    <option value="admin">Administrador completo</option>
+                </select>
+                <label><input type="checkbox" name="permisoEmpleado" value="dashboard:ver" checked> Dashboard</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="clientes:ver" checked> Consultar clientes</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="metricas:ver" checked> Métricas</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="solicitudes:ver" checked> Consultas de clientes</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="interacciones:crear"> Registrar interacciones</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="productos:ver"> Ver productos</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="productos:editar"> Editar productos</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="pedidos:ver"> Ver pedidos</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="pedidos:editar"> Editar pedidos</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="promociones:ver"> Ver promociones</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="promociones:editar"> Editar promociones</label>
+                <label><input type="checkbox" name="permisoEmpleado" value="reportes:ver"> Ver reportes</label>
+                <button type="submit">Crear empleado</button>
+                <p id="mensajeEmpleado" role="status" aria-live="polite"></p>
+            </form>
+            <h3>Permisos de empleados existentes</h3>
+            <div id="listaEmpleados">Cargando empleados...</div>
+        </section>
+
+        <section class="gestionEmpleados">
+            <h2>Cambiar mi contraseña</h2>
+            <form id="formPasswordAdmin">
+                <input type="password" id="passwordActualAdmin" placeholder="Contraseña actual" required>
+                <input type="password" id="passwordNuevaAdmin" placeholder="Nueva contraseña (mínimo 8 caracteres)" minlength="8" required>
+                <input type="password" id="confirmarPasswordAdmin" placeholder="Confirmar nueva contraseña" minlength="8" required>
+                <button type="submit">Actualizar contraseña</button>
+                <p id="mensajePasswordAdmin" role="status" aria-live="polite"></p>
+            </form>
+        </section>
+
 
         <section class="actividad">
 
@@ -190,8 +233,11 @@
     </main>
 
 </div>
+    <script src="js/adminAccess.js"></script>
     <script src="js/usuarios.js"></script>
     <script src="js/admin.js"></script>
+    <script src="js/empleadosAdmin.js"></script>
+    <script src="js/cambiarPassword.js"></script>
     <script>
 
         const hoy = new Date();

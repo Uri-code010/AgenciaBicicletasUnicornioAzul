@@ -2410,6 +2410,85 @@ background:#b91c1c;
 
 }
 
+.mensajeClientes {
+
+    display: none;
+    margin: 16px 0;
+    padding: 13px 16px;
+    border-radius: 8px;
+    font-weight: 600;
+    border: 1px solid transparent;
+
+}
+
+.mensajeClientes.visible {
+
+    display: block;
+
+}
+
+.mensajeClientes.exito {
+
+    background: #ecfdf5;
+    color: #047857;
+    border-color: #a7f3d0;
+
+}
+
+.mensajeClientes.error {
+
+    background: #fff1f2;
+    color: #be123c;
+    border-color: #fecdd3;
+
+}
+
+.miniChatPerfil,
+.solicitudesAdmin {
+    margin: 24px 0;
+    padding: 18px;
+    border: 1px solid #d7dee8;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.miniChatPerfil textarea {
+    display: block;
+    width: 100%;
+    min-height: 90px;
+    margin: 10px 0;
+    padding: 10px;
+    resize: vertical;
+    box-sizing: border-box;
+}
+
+.solicitudAdmin {
+    padding: 12px 0;
+    border-bottom: 1px solid #d7dee8;
+}
+
+.solicitudAdmin:last-child {
+    border-bottom: 0;
+}
+
+.solicitudAdmin time {
+    display: block;
+    margin-top: 4px;
+    color: #64748b;
+    font-size: 0.9rem;
+}
+
+.tipoSolicitud {
+    display: inline-block;
+    margin-right: 8px;
+    padding: 3px 8px;
+    border-radius: 12px;
+    background: #dbeafe;
+    color: #1e40af;
+    font-size: 0.8rem;
+    font-weight: 700;
+}
+
 /*pedidos admin*/
 .tablaAdmin{
 
@@ -3201,6 +3280,298 @@ TABLA PRODUCTOS ADMIN
 
     color:white;
 
+}
+
+/*=========================================
+        DETALLE DEL CLIENTE
+=========================================*/
+
+.clienteDetalle-page{
+    background:#f5f7fb;
+}
+
+.clienteDetalle-contenido{
+    min-width:0;
+}
+
+.clienteDetalle-header{
+    align-items:flex-end;
+    gap:24px;
+}
+
+.clienteDetalle-header h1{
+    margin-top:6px;
+}
+
+.clienteDetalle-header p{
+    margin-bottom:0;
+}
+
+.clienteDetalle-eyebrow{
+    display:block;
+    color:#0077cc;
+    font-size:12px;
+    font-weight:bold;
+    letter-spacing:1.2px;
+    text-transform:uppercase;
+}
+
+.clienteDetalle-volver{
+    flex-shrink:0;
+    color:#0077cc;
+    font-weight:bold;
+    text-decoration:none;
+}
+
+.clienteDetalle-volver:hover{
+    color:#005fa3;
+    text-decoration:underline;
+}
+
+.clienteDetalle-grid{
+    display:grid;
+    grid-template-columns:minmax(0,1.15fr) minmax(320px,.85fr);
+    gap:24px;
+    align-items:start;
+}
+
+.clienteDetalle-card{
+    background:white;
+    border:1px solid #e4edf5;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(11,37,69,.07);
+    padding:26px;
+}
+
+.clienteDetalle-datos{
+    min-height:240px;
+}
+
+.clienteDetalle-datos h2{
+    margin:0 0 22px;
+    color:#0B2545;
+    font-size:28px;
+}
+
+.clienteDetalle-datos p{
+    display:flex;
+    justify-content:space-between;
+    gap:16px;
+    margin:0;
+    padding:13px 0;
+    border-bottom:1px solid #edf2f7;
+    color:#526477;
+}
+
+.clienteDetalle-datos p:last-child{
+    border-bottom:0;
+}
+
+.clienteDetalle-datos strong{
+    color:#0B2545;
+}
+
+.estadoActivo,
+.estadoInactivo{
+    font-weight:bold;
+}
+
+.estadoActivo{
+    color:#16803c;
+}
+
+.estadoInactivo{
+    color:#c0392b;
+}
+
+.clienteDetalle-seccionTitulo{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom:22px;
+}
+
+.clienteDetalle-seccionTitulo h2{
+    margin:4px 0 0;
+    color:#0B2545;
+    font-size:21px;
+}
+
+.clienteDetalle-icono{
+    display:grid;
+    width:38px;
+    height:38px;
+    place-items:center;
+    border-radius:10px;
+    background:#eaf5ff;
+    color:#0077cc;
+    font-size:24px;
+    font-weight:bold;
+}
+
+.clienteDetalle-campo{
+    margin-bottom:16px;
+}
+
+.clienteDetalle-campo label{
+    display:block;
+    margin-bottom:7px;
+    color:#0B2545;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.clienteDetalle-campo select,
+.clienteDetalle-campo textarea{
+    box-sizing:border-box;
+    width:100%;
+    border:1px solid #cbd9e6;
+    border-radius:8px;
+    padding:11px 12px;
+    color:#26384a;
+    font:inherit;
+    outline:none;
+    transition:border-color .2s, box-shadow .2s;
+}
+
+.clienteDetalle-campo textarea{
+    min-height:104px;
+    resize:vertical;
+}
+
+.clienteDetalle-campo select:focus,
+.clienteDetalle-campo textarea:focus{
+    border-color:#0077cc;
+    box-shadow:0 0 0 3px rgba(0,119,204,.12);
+}
+
+.clienteDetalle-boton{
+    width:100%;
+    border:0;
+    border-radius:8px;
+    padding:12px 16px;
+    background:#0077cc;
+    color:white;
+    cursor:pointer;
+    font-weight:bold;
+    transition:background .2s, transform .2s;
+}
+
+.clienteDetalle-boton:hover{
+    background:#005fa3;
+    transform:translateY(-1px);
+}
+
+#mensajeInteraccion{
+    margin-top:14px;
+    color:#16803c;
+    font-size:14px;
+    font-weight:bold;
+}
+
+.clienteDetalle-historial{
+    margin-top:24px;
+}
+
+#lineaTiempo{
+    list-style:none;
+    margin:0;
+    padding:0 0 0 20px;
+    border-left:2px solid #b8d8f2;
+}
+
+#lineaTiempo li{
+    position:relative;
+    margin:0 0 14px;
+    padding:15px 18px;
+    border:1px solid #e4edf5;
+    border-radius:10px;
+    background:#f8fbff;
+    color:#526477;
+    line-height:1.55;
+}
+
+#lineaTiempo li:last-child{
+    margin-bottom:0;
+}
+
+#lineaTiempo li::before{
+    position:absolute;
+    top:21px;
+    left:-27px;
+    width:10px;
+    height:10px;
+    border:3px solid white;
+    border-radius:50%;
+    background:#0077cc;
+    box-shadow:0 0 0 1px #0077cc;
+    content:"";
+}
+
+#lineaTiempo strong{
+    color:#0B2545;
+}
+
+@media (max-width:900px){
+    .clienteDetalle-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media (max-width:700px){
+    .clienteDetalle-layout{
+        display:block;
+    }
+
+    .clienteDetalle-layout .menuLateral{
+        width:auto;
+        padding:18px 0;
+    }
+
+    .clienteDetalle-layout .menuLateral h2{
+        margin:0 0 15px;
+        font-size:22px;
+    }
+
+    .clienteDetalle-layout .menuLateral ul{
+        display:flex;
+        flex-wrap:wrap;
+        justify-content:center;
+        gap:5px;
+    }
+
+    .clienteDetalle-layout .menuLateral li{
+        margin:0;
+    }
+
+    .clienteDetalle-layout .menuLateral a{
+        padding:10px 12px;
+        font-size:13px;
+    }
+
+    .clienteDetalle-contenido{
+        padding:18px;
+    }
+
+    .clienteDetalle-header{
+        align-items:flex-start;
+        flex-direction:column;
+        padding:22px;
+    }
+
+    .clienteDetalle-header h1{
+        font-size:26px;
+    }
+
+    .clienteDetalle-card{
+        padding:20px;
+    }
+
+    .clienteDetalle-datos p{
+        align-items:flex-start;
+        flex-direction:column;
+        gap:4px;
+    }
 }
 
 .btnVer{
@@ -4976,4 +5347,30 @@ RESPUESTAS
 
     line-height:1.5;
 
+}
+
+.gestionEmpleados {
+    margin: 24px 0;
+    padding: 18px;
+    border: 1px solid #d7dee8;
+    border-radius: 8px;
+    background: #f8fafc;
+}
+
+.gestionEmpleados form {
+    display: grid;
+    gap: 10px;
+    max-width: 520px;
+}
+
+.empleadoPermisos {
+    margin-top: 14px;
+    padding: 12px;
+    border: 1px solid #d7dee8;
+    border-radius: 6px;
+}
+
+.empleadoPermisos label {
+    display: inline-block;
+    margin: 8px 12px 4px 0;
 }

@@ -40,7 +40,9 @@ async function clientesSinInteraccionReciente(diasSinInteraccion = 30) {
         .query(`
             SELECT c.id, c.nombre, c.correo, MAX(i.fecha) AS ultima_interaccion
             FROM clientes c
+            INNER JOIN usuarios u ON LOWER(u.correo) = LOWER(c.correo)
             LEFT JOIN interacciones i ON i.cliente_id = c.id
+            WHERE u.rol <> 'admin'
             GROUP BY c.id, c.nombre, c.correo
             HAVING MAX(i.fecha) IS NULL
                 OR MAX(i.fecha) < DATEADD(DAY, -@dias, GETDATE())

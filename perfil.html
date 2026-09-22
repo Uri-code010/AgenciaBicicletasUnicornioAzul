@@ -90,6 +90,32 @@
 
     <p id="ultimoAcceso"></p>
 
+    <form id="formContactoPerfil">
+        <label for="telefonoPerfil">Teléfono de contacto</label>
+        <input type="tel" id="telefonoPerfil" maxlength="30" placeholder="Ej. 4491234567">
+        <button type="submit">Guardar contacto</button>
+        <p id="mensajeContactoPerfil" role="status" aria-live="polite"></p>
+    </form>
+
+    <form id="formPasswordPerfil" class="formPassword">
+        <h3>Cambiar contraseña</h3>
+        <input type="password" id="passwordActualPerfil" placeholder="Contraseña actual" required>
+        <input type="password" id="passwordNuevaPerfil" placeholder="Nueva contraseña (mínimo 8 caracteres)" minlength="8" required>
+        <input type="password" id="confirmarPasswordPerfil" placeholder="Confirmar nueva contraseña" minlength="8" required>
+        <button type="submit">Actualizar contraseña</button>
+        <p id="mensajePasswordPerfil" role="status" aria-live="polite"></p>
+    </form>
+
+    <section class="miniChatPerfil" aria-labelledby="tituloSolicitarAyuda">
+        <h3 id="tituloSolicitarAyuda">¿Necesitas hacer una consulta?</h3>
+        <form id="formSolicitudCliente">
+            <textarea id="consultaCliente" maxlength="2000" required placeholder="Escribe tu petición o consulta..."></textarea>
+            <button type="submit">Enviar consulta</button>
+        </form>
+        <p id="mensajeSolicitudCliente" role="status" aria-live="polite"></p>
+        <div id="misSolicitudesCliente"></div>
+    </section>
+
     <div class="accionesPerfil">
 
         <a class="btn-perfil" href="historial.html">
@@ -129,6 +155,7 @@
 </section>
 
 <script src="js/usuarios.js"></script>
+<script src="js/perfil.js"></script>
 <script src="js/notificaciones.js"></script>
 <script src="js/notificacionesCliente.js"></script>
 <script src="js/sesion.js"></script>

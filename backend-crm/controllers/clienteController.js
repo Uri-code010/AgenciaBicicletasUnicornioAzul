@@ -13,6 +13,20 @@ async function listar(req, res, next) {
         next(err);
     }
 }
+
+async function sincronizarUsuarios(req, res, next) {
+    try {
+        const usuarios = Array.isArray(req.body) ? req.body : [];
+        const usuariosValidos = usuarios.filter(usuario =>
+            usuario && usuario.nombre && typeof usuario.correo === "string"
+        );
+
+        await clienteModel.sincronizarUsuarios(usuariosValidos);
+        res.status(204).send();
+    } catch (err) {
+        next(err);
+    }
+}
 //obtener por id es para manejar la solicitud de obtener un cliente por su id, 
 // llama al método obtenerPorId del modelo y devuelve el cliente en formato JSON. Si el cliente no existe, devuelve un error 404 (no encontrado).
 async function obtenerPorId(req, res, next) {
@@ -73,4 +87,4 @@ async function eliminar(req, res, next){
         next(err);
     }
 }
-module.exports = { listar, obtenerPorId, crear, actualizar, eliminar, actualizarEtapa };
+module.exports = { listar, sincronizarUsuarios, obtenerPorId, crear, actualizar, eliminar, actualizarEtapa };

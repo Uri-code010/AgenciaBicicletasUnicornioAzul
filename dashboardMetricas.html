@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard de métricas - CRM</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .dashboard {
+            --azul: #075985;
+            --tinta: #172033;
+            --muted: #64748b;
+            background: #f4f7fb;
+            color: var(--tinta);
+            min-height: 100vh;
+            font-family: "Trebuchet MS", sans-serif;
+        }
+        .dashboard.auth-pending { visibility: hidden; }
+        .dashboardHeader {
+            background: linear-gradient(120deg, #075985, #0f766e);
+            color: white;
+            padding: 42px max(24px, calc((100% - 1120px) / 2));
+        }
+        .dashboardHeader h1 { margin: 0 0 8px; font-size: clamp(1.7rem, 4vw, 2.7rem); }
+        .dashboardHeader p { margin: 0; color: #d9f4ff; }
+        .dashboardMain { width: min(1120px, calc(100% - 48px)); margin: 0 auto; padding: 28px 0 56px; }
+        .dashboardBack { color: var(--azul); font-weight: bold; text-decoration: none; }
+        .dashboardBack:hover { text-decoration: underline; }
+        .sectionHeading { margin: 34px 0 16px; display: flex; align-items: baseline; justify-content: space-between; gap: 16px; }
+        .sectionHeading h2 { margin: 0; font-size: 1.3rem; }
+        .sectionHeading p { margin: 0; color: var(--muted); font-size: .9rem; }
+        .contadores { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; margin: 0; }
+        .tarjetaContador { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; box-shadow: 0 8px 24px rgba(15, 23, 42, .06); }
+        .tarjetaContador .numero { display: block; color: var(--azul); font-size: 2.25rem; font-weight: bold; line-height: 1; margin-bottom: 10px; }
+        .tarjetaContador:nth-child(2) .numero { color: #0f766e; }
+        .tarjetaContador:nth-child(3) .numero { color: #b45309; }
+        .tarjetaContador:nth-child(4) .numero { color: #be123c; }
+        .barraContenedor { background: white; border: 1px solid #e2e8f0; border-radius: 12px; padding: 22px; box-shadow: 0 8px 24px rgba(15, 23, 42, .05); }
+        .filaBarra { display: grid; grid-template-columns: minmax(105px, 140px) minmax(0, 1fr) 120px; align-items: center; gap: 14px; margin-bottom: 16px; }
+        .filaBarra:last-child { margin-bottom: 0; }
+        .filaBarra .etiqueta { font-weight: bold; }
+        .pistaBarra { height: 12px; background: #e2e8f0; border-radius: 999px; overflow: hidden; }
+        .filaBarra .barra { height: 100%; border-radius: inherit; }
+        .valorBarra { color: var(--muted); text-align: right; font-size: .9rem; }
+        .tablaRiesgoWrapper { overflow-x: auto; background: white; border: 1px solid #e2e8f0; border-radius: 12px; box-shadow: 0 8px 24px rgba(15, 23, 42, .05); }
+        table.riesgo { width: 100%; border-collapse: collapse; }
+        table.riesgo th, table.riesgo td { padding: 15px 18px; text-align: left; border-bottom: 1px solid #e8eef5; }
+        table.riesgo th { background: #f8fafc; color: var(--muted); font-size: .78rem; letter-spacing: .06em; text-transform: uppercase; }
+        table.riesgo tbody tr:last-child td { border-bottom: 0; }
+        table.riesgo tbody tr:hover { background: #f8fbff; }
+        @media (max-width: 760px) {
+            .dashboardMain { width: min(100% - 32px, 600px); padding-top: 22px; }
+            .dashboardHeader { padding: 32px 16px; }
+            .sectionHeading { align-items: flex-start; flex-direction: column; gap: 6px; }
+            .contadores { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+            .filaBarra { grid-template-columns: 88px minmax(0, 1fr); gap: 10px; }
+            .valorBarra { grid-column: 2; text-align: left; margin-top: -8px; }
+        }
+        @media (max-width: 420px) { .contadores { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body class="dashboard auth-pending">
+
+    <header class="dashboardHeader">
+        <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+        <p>Panel de Administración — Dashboard</p>
+    </header>
+
+    <main class="dashboardMain">
+
+        <a class="dashboardBack" href="clientesAdmin.html">← Volver a clientes</a>
+        
+        <div class="sectionHeading">
+            <h2>Resumen general</h2>
+            <p>Estado actual de la cartera de clientes</p>
+        </div>
+
+        <div class="contadores" id="contadores">
+            <p>Cargando métricas...</p>
+        </div>
+
+        <div class="sectionHeading">
+            <h2>Clientes por estado</h2>
+            <p>Distribución de actividad</p>
+        </div>
+
+        <div class="barraContenedor" id="graficaEstado"></div>
+
+        <div class="sectionHeading">
+            <h2>⚠️ Clientes en riesgo</h2>
+            <p>Sin interacción en los últimos 30 días</p>
+        </div>
+
+            <div class="tablaRiesgoWrapper">
+                <table class="riesgo">
+                    <thead>
+                        <tr>
+                            <th>Nombre</th>
+                            <th>Correo</th>
+                            <th>Última interacción</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tablaRiesgo">
+                        <tr><td colspan="3">Cargando...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+
+    </main>
+
+    <script src="js/adminAccess.js"></script>
+    <script src="js/dashboardMetricas.js"></script>
+
+</body>
+</html>

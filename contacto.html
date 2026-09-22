@@ -56,43 +56,7 @@
         <div id="mensajeExito"></div>
     </div>
 
-    <script>
-
-
-        //sino ha llenado los campos requeridos, no se enviará el formulario, enviar mensaje de error, 
-        // si se llenaron los campos requeridos, enviar mensaje de éxito
-
-        document
-        .getElementById("formContacto") 
-
-        //una vez obtenido la información de los campos, envía mensaje de éxito y limpia los campos del formulario
-        .addEventListener("submit", function(event) {
-            
-            event.preventDefault(); // Evita que el formulario se envíe automáticamente
-
-            // Obtener los valores de los campos del formulario
-            var nombre = document.getElementById("nombre").value;
-            var correo = document.getElementById("correo").value;
-            var telefono = document.getElementById("telefono").value;
-            var mensaje = document.getElementById("mensaje").value;
-
-            // Validar que los campos requeridos estén llenos. y una vez mandando mensaje de exito, se elimina el mensaje de exito y se limpia el formulario
-            if (nombre && correo && mensaje) {
-                document.getElementById("mensajeExito").innerHTML = "¡Gracias por tu mensaje! Nos pondremos en contacto contigo pronto.";
-                document.getElementById("formContacto").reset(); // Limpiar los campos del formulario
-                //limpiar el mensaje de éxito después de 5 segundos
-                setTimeout(function() {
-                    document.getElementById("mensajeExito").innerHTML = "";
-                }, 5000);
-
-            } else {
-                document.getElementById("mensajeExito").innerHTML = "Por favor, completa todos los campos requeridos.";
-                document.getElementById("mensajeExito").style.color = "red"; 
-            }
-        });
-
-    
-    </script>
+    <script src="js/contacto.js"></script>
 
     <script src="js/notificaciones.js"></script>
 

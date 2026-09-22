@@ -6,6 +6,8 @@ const STORAGE_KEYS = {
     usuarioLegacy: "usuario"
 };
 
+const API_AUTH = "http://127.0.0.1:4000/api/auth";
+
 function obtenerUsuariosRegistrados() {
     try {
         const guardados = localStorage.getItem(STORAGE_KEYS.usuarios);
@@ -225,31 +227,50 @@ function estaAutenticado() {
 
         if (formulario) {
 
-            formulario.addEventListener("submit", function (e) {
+            formulario.addEventListener("submit", async function (e) {
             e.preventDefault();
 
             const usuario = {
                 nombre: document.getElementById("nombre").value.trim(),
                 correo: document.getElementById("correo").value.trim(),
+                telefono: document.getElementById("telefono").value.trim(),
                 password: document.getElementById("password").value,
                 rol: "cliente"
             };
 
             
-            iniciarSesion(usuario);
-
             const mensajeRegistro = document.getElementById("mensajeRegistro");
 
-            mensajeRegistro.innerHTML =
-            "✅ Usuario registrado correctamente";
+            try {
+                const respuesta = await fetch(`${API_AUTH}/registro`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify(usuario)
+                });
 
-            this.reset();
+                const datos = await respuesta.json();
 
-            setTimeout(() => {
+                if (!respuesta.ok) {
+                    mensajeRegistro.innerHTML = `❌ ${datos.message || "No se pudo completar el registro."}`;
+                    return;
+                }
 
-                window.location.href = "perfil.html";
+                iniciarSesion(usuario);
 
-            }, 1000);
+                mensajeRegistro.innerHTML =
+                "✅ Usuario registrado y añadido a clientes correctamente";
+
+                this.reset();
+
+                setTimeout(() => {
+
+                    window.location.href = "perfil.html";
+
+                }, 1000);
+            } catch (error) {
+                console.error(error);
+                mensajeRegistro.innerHTML = "❌ No se pudo conectar con el servidor.";
+            }
         });
         
     }
@@ -257,16 +278,47 @@ function estaAutenticado() {
     const login = document.getElementById("formLogin");
 
     if (login) {
-        login.addEventListener("submit", function (e) {
+        login.addEventListener("submit", async function (e) {
             e.preventDefault();
 
             const correo = document.getElementById("correoLogin").value.trim().toLowerCase();
             const password = document.getElementById("passwordLogin").value;
+            const mensajeLogin = document.getElementById("mensajeLogin");
+
+            try {
+                const respuesta = await fetch(`${API_AUTH}/login`, {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    credentials: "include",
+                    body: JSON.stringify({ correo, password })
+                });
+
+                const datos = await respuesta.json();
+
+                if (respuesta.ok && datos.usuario) {
+                    iniciarSesion({ ...datos.usuario, password });
+
+                    if (mensajeLogin) {
+                        mensajeLogin.innerHTML = "✅ Usuario ha accedido correctamente";
+                    }
+
+                    setTimeout(() => {
+                        window.location.href = datos.usuario.rol === "admin"
+                            ? "admin.html"
+                            : "perfil.html";
+                    }, 1000);
+                    return;
+                }
+            } catch (error) {
+                console.warn("No se pudo validar la sesión en el backend; se probará el registro local.", error);
+            }
+
             const usuarios = obtenerUsuariosRegistrados();
-            const usuarioGuardado = usuarios.find((u) => u.correo.toLowerCase() === correo && u.password === password);
+            const usuarioGuardado = usuarios.find((u) =>
+                (u.correo || "").toLowerCase() === correo && u.password === password
+            );
 
             if (!usuarioGuardado) {
-                const mensajeLogin = document.getElementById("mensajeLogin");
                 if (mensajeLogin) {
                     mensajeLogin.innerHTML = "❌ No hay un usuario registrado con esas credenciales";
                 }
@@ -275,7 +327,6 @@ function estaAutenticado() {
 
             iniciarSesion(usuarioGuardado);
 
-            const mensajeLogin = document.getElementById("mensajeLogin");
             if (mensajeLogin) {
                 mensajeLogin.innerHTML = "✅ Usuario ha accedido correctamente";
             }

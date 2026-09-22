@@ -3,10 +3,37 @@
 // Agencia de Bicicletas El Unicornio Azul
 //=====================================
 
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
-    const usuario =
-    JSON.parse(localStorage.getItem("usuarioActual"));
+    let usuario = null;
+
+    try {
+        usuario = JSON.parse(localStorage.getItem("usuarioActual"));
+    } catch (error) {
+        localStorage.removeItem("usuarioActual");
+    }
+
+    if (usuario) {
+        try {
+            const respuesta = await fetch("http://127.0.0.1:4000/api/auth/me", {
+                credentials: "include"
+            });
+
+            if (!respuesta.ok) {
+                localStorage.removeItem("usuarioActual");
+                localStorage.removeItem("sesionActiva");
+                sessionStorage.removeItem("sesionActiva");
+                usuario = null;
+
+                if (!location.pathname.endsWith("login.html") && !location.pathname.endsWith("registro.html")) {
+                    window.location.href = "login.html";
+                    return;
+                }
+            }
+        } catch (error) {
+            console.error("No se pudo validar la sesión del usuario", error);
+        }
+    }
 
     const menuSesion =
     document.getElementById("menuSesion");

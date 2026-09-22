@@ -1,6 +1,6 @@
 const { body, validationResult } = require("express-validator");
 
-const TIPOS_VALIDOS = ["llamada", "correo", "reunión"];
+const TIPOS_VALIDOS = ["llamada", "correo", "reunión", "petición", "contacto"];
 
 const reglasInteraccion = [
     body("cliente_id")

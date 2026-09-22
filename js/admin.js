@@ -2,6 +2,36 @@
 // PANEL ADMINISTRADOR
 //=====================================
 
+async function verificarAccesoAdmin() {
+    try {
+        const respuesta = await fetch("http://127.0.0.1:4000/api/auth/me", {
+            credentials: "include"
+        });
+
+        if (!respuesta.ok) {
+            window.location.href = "adminLogin.html";
+            return false;
+        }
+
+        const usuario = await respuesta.json();
+        const tienePermiso = usuario.permisos?.includes("*") || usuario.permisos?.includes("dashboard:ver");
+        if (!tienePermiso) {
+            await fetch("http://127.0.0.1:4000/api/auth/logout", {
+                method: "POST",
+                credentials: "include"
+            });
+            window.location.href = "login.html";
+            return false;
+        }
+
+        return true;
+    } catch (error) {
+        console.error(error);
+        window.location.href = "adminLogin.html";
+        return false;
+    }
+}
+
 function inicializarDashboard() {
     const productos = JSON.parse(localStorage.getItem("productos")) || [];
     const usuarios = JSON.parse(localStorage.getItem("usuariosRegistrados")) || [];
@@ -120,9 +150,15 @@ function agregarEventosAcciones() {
     }
 }
 
+async function iniciarDashboard() {
+    if (await verificarAccesoAdmin()) {
+        inicializarDashboard();
+    }
+}
+
 if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", inicializarDashboard);
+    document.addEventListener("DOMContentLoaded", iniciarDashboard);
 } else {
-    inicializarDashboard();
+    iniciarDashboard();
 }
 
