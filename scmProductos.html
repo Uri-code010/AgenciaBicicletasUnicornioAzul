@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SCM - Productos</title>
+    <link rel="stylesheet" href="css/estilos.css">
+    <style>
+        .stockBajo { color: #c62828; font-weight: bold; }
+        .stockOk { color: #2e7d32; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+        <p>SCM — Catálogo de Productos</p>
+    </header>
+
+    <main>
+
+        <a href="clientesAdmin.html">← Panel principal</a> |
+        <a href="scmProveedores.html">Ver proveedores →</a>
+
+        <section>
+            <h2 id="tituloFormulario">Registrar nuevo producto</h2>
+
+            <form id="formProducto">
+                <input type="hidden" id="productoIdEditando">
+
+                <input type="text" id="nombreProducto" placeholder="Nombre del producto" required>
+                <input type="text" id="categoriaProducto" placeholder="Categoría">
+                <textarea id="descripcionProducto" placeholder="Descripción" rows="2"></textarea>
+
+                <input type="number" id="stockActualProducto" placeholder="Stock actual" min="0" value="0">
+                <input type="number" id="stockMinimoProducto" placeholder="Stock mínimo" min="0" value="0">
+                <input type="number" id="costoProducto" placeholder="Costo unitario" min="0" step="0.01" value="0">
+
+                <select id="proveedorProducto">
+                    <option value="">Selecciona un proveedor (opcional)</option>
+                </select>
+
+                <button type="submit" id="botonGuardarProducto">Agregar producto</button>
+                <button type="button" id="botonCancelarEdicion" style="display:none;">Cancelar edición</button>
+            </form>
+
+            <div id="mensajeProducto"></div>
+        </section>
+
+        <h2>Catálogo</h2>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Categoría</th>
+                    <th>Stock</th>
+                    <th>Stock mín.</th>
+                    <th>Proveedor</th>
+                    <th>Costo</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody id="tablaProductos">
+                <tr><td colspan="7">Cargando...</td></tr>
+            </tbody>
+        </table>
+
+    </main>
+
+    <script src="js/scmProductos.js"></script>
+
+</body>
+</html>

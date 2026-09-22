@@ -1,0 +1,57 @@
+
+Scmproveedores · HTML
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>SCM - Proveedores</title>
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+ 
+    <header>
+        <h1>AGENCIA DE BICICLETAS EL UNICORNIO AZUL</h1>
+        <p>SCM — Proveedores</p>
+    </header>
+ 
+    <main>
+ 
+        <a href="clientesAdmin.html">← Panel principal</a> |
+        <a href="scmProductos.html">Ver productos →</a>
+ 
+        <section>
+            <h2>Registrar nuevo proveedor</h2>
+ 
+            <form id="formProveedor">
+                <input type="text" id="nombreProveedor" placeholder="Nombre del proveedor" required>
+                <input type="text" id="contactoProveedor" placeholder="Persona de contacto">
+                <input type="email" id="correoProveedor" placeholder="Correo">
+                <input type="tel" id="telefonoProveedor" placeholder="Teléfono">
+                <button type="submit">Agregar proveedor</button>
+            </form>
+ 
+            <div id="mensajeProveedor"></div>
+        </section>
+ 
+        <h2>Proveedores registrados</h2>
+ 
+        <table>
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Contacto</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody id="tablaProveedores">
+                <tr><td colspan="4">Cargando...</td></tr>
+            </tbody>
+        </table>
+ 
+    </main>
+ 
+    <script src="js/scmProveedores.js"></script>
+ 
+</body>
+</html>
